@@ -9,8 +9,7 @@ llm = ChatOllama(
 # 现在可以像使用其他 LangChain 聊天模型一样使用它
 messages = [
     ("system", "你是一个乐于助人的助手。"),
-    # ("human", "请用一句话解释人工智能是什么。"),
-    ("human", "详细讲一下langchain_ollama 依赖"),
+    ("human", "什么是 AI agent?"),
 ]
 
 response = llm.invoke(messages)
