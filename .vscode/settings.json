@@ -6,5 +6,9 @@
         }
     },
     "leetcode.defaultLanguage": "python3",
-    "leetcode.endpoint": "leetcode-cn"
+    "leetcode.endpoint": "leetcode-cn",
+    "code-runner.executorMap": {
+        "python": "/Users/haoxinlei/Desktop/开发/学习/notes/.vscode/run_python.sh"
+    },
+    "code-runner.runInTerminal": true
 }
