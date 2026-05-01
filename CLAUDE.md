@@ -1,3 +1,11 @@
+<!--
+ * @Author: haoxinlei howxl97@163.com
+ * @Date: 2026-05-01 10:44:45
+ * @LastEditors: haoxinlei howxl97@163.com
+ * @LastEditTime: 2026-05-01 11:25:14
+ * @FilePath: /notes/CLAUDE.md
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 # 个人学习笔记
 
 Java 后端开发学习笔记，涵盖 Java 基础、中间件、数据库、LLM 等领域。
