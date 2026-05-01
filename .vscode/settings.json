@@ -1,0 +1,10 @@
+{
+    "leetcode.filePath": {
+        "default": {
+            "folder": "leetcode",
+            "filename": "${id}.${title}.${ext}"
+        }
+    },
+    "leetcode.defaultLanguage": "python3",
+    "leetcode.endpoint": "leetcode-cn"
+}
