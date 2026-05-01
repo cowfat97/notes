@@ -1,14 +1,6 @@
-<!--
- * @Author: haoxinlei howxl97@163.com
- * @Date: 2026-05-01 10:44:45
- * @LastEditors: haoxinlei howxl97@163.com
- * @LastEditTime: 2026-05-01 11:25:14
- * @FilePath: /notes/CLAUDE.md
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 # 个人学习笔记
 
-Java 后端开发学习笔记，涵盖 Java 基础、中间件、数据库、LLM 等领域。
+Java 后端开发学习笔记，涵盖 Java 基础、中间件、数据库、LLM、408 考研等领域。
 
 ## 模块导航
 
@@ -17,10 +9,16 @@ Java 后端开发学习笔记，涵盖 Java 基础、中间件、数据库、LLM
 | Java | [Java/](./Java/) | 基础/多线程/JVM/框架/集合 |
 | 中间件 | [中间件/](./中间件/) | Redis/Nginx/Kafka/ES/Docker/Nacos/PostgreSQL |
 | 数据库 | [数据库/](./数据库/) | MySQL 索引/事务/特性 |
-| 计算机基础 | [计算机基础/](./计算机基础/) | 数据结构 |
-| LLM | [LLM/](./LLM/) | Agent/LangChain/LangGraph/RAG |
+| LLM | [LLM/](./LLM/) | Agent/LangChain/LangGraph/RAG/深度学习 |
+| 408 | [408/](./408/) | 数据结构/计组/操作系统/计网 |
 | LeetCode | [leetcode/](./leetcode/) | Python 刷题 |
 | 软考 | [软考/](./软考/) | 软件设计师备考 |
+
+## 环境配置
+
+- LLM 模块 Python 环境统一管理在 `../envs/conda/` 下，通过 `.vscode/run_python.sh` 自动路由
+- `.env` 统一在项目根目录，`.gitignore` 已忽略
+- 图片资源放在 [Pic/](./Pic/) 目录
 
 ## 笔记规范
 
