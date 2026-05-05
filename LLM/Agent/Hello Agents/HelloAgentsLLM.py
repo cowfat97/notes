@@ -1,3 +1,11 @@
+'''
+Author: haoxinlei howxl97@163.com
+Date: 2026-05-01 11:30:12
+LastEditors: haoxinlei howxl97@163.com
+LastEditTime: 2026-05-01 19:21:41
+FilePath: /notes/LLM/Agent/Hello Agents/HelloAgentsLLM.py
+Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+'''
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -23,15 +31,21 @@ class HelloAgentsLLM:
         """
         初始化客户端。优先使用传入参数，如果未提供，则从环境变量加载。
         """
-        self.model = model or os.getenv("LLM_MODEL_ID")
-        apiKey = apiKey or os.getenv("LLM_API_KEY")
-        baseUrl = baseUrl or os.getenv("LLM_BASE_URL")
+        # model = model or os.getenv("LLM_MODEL_ID")
+        # apiKey = apiKey or os.getenv("LLM_API_KEY")
+        # baseUrl = baseUrl or os.getenv("LLM_BASE_URL")
+
+        model = model or os.getenv("DeepSeek_MODEL_ID")
+        apiKey = apiKey or os.getenv("DeepSeek_API_KEY")
+        baseUrl = baseUrl or os.getenv("DeepSeek_BASE_URL")
+
         timeout = timeout or int(os.getenv("LLM_TIMEOUT", 60))
 
-        if not all([self.model, apiKey, baseUrl]):
+        if not all([model, apiKey, baseUrl]):
             raise ValueError("模型ID、API密钥和服务地址必须被提供或在.env文件中定义。")
 
         self.client = OpenAI(api_key=apiKey, base_url=baseUrl, timeout=timeout)
+        self.model = model
 
     def think(self, messages: List[Dict[str, str]], temperature: float = 0) -> str:
         """
