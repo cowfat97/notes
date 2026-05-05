@@ -20,17 +20,33 @@ markdown_extensions:
 nav:
   - 首页: README.md
   - Java:
-      - Java/Java 基础/
-      - Java/JVM/
-      - Java/多线程/
-      - Java/集合/
+      - 基础: Java/Java 基础/Java 的特性.md
+      - JVM: Java/JVM/JVM 内存结构.md
+      - 多线程:
+          - 线程创建: Java/多线程/线程创建.md
+          - 线程状态: Java/多线程/线程状态.md
+          - 线程池队列: Java/多线程/线程池队列.md
+      - 事务:
+          - 事务控制: Java/事务/事务控制.md
+          - 多线程事务: Java/事务/多线程事务.md
+      - 集合:
+          - List: Java/集合/List.md
+          - HashMap 线程安全: Java/集合/HashMap 线程安全吗？.md
+      - 框架:
+          - Spring IoC: Java/框架/spring/Ioc 的实现.md
+      - 工具:
+          - Druid: Java/工具/Druid.md
+          - JUnit: Java/工具/Junit.md
+          - Swagger: Java/工具/Swagger.md
   - 中间件:
-      - 中间件/Redis/
-      - 中间件/Nginx/
+      - Redis 集群: 中间件/Redis/Redis集群模式.md
+      - Nginx 配置: 中间件/Nginx/Nginx 配置.md
   - 数据库:
-      - 数据库/Mysql/
+      - 特性: 数据库/Mysql/数据库特性.md
+      - 索引: 数据库/Mysql/索引.md
+      - 事务: 数据库/Mysql/数据库事务.md
   - LLM:
-      - LLM/Rag/RAG.md
+      - RAG: LLM/Rag/RAG.md
   - 408:
-      - 408/数据结构/
-  - LeetCode: leetcode/
+      - 数据结构概述: 408/数据结构/数据结构概述.md
+  - LeetCode: leetcode/PROGRESS.md
