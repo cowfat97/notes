@@ -6,7 +6,9 @@ import os
 
 class Config:
     # 初始化配置，加载 config.ini 文件
-    def __init__(self, config_file="/Users/chan/projects/Itcast_qa_system/config.ini"):
+    def __init__(self, config_file=None):
+        if config_file is None:
+            config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config.ini")
         # 创建配置解析器
         self.config = configparser.ConfigParser()
         # 读取配置文件
