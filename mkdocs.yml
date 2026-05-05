@@ -1,6 +1,7 @@
 site_name: 郝鑫磊的技术笔记
 site_description: Java 后端 & 大模型开发学习笔记
 site_author: cowfat97
+docs_dir: "."
 
 theme:
   name: material
