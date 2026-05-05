@@ -1,18 +1,43 @@
-site_name: Notes
+site_name: 郝鑫磊的技术笔记
+site_description: Java 后端 & 大模型开发学习笔记
+site_author: cowfat97
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.tracking
+    - search.highlight
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - tables
 
 nav:
-  - Home: README.md
+  - 首页: README.md
   - Java:
-      - Overview: Java/README.md
+      - Java/Java 基础/
+      - Java/JVM/
+      - Java/多线程/
+      - Java/框架/
+      - Java/集合/
   - 中间件:
-      - Overview: 中间件/README.md
+      - 中间件/Redis/
+      - 中间件/Kafka/
+      - 中间件/Nginx/
+      - 中间件/Docker/
+      - 中间件/Nacos/
   - 数据库:
-      - Overview: 数据库/README.md
+      - 数据库/Mysql/
   - LLM:
-      - Overview: LLM/README.md
+      - LLM/Rag/RAG.md
+      - LLM/Agent/
   - 408:
-      - Overview: 408/README.md
-  - leetcode:
-      - Overview: leetcode/README.md
-  - 软考:
-      - Overview: 软考/README.md
+      - 408/数据结构/
+      - 408/计算机组成原理/
+      - 408/操作系统/
+      - 408/计算机网络/
+  - LeetCode: leetcode/
+  - 软考: 软考/
