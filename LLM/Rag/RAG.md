@@ -321,114 +321,77 @@ answer = self.llm(prompt.format(context=context, question=query, phone=phone))
 
 # RAG 评估
 
-RAG 系统有两段可能出错：**检索可能找不到**、**生成可能不忠于文档**。评估需要把两者拆开看，也要一起看。
+RAG 系统有两段：**检索**和**生成**。评估必须拆开看——检索不好，生成一定不好；检索好，生成也可能出问题。
 
-## 为什么需要专门的评估
+## 一、检索评估
 
-普通 LLM 评估只看输出质量（流畅度、准确性）。RAG 多了检索环节，会引入独有的问题：
+核心问题只有一个：**用户问的东西，知识库里有没有？搜到了没有？**
 
-| 问题类型 | 例子 | 根因 |
-|----------|------|------|
-| 检索漏了 | 知识库有答案但没搜到 | Embedding 模型不够好 / 切分策略有问题 |
-| 检索偏了 | 搜到了但不相关 | 纯向量检索，关键词匹配弱 |
-| 幻觉 | LLM 编造了文档里不存在的内容 | prompt 约束不够 / 模型本身幻觉 |
-| 答非所问 | 检索对了但 LLM 没回答用户的问题 | prompt 设计问题 |
+### 基础指标（不需要 LLM）
 
-## 评估的三个维度
+这些指标需要一个标注好的测试集：每条 query 标注了哪些文档是相关的。
 
-### 1. 检索质量（Retrieval）
+| 指标 | 含义 | 计算 |
+|------|------|------|
+| Hit Rate@K | top-K 中至少命中一个相关文档 | 命中的查询数 / 总查询数 |
+| MRR | 第一个相关文档排在什么位置 | avg(1 / 第一个相关文档的排名) |
+| Recall@K | top-K 中命中了全部相关文档的多大比例 | 命中相关数 / 全部相关数 |
+| Precision@K | top-K 中有多大比例是相关的 | 命中相关数 / K |
+| NDCG@K | 考虑排名位置（排前面的相关文档得分更高） | 相关文档排名越靠前分越高 |
 
-衡量"搜得对不对"：
+**实战建议：** Hit Rate@5 和 MRR 最常用。Hit Rate 告诉你"能不能搜到"（及格线 > 0.8），MRR 告诉你"搜到的排第几"（及格线 > 0.6）。
 
-| 指标 | 含义 | 怎么算 |
-|------|------|--------|
-| Hit Rate | top-K 结果中至少有一个相关 | 有相关 / 总查询数 |
-| Recall@K | top-K 中相关文档占全部相关文档的比例 | 命中相关数 / 全部相关数 |
-| Precision@K | top-K 中相关文档的比例 | 命中相关数 / K |
-| MRR | 第一个相关文档排在第几位（倒数均值） | avg(1/排名) |
-| NDCG@K | 考虑排名位置的检索质量 | 相关文档排越前分越高 |
+### RAGAS 检索指标（需要 LLM 或 ground truth）
 
-**实战建议：** Hit Rate 和 MRR 最常用。Hit Rate 告诉你"能不能搜到"，MRR 告诉你"搜到的排第几"。
+#### Context Recall（上下文召回率）— 搜全了吗
 
-### 2. 生成质量（Generation）
+**问的是：** 标准答案里的信息，检索结果覆盖了多少。
 
-衡量"回答得好不好"。这是 RAG 评估的核心难点——既要忠于文档，又要回答用户问题。
+```
+Ground truth:
+  s1: "corePoolSize 控制核心线程数"
+  s2: "maximumPoolSize 是最大线程数"
+  s3: "keepAliveTime 是空闲线程存活时间"
 
-| 指标 | 含义 | 评估方式 |
-|------|------|---------|
-| Faithfulness（忠实度） | 答案是否完全基于检索到的文档 | LLM 逐句拆解→检查每句话是否能在文档中找到依据 |
-| Answer Relevance（答案相关性） | 答案是否回答了用户的问题 | LLM 根据答案反向生成问题→看生成的问题和原始问题语义是否一致 |
-| Context Relevance（上下文相关性） | 检索到的文档是否与问题相关 | LLM 检查检索结果中是否有无关内容 |
-| Context Recall（上下文召回） | 检索结果是否覆盖了答案所需的所有信息 | 需要标注数据（ground truth） |
+检索结果: "ThreadPoolExecutor 有 corePoolSize 和 maximumPoolSize..."
+  s1 → 有 ✓
+  s2 → 有 ✓
+  s3 → 无 ✗
 
-### 3. 端到端质量
+Context Recall = 2/3 = 0.67  ⚠️ keepAliveTime 没检索到
+```
 
-直接评价最终答案的正确性。需要对每个 query 准备标准答案（ground truth），然后比较 RAG 输出和标准答案的相似度（BLEU、ROUGE、语义相似度等）。
+**需要 ground truth。** 低分 → 调大 K、优化切分策略、加强混合检索的关键词权重。
 
-## RAGAS 框架
+#### Context Precision（上下文精确度）— 搜准了吗
 
-RAGAS（**R**etrieval **A**ugmented **G**eneration **A**ssessment）是目前最主流的 RAG 评估框架。
+**问的是：** 检索出来的文档，有多少是真正相关的。
+
+```
+检索结果 top-3:
+  rank 1: "ThreadPoolExecutor 构造函数参数详解" → 相关 ✓
+  rank 2: "Java NIO Selector 原理" → 无关 ✗
+  rank 3: "线程池拒绝策略" → 相关 ✓
+
+Context Precision ≈ 0.5  ⚠️ 混入了无关文档
+```
+
+RAGAS 的 Precision 考虑了排名——排前面的相关文档加分多，排后面的无关文档扣分少。
+
+**需要 ground truth。** 低分 → 加 Reranker、检查 Embedding 模型是否适合你的领域、减少检索 K 值。
+
+### 检索评估示例代码
 
 ```python
-from ragas import evaluate
-from ragas.metrics import faithfulness, answer_relevancy, context_precision, context_recall
-from datasets import Dataset
-
-# 准备评估数据：question, answer, contexts, ground_truth
-eval_dataset = Dataset.from_dict({
-    "question": ["Java 线程池的核心参数有哪些？"],
-    "answer": ["核心线程数、最大线程数、存活时间、工作队列、拒绝策略"],
-    "contexts": [["线程池 ThreadPoolExecutor 的构造函数..."]],  # 检索到的文档
-    "ground_truth": ["corePoolSize, maximumPoolSize, keepAliveTime, workQueue, handler"]
-})
-
-result = evaluate(eval_dataset, metrics=[
-    faithfulness,         # 答案是否忠于上下文
-    answer_relevancy,     # 答案是否切题
-    context_precision,    # 上下文是否精简相关
-    context_recall,       # 上下文是否覆盖全面
-])
-```
-
-**四个核心指标：**
-
-| 指标 | 满分含义 | 用 LLM 评？ |
-|------|---------|------------|
-| Faithfulness | 答案每句话都能在检索文档中找到 | 是 |
-| Answer Relevancy | 答案直接回答了用户问题 | 是 |
-| Context Precision | 检索结果中没有无关文档 | 是 |
-| Context Recall | 检索结果覆盖了答案所需全部信息 | 否（需要 ground truth） |
-
-**注意：** 前三个指标用 LLM 做评判（LLM-as-Judge），不需要人工标注。Context Recall 需要 ground truth，成本最高但最可靠。
-
-## 怎么评估你的 integrated_qa_system
-
-你现在没有评估数据。要建立评估体系，分三步：
-
-**第一步：构建测试集（20-50 条）**
-
-```
-每条包含：
-  - question: "RAG 的混合检索怎么做？"
-  - ground_truth: "混合检索同时使用稠密向量和稀疏向量..."
-  - 预期检索文档: [doc_id1, doc_id2]
-```
-
-从你的笔记中抽 20-50 个问题，自己写标准答案。
-
-**第二步：跑检索评估**
-
-```python
-# 对每个 query 执行检索，计算 Hit Rate 和 MRR
-hits = 0
-mrr_sum = 0
+# 基础检索评估
+hits, mrr_sum = 0, 0
 for query, expected_docs in test_set:
     results = vector_store.hybrid_search_with_rerank(query, k=5)
     result_ids = [doc.metadata["parent_id"] for doc in results]
-    # Hit Rate: 至少命中一个就算对
+
     if any(eid in result_ids for eid in expected_docs):
         hits += 1
-    # MRR: 第一个命中的排名
+
     for rank, rid in enumerate(result_ids, 1):
         if rid in expected_docs:
             mrr_sum += 1.0 / rank
@@ -438,21 +401,186 @@ print(f"Hit Rate@5: {hits / len(test_set):.2%}")
 print(f"MRR@5: {mrr_sum / len(test_set):.3f}")
 ```
 
-**第三步：跑生成评估**
+## 二、生成评估
 
-用 RAGAS 或直接让一个更强的 LLM（如 GPT-4）评判你的答案质量。核心看两点：
-- 答案有没有编造文档里不存在的内容（Faithfulness）
-- 答案有没有真正回答用户的问题（Answer Relevancy）
+检索没问题后，评估 LLM 生成的答案质量。核心两个指标：
 
-## 评估策略
+### Faithfulness（忠实度）⭐⭐⭐ — 编造了吗
 
-| 阶段 | 做什么 | 频率 |
+RAG 最重要的指标。**问的是：** LLM 有没有说检索文档里不存在的话。
+
+```
+答案: "Java 线程池有 7 个参数。最好使用 CachedThreadPool。"
+  ├── "Java 线程池有 7 个参数" → 检索文档中有 → ✓
+  └── "最好使用 CachedThreadPool" → 检索文档中无 → ✗ (LLM 自己编的)
+
+Faithfulness = 1/2 = 0.5  ⚠️
+```
+
+**计算方式：**
+1. 把答案拆成独立陈述句（claims）
+2. 用 LLM 逐句检查是否能从检索的 contexts 中找到依据
+3. 分数 = 有依据的陈述数 / 总陈述数
+
+**不需要 ground truth，LLM 自行评判。** 低分 → 强化 prompt 约束、换更听话的模型。
+
+### Answer Relevancy（答案相关性）— 跑题了吗
+
+**问的是：** 答案是否真正回答了用户的问题。
+
+```
+用户: "RAG 的混合检索怎么做？"
+
+答案 A: "混合检索同时使用稠密向量和稀疏向量..."
+  → LLM 反向生成问题: "混合检索怎么实现？"
+  → 语义相似度 0.95 ✅
+
+答案 B: "RAG 是检索增强生成，2020 年由 Facebook 提出..."
+  → LLM 反向生成问题: "RAG 是什么？"
+  → 语义相似度 0.45 ⚠️ 问的是怎么做，不是是什么
+```
+
+**计算方式：**
+1. LLM 根据答案反向生成问题
+2. 计算反向生成的问题与原问题的语义相似度
+3. 分数 = 余弦相似度，越接近 1 越切题
+
+**不需要 ground truth。** 低分 → 检查上下文是否太长淹没了问题。
+
+## 四个指标关系图
+
+```
+           Context Recall    Context Precision
+              (够全吗)          (够精吗)
+                ↓                 ↓
+           ┌──────────────────────────┐
+用户问题 → │      检索到的上下文        │ → LLM → 答案
+           └──────────────────────────┘            ↓
+                                        Faithfulness  Answer Relevancy
+                                         (编造了吗)    (跑题了吗)
+
+            ←── 检索评估 ──→              ←──── 生成评估 ────→
+```
+
+## 评估框架
+
+评估指标需要框架来落地——自动执行评估流程、调用 LLM 评判、汇总结果。以下是四个主流框架。
+
+### 框架对比
+
+| 框架 | 定位 | 优势 | 劣势 |
+|------|------|------|------|
+| RAGAS | 专注 RAG 评估 | 指标全、社区活跃、论文背书 | 只做评估不做监控 |
+| DeepEval | 通用 LLM 评估 | 指标最多、CI/CD 集成好 | 配置稍复杂 |
+| TruLens | RAG 可观测性 | 可视化链路追踪 + 评估一体 | 较重，学习成本高 |
+| LangSmith | 全流程 LLMOps | 调试+评估+监控一站式 | 付费，开源部分功能有限 |
+
+### RAGAS — 专注 RAG，最推荐
+
+```python
+from ragas import evaluate
+from ragas.metrics import faithfulness, answer_relevancy, context_precision, context_recall
+from datasets import Dataset
+
+eval_dataset = Dataset.from_dict({
+    "question": ["Java 线程池的核心参数有哪些？"],
+    "answer": ["核心线程数、最大线程数、存活时间、工作队列、拒绝策略"],
+    "contexts": [["线程池 ThreadPoolExecutor 的构造函数..."]],
+    "ground_truth": ["corePoolSize, maximumPoolSize, keepAliveTime, workQueue, handler"]
+})
+
+result = evaluate(eval_dataset, metrics=[
+    faithfulness,
+    answer_relevancy,
+    context_precision,
+    context_recall,
+])
+# result["faithfulness"] → 0.85
+```
+
+**适用场景：** 只需要 RAG 评估，不想引入重型平台。pip install 就能用，5 分钟上手。
+
+### DeepEval — 指标最全，CI/CD 友好
+
+```python
+from deepeval import evaluate
+from deepeval.metrics import FaithfulnessMetric, AnswerRelevancyMetric
+from deepeval.test_case import LLMTestCase
+
+test_case = LLMTestCase(
+    input="Java 线程池的核心参数？",
+    actual_output="核心线程数、最大线程数...",
+    retrieval_context=["ThreadPoolExecutor 构造函数..."],
+)
+
+FaithfulnessMetric().measure(test_case)    # → score: 0.9, reason: "..."
+AnswerRelevancyMetric().measure(test_case) # → score: 0.85, reason: "..."
+```
+
+比 RAGAS 多了更多指标（Toxicity、Bias、Hallucination），支持 pytest 集成：
+```python
+@deepeval.log_hyperparameters(model="qwen-turbo")
+def test_rag_faithfulness():
+    assert_test(test_case, [FaithfulnessMetric()])
+```
+
+**适用场景：** 需要 CI/CD 自动化评估、需要更多指标类型。
+
+### TruLens — 可视化链路追踪
+
+```python
+from trulens_eval import Tru, Feedback, TruChain
+from trulens_eval.feedback import Groundedness
+
+tru = Tru()
+# 定义反馈函数
+feedback = Feedback(Groundedness()).on_input().on_output()
+
+# 包装 RAG 链路
+tru_chain = TruChain(rag_chain,
+    feedbacks=[feedback],
+    app_name="PersonalRAG",
+)
+
+with tru_chain as recording:
+    result = rag_chain.invoke("Java 线程池？")
+# 自动记录：检索了哪些文档 → 耗时 → 各阶段得分
+```
+
+TruLens 的核心价值在于**链路追踪**——能看到每条 query 的检索结果是什么、花了多少时间、每步得分。适合调试和优化。
+
+**适用场景：** 需要排查"这条 query 为什么答得不好"，需要可视化调试。
+
+### LangSmith — 全流程平台（付费）
+
+LangChain 官方的 LLMOps 平台。不只是评估，还覆盖：
+- 调试：查看每次调用的完整链路（prompt → 检索 → 生成）
+- 数据集管理：上传测试集，一键跑评估
+- 回归测试：发版前自动对比新旧版本
+- 线上监控：追踪用户真实 query 的质量
+
+**适用场景：** 团队协作、生产环境上线后的持续监控。个人项目成本偏高（免费额度有限）。
+
+### 选型建议
+
+| 场景 | 推荐 |
+|------|------|
+| 个人项目、快速评估 | RAGAS |
+| 需要 CI/CD 自动化 | DeepEval |
+| 排查检索质量瓶颈 | TruLens |
+| 生产环境、团队协作 | LangSmith |
+
+**实战建议：** 先用 RAGAS 跑通基本评估，如果发现检索指标低、需要定位问题，再引入 TruLens 看链路。
+
+## 评估流程
+
+| 阶段 | 做什么 | 工具 |
 |------|--------|------|
-| 开发阶段 | 跑检索指标（Hit Rate/MRR），快速迭代 Embedding 和切分策略 | 每次改动 |
-| 上线前 | 全量 RAGAS 评估，确保生成质量 | 发版前 |
-| 上线后 | 用户反馈 + 人工抽检 | 持续 |
+| 1. 构建测试集 | 20-50 条 query + ground_truth + 相关文档标注 | 人工 |
+| 2. 检索评估 | Hit Rate / MRR / Context Recall / Context Precision | 代码 + RAGAS |
+| 3. 生成评估 | Faithfulness / Answer Relevancy | RAGAS（LLM-as-Judge） |
 
-**RAG 评估的核心原则：先检索后生成。检索指标差，后面的生成评估没有意义。**
+**核心原则：先检索后生成。检索指标不过关，不要去调生成——先去修 Embedding、切分、Reranker。**
 
 # RAG发展
 
