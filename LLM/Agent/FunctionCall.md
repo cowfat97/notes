@@ -1,41 +1,33 @@
-# Function Call（函数调用）
+# Function Call
 
-## 什么是 Function Call
+## 为什么需要 Function Call？
 
-Function Call 是一种让大模型根据任务自动决策是否调用函数、调用哪个函数、传什么参数的能力。模型返回的不是最终答案，而是一个结构化的函数调用指令（JSON）。
+LLM 只能输出文本，不能执行。遇上"今天北京天气怎么样"，模型要么编造（幻觉），要么说"我没有实时数据"。
 
-**不是所有模型都具备 Function Call 能力，这是通过专门训练获得的。** 不具备的模型只能生成纯文本。
+Function Call 给了它第三种选择：输出一个结构化指令，让外部代码代为执行。
 
-## 为什么需要 Function Call
+**Function Call 不是 LLM 的能力，是 LLM 与工具之间的交互流程。**
 
-| 问题 | 说明 |
-|------|------|
-| 信息实时性 | LLM 训练数据有截止日期，无法获取实时信息 |
-| 数据局限性 | 无法访问私有数据库、企业内部系统 |
-| 功能扩展性 | 不能执行计算、发邮件、操作数据库等操作 |
+## 什么是 Function Call？
 
-Function Call 让 LLM 从"聊天机器人"变成"行动者"。
-
-## 工作流程
+LLM 做的事没变——还是输出 token。变的只是输出格式：
 
 ```
-用户请求 → LLM 判断 → 两种响应路径：
-                      ├── 普通文本回复（不需要工具）
-                      └── Function Call JSON（需要工具）
-                            → 客户端执行函数
-                            → 结果返回 LLM
-                            → LLM 生成最终自然语言回复
+普通输出：  "北京晴天，25度"  ← 编的
+Function Call：{"name": "get_weather", "arguments": {"city": "北京"}}  ← 调用意图
 ```
 
-1. 客户端发送提示词 + 可用函数列表给 LLM
-2. LLM 根据语义判断：纯文本回复 or 函数调用
-3. 如果是函数调用，返回函数名 + 参数 JSON
-4. 客户端执行函数，结果传回 LLM
-5. LLM 整合数据，生成自然语言回复
+LLM 输出"要调什么、传什么参数"，外部代码执行，结果返回给 LLM，LLM 再生成回复。
 
-## 三种定义方式
+**LLM 是意图输出器，不是执行器。**
 
-### 方式一：JSON Schema（手动字典）
+## 怎么用 Function Call？
+
+### 1. 定义工具
+
+本质就一件事：告诉 LLM **工具叫什么、能干什么、参数长什么样**。
+
+**方式一：JSON Schema（手动字典）**
 
 ```python
 tools = [
@@ -57,23 +49,16 @@ tools = [
 ]
 ```
 
-- **优点**：完全手动控制，跨框架兼容
-- **缺点**：繁琐，易出错
-- **适用**：需要与第三方系统集成、对 Schema 有精确控制
+最灵活，最繁琐。跨框架通用。
 
-### 方式二：`@tool` 装饰器（推荐）
+**方式二：`@tool` 装饰器（推荐）**
 
 ```python
 from langchain_core.tools import tool
 
 @tool
 def add(a: int, b: int) -> int:
-    """
-    将数字a与数字b相加
-    Args:
-        a: 第一个数字
-        b: 第二个数字
-    """
+    """将数字a与数字b相加"""
     return a + b
 
 @tool
@@ -84,11 +69,9 @@ def multiply(a: int, b: int) -> int:
 tools = [add, multiply]
 ```
 
-- **优点**：最简洁，自动从函数签名和 docstring 生成 Schema
-- **注意**：调用时要用 `func.invoke(tool_call["args"])`，因为 LangChain 做了包装
-- **适用**：90% 的场景，快速开发首选
+框架自动从函数签名 + docstring 生成 Schema。调用时用 `func.invoke(tool_call["args"])`，LangChain 做了包装。
 
-### 方式三：Pydantic BaseModel
+**方式三：Pydantic BaseModel**
 
 ```python
 from pydantic.v1 import BaseModel, Field
@@ -101,75 +84,87 @@ class Add(BaseModel):
     def invoke(self, args):
         tool_instance = self.__class__(**args)
         return tool_instance.a + tool_instance.b
-
-tools = [Add, Multiply]
 ```
 
-- **优点**：强大数据验证，结构清晰
-- **缺点**：需要手动实现 `invoke`，代码量最大
-- **适用**：参数复杂、需要严格校验的场景
+参数校验最强，需手动实现 invoke。适合复杂约束场景。
 
-## 完整调用代码
+**选型：能用 `@tool` 就用 `@tool`，校验要求高用 Pydantic，跨框架用 JSON Schema。**
+
+### 2. 交互流程：两次 invoke
 
 ```python
-from langchain_core.tools import tool
+from langchain_core.messages import HumanMessage, AIMessage, ToolMessage
 from langchain_openai import ChatOpenAI
-from langchain_core.messages import HumanMessage, ToolMessage
 
-# 1. 定义工具
 @tool
-def add(a: int, b: int) -> int:
-    """将数字a与数字b相加"""
-    return a + b
+def get_weather(city: str) -> str:
+    """查询指定城市的实时天气"""
+    if "北京" in city:
+        return "北京今天是晴天，气温25摄氏度"
+    return f"抱歉，没有{city}的天气数据"
 
 @tool
 def multiply(a: int, b: int) -> int:
-    """将数字a与数字b相乘"""
+    """计算两个整数的乘积"""
     return a * b
 
-# 2. 初始化模型 + 绑定工具
 llm = ChatOpenAI(...)
-llm_with_tools = llm.bind_tools([add, multiply], tool_choice="auto")
+llm_with_tools = llm.bind_tools([get_weather, multiply])
 
-# 3. 第一次调用
-messages = [HumanMessage("2+1等于多少？")]
+# === 第一次 invoke — LLM 返回 tool_calls ===
+messages = [HumanMessage("查一下北京的天气，然后算 30×5")]
 ai_msg = llm_with_tools.invoke(messages)
+messages.append(ai_msg)
 
-# 4. 处理工具调用
-if ai_msg.tool_calls:
-    for tool_call in ai_msg.tool_calls:
-        func = {"add": add, "multiply": multiply}[tool_call["name"].lower()]
-        result = func.invoke(tool_call["args"])
-        messages.append(ToolMessage(content=result, tool_call_id=tool_call["id"]))
+# ai_msg 内容：
+# AIMessage(content='', tool_calls=[
+#     {"name": "get_weather", "args": {"city": "北京"}, "id": "call_001"},
+#     {"name": "multiply",    "args": {"a": 30, "b": 5},    "id": "call_002"}
+# ])
 
-    # 5. 第二次调用 — 生成最终回复
-    final_response = llm_with_tools.invoke(messages)
+# === 外部执行工具 — 结果包装为 ToolMessage ===
+func_map = {"get_weather": get_weather, "multiply": multiply}
+for tc in ai_msg.tool_calls:
+    func = func_map[tc["name"]]
+    result = func.invoke(tc["args"])
+    messages.append(ToolMessage(content=str(result), tool_call_id=tc["id"]))
+
+# messages 现在是 4 条：
+# [HumanMessage, AIMessage(tool_calls), ToolMessage(天气), ToolMessage(乘法)]
+
+# === 第二次 invoke — LLM 基于工具结果生成回复 ===
+final = llm_with_tools.invoke(messages)
+# "北京晴天25度。30×5等于150。"
 ```
 
-## `bind_tools` vs 直接传参
+流程总结：
+
+```
+HumanMessage → LLM → AIMessage(tool_calls) → 外部执行
+    → ToolMessage → LLM → AIMessage(最终回复)
+```
+
+### 3. 消息体系
+
+三种**输入**消息类型：
+
+| 类型 | 角色 | 说明 |
+|------|------|------|
+| `SystemMessage` | 系统指令 | 定规则、定角色、定行为边界 |
+| `HumanMessage` | 用户输入 | 用户的问题 |
+| `ToolMessage` | 工具结果 | 工具执行完的结果，通过 `tool_call_id` 关联对应 tool_call |
+
+AIMessage 是 LLM 的**输出**。tool_calls 附着在 AIMessage 上出来，ToolMessage 带着结果回去。
+
+关键：ToolMessage 是**追加**到 messages 列表，不是替换。messages 累加，LLM 需要完整上下文。
+
+### 4. bind_tools vs 直接传参
 
 ```python
-# 方式 A：bind_tools — 绑定到模型实例，持久有效
+# 方式 A：bind_tools — 绑定到模型实例，持久有效（推荐）
 llm_with_tools = llm.bind_tools(tools, tool_choice="auto")
 llm_with_tools.invoke(messages)
 
-# 方式 B：直接传参 — 仅当次调用有效
+# 方式 B：invoke 直接传参 — 仅当次有效
 llm.invoke(messages, tools=tools)
 ```
-
-推荐 `bind_tools`，后续多次调用不需要反复传入。
-
-## Agent 使用 Function Call
-
-```python
-from langchain.agents import initialize_agent, AgentType
-
-agent = initialize_agent(
-    tools, llm,
-    AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
-    verbose=True
-)
-result = agent.invoke("2+1等于多少？")
-```
-
-Agent 封装了 Function Call 的整个流程：判断→调用→回传→生成，开发者只需定义工具即可。

@@ -1,7 +1,14 @@
-openai>=1.0.0
-python-dotenv>=1.0.0
-serpapi>=0.1.0
+# Agent 模块依赖
+
+# 核心
 langchain>=0.3.0
 langchain-openai>=0.2.0
+openai>=1.0.0
+python-dotenv>=1.0.0
+
+# LangGraph
 langgraph>=0.2.0
 typing-extensions>=4.0.0
+
+# 搜索工具（可选，网络不好可移除）
+# serpapi>=0.1.0
