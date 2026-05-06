@@ -1,9 +1,9 @@
 import os
 import sys
 from base import Config, logger
-from core.document_loader import process_documents # 导入处理文档的函数
-from core.vector_store import VectorStore
-from core.rag_system import RAGSystem
+from rag_qa.core.document_processor import process_documents
+from rag_qa.core.vector_store import VectorStore
+from rag_qa.core.rag_system import RAGSystem
 from openai import OpenAI # 使用 OpenAI 接口
 
 conf = Config()

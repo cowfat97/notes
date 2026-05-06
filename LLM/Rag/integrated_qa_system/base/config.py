@@ -77,11 +77,7 @@ class Config:
         # 日志文件路径
         self.LOG_FILE = self.config.get('logger', 'log_file', fallback='logs/app.log')
 
-        # model path
-        # self.bge_m3 = "/Users/chan/projects/Itcast_qa_system/rag_qa/models/bge-m3"
-        # self.bge_reranker = "/Users/chan/projects/Itcast_qa_system/rag_qa/models/bge-reranker-large"
-        self.nlp_bert_doc_seg = "/Users/chan/projects/Itcast_qa_system/rag_qa/models/nlp_bert_document-segmentation_chinese-base"
-        self.bert_intent_cls = "/Users/chan/projects/Itcast_qa_system/rag_qa/core/bert_query_classifier"
+        # 模型路径由各模块自行管理（如 vector_store 读取 rag_qa/models/，query_classifier 读取 rag_qa/core/）
 
 
 if __name__ == '__main__':

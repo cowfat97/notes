@@ -5,12 +5,24 @@ import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "../.."))
 
 from datetime import datetime
-from langchain.text_splitter import MarkdownTextSplitter
-from langchain_community.document_loaders import TextLoader
-from langchain_community.document_loaders.markdown import UnstructuredMarkdownLoader
-from edu_text_spliter import ChineseRecursiveTextSplitter
-from edu_document_loaders import OCRPDFLoader, OCRDOCLoader, OCRPPTLoader, OCRIMGLoader
+from langchain_text_splitters import MarkdownTextSplitter
+try:
+    from langchain_community.document_loaders import TextLoader
+    from langchain_community.document_loaders.markdown import UnstructuredMarkdownLoader
+except ImportError:
+    TextLoader = None
+    UnstructuredMarkdownLoader = None
+try:
+    from edu_text_spliter import ChineseRecursiveTextSplitter
+    from edu_document_loaders import OCRPDFLoader, OCRDOCLoader, OCRPPTLoader, OCRIMGLoader
+except ImportError:
+    ChineseRecursiveTextSplitter = None
+    OCRPDFLoader = OCRDOCLoader = OCRPPTLoader = OCRIMGLoader = None
 from base import logger, Config
+
+# 通用文本切分的回退方案
+if ChineseRecursiveTextSplitter is None:
+    from langchain_text_splitters import RecursiveCharacterTextSplitter as ChineseRecursiveTextSplitter
 
 # ============================================================
 # 2. 配置
@@ -18,6 +30,7 @@ from base import logger, Config
 conf = Config()
 
 DOCUMENT_LOADERS = {
+    ".md": UnstructuredMarkdownLoader,
     ".txt": TextLoader,
     ".pdf": OCRPDFLoader,
     ".docx": OCRDOCLoader,
@@ -25,8 +38,9 @@ DOCUMENT_LOADERS = {
     ".pptx": OCRPPTLoader,
     ".jpg": OCRIMGLoader,
     ".png": OCRIMGLoader,
-    ".md": UnstructuredMarkdownLoader,
 }
+# 过滤掉未安装的加载器
+DOCUMENT_LOADERS = {k: v for k, v in DOCUMENT_LOADERS.items() if v is not None}
 
 # ============================================================
 # 3. 代码逻辑

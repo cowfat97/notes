@@ -1,12 +1,16 @@
 # ===== LLM =====
 langchain==1.2.17
-langchain-community==0.4.1
-langchain-openai==1.1.9      # 锁版本，1.2.x 有 import bug
-openai==1.109.1               # 锁 <2.0，2.x 不兼容
-dashscope==1.25.17
+langchain-core>=1.3.2,<2.0.0
+langchain-text-splitters>=0.3.0
+langchain-community>=0.3.0
+langchain-openai>=0.3.0
+openai>=1.100.0
+dashscope>=1.20.0
 
 # ===== 向量 / 数据库 =====
+grpcio>=1.60.0
 pymilvus==2.6.12
+milvus-model>=0.2.0
 pymysql==1.1.3
 # redis==5.0.0                 # MySQL 热点 FAQ 缓存
 
@@ -18,6 +22,10 @@ rank-bm25==0.2.2
 # unstructured==0.15.0
 # rapidocr-onnxruntime==1.3.0
 pandas==3.0.2
+
+# ===== 嵌入/重排序 =====
+sentence-transformers>=3.0.0
+Pillow>=10.0.0
 
 # ===== 分类模型 =====
 transformers==4.57.3
