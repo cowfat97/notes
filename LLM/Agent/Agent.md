@@ -51,6 +51,45 @@ Agentic 描述一个系统"像 Agent 一样的程度"——自主性、目标导
 | 记忆 | 上下文与历史记录，解决上下文限制 | 对话历史 / 向量数据库 |
 | 规划 | 任务分解与多步骤执行，解决复杂任务 | ReAct / Planning / Multi-Agent |
 
+## 记忆（Memory）
+
+记忆解决的是**知识瓶颈中的上下文限制**——LLM 的 context window 有限，不能无限制塞信息。
+
+### 两级存储策略
+
+| 层级 | 存储介质 | 作用 | 容量 |
+|------|----------|------|------|
+| 短期记忆 | 内存（列表） | 最近 N 轮对话，快速取用 | 循环保存最近 5 轮 |
+| 长期记忆 | MySQL / 向量数据库 | 历史对话持久化，支持跨会话查询 | 全量 |
+
+- **短期记忆**：Agent 推理时直接拼接进 prompt
+- **长期记忆**：异步写入，需要时通过检索召回
+
+### 上下文过长处理
+
+两种策略按任务复杂度切换：
+
+- **简单任务**（天气查询、票务查询）→ 只取最近 3 轮对话
+- **复杂任务**（路线规划、景点推荐）→ 递归压缩
+
+**递归压缩流程**：
+
+```
+超长上下文 → 分块（每块 64K）
+    → 问题 + 块1 → LLM 压缩（只保留有意义的）
+    → 问题 + 压缩结果 + 块2 → LLM 继续压缩
+    → 循环直到所有块压缩完毕
+    → 压缩后的精简上下文 → 送入后续 LLM
+```
+
+核心思想：不是机械截断（丢信息），而是让 LLM 逐块阅读理解后提取关键信息。
+
+### 记忆与检索的关系
+
+- **检索**（RAG / MCP）：找外部知识，解决"模型不知道"的问题
+- **记忆**：记录对话过程，解决"模型忘了"的问题
+- 两者合在一起，才能让 Agent 在长对话中有"知道自己说过什么 + 随时查新信息"的能力
+
 # 怎么实现 Agent？
 
 ## 一、Function Call（工具调用基础）
@@ -193,6 +232,25 @@ A2A（Agent-to-Agent）是 Google 提出的协议，解决不同 Agent 之间的
 | TaskState | 任务状态：SUBMITTED → PROCESSING → COMPLETED / FAILED |
 | AgentNetwork | Agent 网络管理，集中管理和发现 A2A Server |
 | AIAgentRouter | 根据任务需求和 AgentCard 信息，将任务路由到最合适的 Agent |
+
+### AIAgentRouter 路由机制
+
+AIAgentRouter 使用 LLM 分析查询意图，从 AgentNetwork 中选择最佳 Agent：
+
+```python
+router = AIAgentRouter(llm_client=llm, agent_network=network)
+agent_name, confidence = router.route_query("订一张北京去上海的火车票")
+# → ("TicketOrderAssistant", 0.95)
+```
+
+**路由流程**：
+
+1. LLM 分析查询语义，提取意图
+2. 遍历 AgentNetwork 中所有 Agent 的 AgentCard（名称、技能描述、示例）
+3. 匹配最佳 Agent，返回名称 + 置信度
+4. 通过 `network.get_agent(agent_name)` 获取 Agent 客户端，发送任务
+
+**与意图识别的关系**：意图识别在客户端层（LLM 分析用户问题 → 输出意图分类），AIAgentRouter 在路由层（意图 → 匹配 AgentCard → 选择 Agent）。两者配合：意图识别定方向，AIAgentRouter 定执行者。
 
 ### A2A + MCP 协作架构
 
