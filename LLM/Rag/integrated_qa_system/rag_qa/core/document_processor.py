@@ -1,143 +1,155 @@
-# ============================================================
-# 1. 导包
-# ============================================================
-import sys, os
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "../.."))
-
+# core/document_processor.py
+import os
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+from langchain_community.document_loaders import TextLoader
+from langchain_community.document_loaders.markdown import UnstructuredMarkdownLoader
+from langchain.text_splitter import MarkdownTextSplitter
 from datetime import datetime
-from langchain_text_splitters import MarkdownTextSplitter
-try:
-    from langchain_community.document_loaders import TextLoader
-    from langchain_community.document_loaders.markdown import UnstructuredMarkdownLoader
-except ImportError:
-    TextLoader = None
-    UnstructuredMarkdownLoader = None
-try:
-    from edu_text_spliter import ChineseRecursiveTextSplitter
-    from edu_document_loaders import OCRPDFLoader, OCRDOCLoader, OCRPPTLoader, OCRIMGLoader
-except ImportError:
-    ChineseRecursiveTextSplitter = None
-    OCRPDFLoader = OCRDOCLoader = OCRPPTLoader = OCRIMGLoader = None
+from edu_text_spliter import AliTextSplitter, ChineseRecursiveTextSplitter
+from edu_document_loaders import OCRPDFLoader, OCRDOCLoader, OCRPPTLoader, OCRIMGLoader
 from base import logger, Config
 
-# 通用文本切分的回退方案
-if ChineseRecursiveTextSplitter is None:
-    from langchain_text_splitters import RecursiveCharacterTextSplitter as ChineseRecursiveTextSplitter
-
-# ============================================================
-# 2. 配置
-# ============================================================
 conf = Config()
-
-DOCUMENT_LOADERS = {
-    ".md": UnstructuredMarkdownLoader,
+# 定义支持的文件类型及其对应的加载器字典
+document_loaders = {
+    # 文本文件使用 TextLoader
     ".txt": TextLoader,
+    # PDF 文件使用 OCRPDFLoader
     ".pdf": OCRPDFLoader,
+    # Word 文件使用 OCRDOCLoader
     ".docx": OCRDOCLoader,
+    # PPT 文件使用 OCRPPTLoader
     ".ppt": OCRPPTLoader,
+    # PPTX 文件使用 OCRPPTLoader
     ".pptx": OCRPPTLoader,
+    # JPG 文件使用 OCRIMGLoader
     ".jpg": OCRIMGLoader,
+    # PNG 文件使用 OCRIMGLoader
     ".png": OCRIMGLoader,
+    # Markdown 文件使用 UnstructuredMarkdownLoader
+    ".md": UnstructuredMarkdownLoader
 }
-# 过滤掉未安装的加载器
-DOCUMENT_LOADERS = {k: v for k, v in DOCUMENT_LOADERS.items() if v is not None}
 
-# ============================================================
-# 3. 代码逻辑
-# ============================================================
-
-def load_documents(directory_path):
-    """加载目录下所有支持的文档
-
-    Args:
-        directory_path: 文档目录路径，目录名格式为 {学科}_data，如 ai_data
-
-    Returns:
-        List[Document]: page_content=文档正文，metadata={source, file_path, timestamp}
-    """
+# 定义函数，从指定文件夹加载多种类型文件并添加元数据
+def load_documents_from_directory(directory_path):
+    # 初始化空列表，用于存储加载的文档
     documents = []
-    # 从目录名提取学科标签：ai_data → ai，java_data → java
+    # 获取支持的文件扩展名集合
+    supported_extensions = document_loaders.keys()
+    # 从目录名提取学科类别（如 "ai_data" -> "ai"）
     source = os.path.basename(directory_path).replace("_data", "")
 
-    for root, _, files in os.walk(directory_path):          # 递归遍历目录
+    # 遍历指定目录及其子目录
+    for root, _, files in os.walk(directory_path):
+        # 遍历当前目录下的所有文件
         for file in files:
-            file_path = os.path.join(root, file)             # 拼接完整路径
-            ext = os.path.splitext(file_path)[1].lower()     # 取扩展名 → 匹配加载器
-
-            if ext not in DOCUMENT_LOADERS:                  # 不支持的类型跳过
+            # 构造文件的完整路径
+            file_path = os.path.join(root, file)
+            # 获取文件扩展名并转换为小写
+            file_extension = os.path.splitext(file_path)[1].lower()
+            # 检查文件类型是否在支持的扩展名列表中
+            if file_extension in supported_extensions:
+                # 使用 try-except 捕获加载过程中的异常
+                try:
+                    # 根据文件扩展名获取对应的加载器类
+                    loader_class = document_loaders[file_extension]
+                    # 实例化加载器对象，传入文件路径
+                    if file_extension == ".txt":
+                        loader = loader_class(file_path, encoding="utf-8")
+                    else:
+                        loader = loader_class(file_path)
+                    # 调用加载器加载文档内容，返回文档列表
+                    loaded_docs = loader.load()
+                    # 遍历加载的每个文档
+                    for doc in loaded_docs:
+                        # 为文档添加学科类别元数据
+                        doc.metadata["source"] = source
+                        # 为文档添加文件路径元数据
+                        doc.metadata["file_path"] = file_path
+                        # 为文档添加当前时间戳元数据
+                        doc.metadata["timestamp"] = datetime.now().isoformat()
+                    # 将加载的文档添加到总列表中
+                    documents.extend(loaded_docs)
+                    # 记录成功加载文件的日志
+                    logger.info(f"成功加载文件: {file_path}")
+                # 捕获加载过程中可能出现的异常
+                except Exception as e:
+                    # 记录加载失败的日志，包含错误信息
+                    logger.error(f"加载文件 {file_path} 失败: {str(e)}")
+            # 如果文件类型不在支持列表中
+            else:
+                # 记录警告日志，提示不支持的文件类型
                 logger.warning(f"不支持的文件类型: {file_path}")
-                continue
-
-            try:
-                loader_cls = DOCUMENT_LOADERS[ext]            # 扩展名 → 加载器类
-                loader = loader_cls(file_path, encoding="utf-8") if ext == ".txt" else loader_cls(file_path)
-                loaded_docs = loader.load()                   # 加载文档内容
-                for doc in loaded_docs:
-                    doc.metadata.update({                    # 打标：学科、来源、时间
-                        "source": source,
-                        "file_path": file_path,
-                        "timestamp": datetime.now().isoformat(),
-                    })
-                documents.extend(loaded_docs)                 # 追加到总列表
-                logger.info(f"成功加载文件: {file_path}")
-            except Exception as e:
-                logger.error(f"加载文件 {file_path} 失败: {e}")
-
+    # 返回加载的所有文档列表
     return documents
 
-
-def process_documents(directory_path,
-                      parent_chunk_size=conf.PARENT_CHUNK_SIZE,
-                      child_chunk_size=conf.CHILD_CHUNK_SIZE,
-                      chunk_overlap=conf.CHUNK_OVERLAP):
-    """文档分层切分：先切父块(大块，给LLM看) → 再切子块(小块，向量检索用)
-
-    每个子块携带 parent_id + parent_content，检索时返回子块匹配，LLM 用父块内容生成答案
-
-    Args:
-        directory_path: 文档目录路径
-        parent_chunk_size: 父块大小（默认 1200 token）
-        child_chunk_size: 子块大小（默认 300 token）
-        chunk_overlap: 块重叠大小（默认 50 token）
-
-    Returns:
-        List[Document]: 子块列表，metadata={id, parent_id, parent_content, source, file_path}
-    """
-    # 第一步：加载目录下所有文档
-    documents = load_documents(directory_path)
+# 定义函数，处理文档并进行分层切分，返回子块结果
+def process_documents(directory_path, parent_chunk_size=conf.PARENT_CHUNK_SIZE,
+                     child_chunk_size=conf.CHILD_CHUNK_SIZE,
+                     chunk_overlap=conf.CHUNK_OVERLAP):
+    # 从指定目录加载所有文档
+    documents = load_documents_from_directory(directory_path)
+    # 记录加载的文档总数日志
     logger.info(f"加载的文档数量: {len(documents)}")
 
-    # 第二步：准备切分器 — 通用文本用 ChineseRecursive，md 文件用 MarkdownTextSplitter
-    # ChineseRecursiveTextSplitter：按 "\n\n" → "\n" → "。" → "，" 优先级逐级断句
-    # MarkdownTextSplitter：额外识别 ##、### 标题边界，避免在标题中间断开
+    # 初始化父块和子块分词器（通用）
     parent_splitter = ChineseRecursiveTextSplitter(chunk_size=parent_chunk_size, chunk_overlap=chunk_overlap)
     child_splitter = ChineseRecursiveTextSplitter(chunk_size=child_chunk_size, chunk_overlap=chunk_overlap)
-    md_parent_splitter = MarkdownTextSplitter(chunk_size=parent_chunk_size, chunk_overlap=chunk_overlap)
-    md_child_splitter = MarkdownTextSplitter(chunk_size=child_chunk_size, chunk_overlap=chunk_overlap)
+    # 初始化 Markdown 专用分词器
+    markdown_parent_splitter = MarkdownTextSplitter(chunk_size=parent_chunk_size, chunk_overlap=chunk_overlap)
+    markdown_child_splitter = MarkdownTextSplitter(chunk_size=child_chunk_size, chunk_overlap=chunk_overlap)
 
-    # 第三步：逐文档切分
+    # 初始化空列表，用于存储所有子块
     child_chunks = []
+    # 遍历每个原始文档，带上索引 i
     for i, doc in enumerate(documents):
-        # 根据文件扩展名选择对应切分器
-        is_md = os.path.splitext(doc.metadata.get("file_path", ""))[1].lower() == ".md"
-        parent_splitter_use = md_parent_splitter if is_md else parent_splitter
-        child_splitter_use = md_child_splitter if is_md else child_splitter
+        # print(doc)
+        # 获取文件扩展名
+        file_extension = os.path.splitext(doc.metadata.get("file_path", ""))[1].lower()
 
-        # 3.1 父块切分：文档 → 大块（1200 token），给 LLM 看的完整上下文
-        parent_docs = parent_splitter_use.split_documents([doc])
+        # 选择切分器
+        is_markdown = (file_extension == ".md")
+        parent_splitter_to_use = markdown_parent_splitter if is_markdown else parent_splitter
+        # print(f'parent_splitter_to_use-->{parent_splitter_to_use}')
+        child_splitter_to_use = markdown_child_splitter if is_markdown else child_splitter
+        logger.info(f"处理文档: {doc.metadata['file_path']}, 使用切分器: {'Markdown' if is_markdown else 'ChineseRecursive'}")
+
+        # 使用父块分词器将文档切分为父块
+        parent_docs = parent_splitter_to_use.split_documents([doc])
+        # 遍历每个父块，带上索引 j
         for j, parent_doc in enumerate(parent_docs):
-            # 父块 ID：doc_{文档序号}_parent_{父块序号}
+            # 为父块生成唯一 ID，格式为 "doc_i_parent_j"
             parent_id = f"doc_{i}_parent_{j}"
+            # 将父块 ID 添加到元数据
             parent_doc.metadata["parent_id"] = parent_id
+            # 将父块内容存储到元数据
             parent_doc.metadata["parent_content"] = parent_doc.page_content
 
-            # 3.2 子块切分：父块 → 小块（300 token），向量检索用
-            # 检索时用子块匹配 query，LLM 回答时用父块内容
-            for k, sub_chunk in enumerate(child_splitter_use.split_documents([parent_doc])):
-                sub_chunk.metadata["parent_id"] = parent_id                      # 指向所属父块
-                sub_chunk.metadata["parent_content"] = parent_doc.page_content   # 携带父块完整文本
-                sub_chunk.metadata["id"] = f"{parent_id}_child_{k}"             # 子块唯一 ID
+            # 使用子块分词器将父块切分为子块
+            sub_chunks = child_splitter_to_use.split_documents([parent_doc])
+            # 遍历每个子块，带上索引 k
+            for k, sub_chunk in enumerate(sub_chunks):
+                # 为子块添加父块 ID 到元数据
+                sub_chunk.metadata["parent_id"] = parent_id
+                # 为子块添加父块内容到元数据
+                sub_chunk.metadata["parent_content"] = parent_doc.page_content
+                # 为子块生成唯一 ID，格式为 "parent_id_child_k"
+                sub_chunk.metadata["id"] = f"{parent_id}_child_{k}"
+                # 将子块添加到子块列表中
                 child_chunks.append(sub_chunk)
 
+    # 记录子块总数日志
     logger.info(f"子块数量: {len(child_chunks)}")
+    # 返回所有子块列表
     return child_chunks
+
+if __name__ == '__main__':
+
+    chunks = process_documents(
+        '/Users/ligang/PycharmProjects/LLM/ITCAST_EduRAG/data/ai_data',
+        conf.PARENT_CHUNK_SIZE,
+        conf.CHILD_CHUNK_SIZE,
+        conf.CHUNK_OVERLAP,
+    )
+    print(chunks)
