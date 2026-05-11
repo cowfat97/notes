@@ -83,6 +83,24 @@ agent_name, confidence = router.route_query("帮我查下北京的天气")
 
 根据查询语义和 AgentCard，自动选择最合适的 Agent。
 
+### UX Negotiation（用户体验协商）
+
+Agent 间协商如何优化最终用户体验。比如一个 Agent 发现无法完成任务时，不会直接返回失败，而是主动向用户请求更多信息，或者将任务转交给更合适的 Agent，而不是让用户看到一个错误。
+
+**协商内容**：
+
+- 响应格式（文本 / 富文本 / 结构化数据）
+- 错误处理策略（重试 / 降级 / 转交）
+- 用户交互（是否需要用户补充信息、确认操作等）
+
+```python
+# 伪代码示意
+if task_result.status == TaskState.FAILED:
+    # 降级策略：不直接报错，向用户请求更多信息
+    task.status = TaskStatus(state=TaskState.INPUT_REQUIRED)
+    task.message = "无法确定您的出发城市，请提供更多信息。"
+```
+
 ## A2A Server 实现
 
 ```python

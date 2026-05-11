@@ -267,3 +267,179 @@ for i, result in enumerate(results):
 | NLP2SQL | LLM 生成 SQL + 追问能力，Table Schema 写进 Prompt |
 | 路由 | 意图识别 → 查询改写 → AIAgentRouter → 并行执行 |
 | 上下文 | 5 轮内存缓存 + MySQL 持久化 + 递归压缩处理长上下文 |
+
+---
+
+## 六、完整服务端口与调用链
+
+### 端口映射
+
+| 端口 | 服务 | 类型 | 职责 |
+|------|------|------|------|
+| — | `app.py` | Streamlit 前端 | 用户交互界面 |
+| — | `main.py` | 客户端 | 意图识别 + 路由分发 |
+| 5005 | `WeatherQueryAssistant` | A2A Server | 天气查询 |
+| 5006 | `TicketQueryAssistant` | A2A Server | 票务查询 |
+| 5007 | `TicketOrderAssistant` | A2A Server | 票务预定 |
+| 8001 | `TicketTools` | MCP Server | 票务 SQL 查询 |
+| 8002 | `WeatherTools` | MCP Server | 天气 SQL 查询 |
+| 8003 | `OrderTools` | MCP Server | 订票 API 调用 |
+
+### 三种 Agent 实现模式对比
+
+| 维度 | WeatherQueryAssistant | TicketQueryAssistant | TicketOrderAssistant |
+| --- | --- | --- | --- |
+| 核心机制 | NLP2SQL | NLP2SQL | Agent + tool_calling |
+| Prompt 输出 | SQL 或追问 JSON | `{"type":"train"}` + SQL | — |
+| MCP 调用 | 直接 `call_tool("query_weather", sql)` | 直接 `call_tool("query_tickets", sql)` | `load_mcp_tools()` → AgentExecutor |
+| 特殊之处 | 单表查询 | 多表，需先识别票务类型 | **先调 A2A 查询余票，再调 MCP 订票** |
+
+### 重点：TicketOrderAssistant 的 A2A→A2A→MCP 链
+
+订票 Agent 不是直接查数据库，而是先调另一个 A2A Agent 查余票：
+
+```python
+class TicketOrderServer(A2AServer):
+    def __init__(self):
+        super().__init__(agent_card=agent_card)
+        self.ticket_client = A2AClient("http://localhost:5006")  # 指向 TicketQueryAssistant
+
+    def handle_task(self, task):
+        # ① 调 TicketQueryAssistant(A2A) 查余票
+        ticket_result = asyncio.run(self.ticket_client.send_task_async(task))
+
+        if ticket_result.status.state != 'completed':
+            # 余票信息不足，追问用户
+            task.status = TaskStatus(state=TaskState.INPUT_REQUIRED, ...)
+            return task
+
+        # ② 余票存在 → 调 OrderTools(MCP) 订票
+        order_result = asyncio.run(order_tickets(conversation + '\n余票信息：' + ticket_result))
+
+        # ③ 结果 = 余票信息 + 订票结果一起返回
+        task.artifacts = [{"parts": [{"type": "text", "text": '余票信息：...' + '\n订票结果：...'}]}]
+```
+
+调用链：`TicketOrderAssistant → TicketQueryAssistant(A2A) → TicketTools(MCP) → MySQL`，然后回到 `TicketOrderAssistant → OrderTools(MCP) → 模拟 API`。
+
+### handle_task 通用流程
+
+三个 Agent Server 的 `handle_task` 都遵循同一模式：
+
+```
+1. 从 task.message 提取用户查询文本（可能含对话历史）
+2. LLM 生成 SQL / Agent 决策调用工具
+3. 如果信息不足 → TaskState.INPUT_REQUIRED + 追问消息
+4. 如果信息齐全 → MCP 调用
+5. 成功 → TaskState.COMPLETED + artifacts（格式化结果）
+6. 失败 → TaskState.FAILED + 错误消息
+```
+
+## 七、路由机制：意图映射（非 Router）
+
+项目实际用的是硬编码映射，不是 AIAgentRouter：
+
+```python
+# main.py line 121-127
+if intent == "weather":
+    agent_name = "WeatherQueryAssistant"
+elif intent in ["flight", "train", "concert"]:
+    agent_name = "TicketQueryAssistant"
+elif intent == "order":
+    agent_name = "TicketOrderAssistant"
+elif intent == "attraction":
+    # 不走 Agent，直接 LLM 生成
+    chain = SmartVoyagePrompts.attraction_prompt() | llm
+```
+
+**为什么不用 Router**：意图已经在 `intent_agent()` 中由 LLM 识别出来了（`weather` / `train` / `order`），知道意图就确定了目标 Agent，不再需要 Router 做语义匹配。Router 适合**不知道意图、靠自然语言匹配AgentCard**的场景。
+
+## 八、三层 LLM 调用
+
+一次用户请求最多经历 3 次 LLM 调用：
+
+```
+1. intent_agent        → 意图识别 + 查询改写（main.py）
+2. A2A Server 内部 LLM → NLP2SQL 生成 SQL / Agent 决策工具调用
+3. 总结 LLM            → 把 Agent 原始 JSON 转成人话（main.py）
+```
+
+第 3 步是项目的一个设计亮点：Agent 返回的是结构化数据（JSON），主控端再调一次 LLM 用 `summarize_weather_prompt` / `summarize_ticket_prompt` 转成自然语言回复，保证用户体验一致。
+
+## 九、MCP Server 实现细节
+
+所有 MCP Server 用 `mcp.server.fastmcp.FastMCP` + `streamable-http` 传输：
+
+```python
+# mcp_weather_server.py — 天气 MCP
+class WeatherService:
+    def __init__(self):
+        self.conn = mysql.connector.connect(host=..., user=..., password=..., database=...)
+
+    def execute_query(self, sql: str) -> str:
+        cursor = self.conn.cursor(dictionary=True)
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        # 处理 date/datetime/Decimal 等特殊类型
+        for r in results:
+            for k, v in r.items():
+                if isinstance(v, (date, datetime, timedelta, Decimal)):
+                    r[k] = default_encoder(v)
+        return json.dumps({"status": "success", "data": results}, cls=DateEncoder)
+
+weather_mcp = FastMCP(name="WeatherTools", host="127.0.0.1", port=8002)
+
+@weather_mcp.tool(name="query_weather")
+def query_weather(sql: str) -> str:
+    return service.execute_query(sql)
+
+weather_mcp.run(transport="streamable-http")
+```
+
+票务 MCP 模式完全一致。订票 MCP 不同——不查数据库，直接模拟 API 返回成功消息。
+
+### MCP Client 连接方式
+
+A2A Server 中连接 MCP 用的不是 `python_a2a.MCPClient`，而是官方 `mcp` SDK：
+
+```python
+from mcp import ClientSession
+from mcp.client.streamable_http import streamablehttp_client
+
+async with streamablehttp_client("http://127.0.0.1:8002/mcp") as (read, write, _):
+    async with ClientSession(read, write) as session:
+        await session.initialize()
+        result = await session.call_tool("query_weather", {"sql": sql})
+```
+
+与课程练习的区别：练习用 `python_a2a.MCPClient` 封装，实战直接用 SDK。
+
+## 十、SQL 生成策略差异
+
+天气和票务虽然都是 NLP2SQL，但复杂度不同：
+
+| 维度 | 天气 | 票务 |
+| --- | --- | --- |
+| 表数量 | 1 张 `weather_data` | 3 张 `train_tickets` / `flight_tickets` / `concert_tickets` |
+| LLM 输出 | 纯 SQL 或追问 JSON | 第一行 `{"type": "train/flight/concert"}` + 第二行 SQL |
+| 识别步骤 | 直接生成 SQL | 先识别票务类型，再生成对应表的 SQL |
+| 解析逻辑 | `output.startswith("{")` 判断追问 | 按换行符 `\n` 拆分行，逐行解析 |
+
+## 十一、启动顺序
+
+依赖关系决定了启动顺序：
+
+```bash
+# 1. 先启 MCP Server（被依赖方）
+python mcp_server/mcp_weather_server.py   # 8002
+python mcp_server/mcp_ticket_server.py    # 8001
+python mcp_server/mcp_order_server.py     # 8003
+
+# 2. 再启 A2A Server（依赖 MCP）
+python a2a_server/weather_server.py       # 5005
+python a2a_server/ticket_server.py        # 5006
+python a2a_server/order_server.py         # 5007（还依赖 5006）
+
+# 3. 最后启前端
+streamlit run app.py
+```
