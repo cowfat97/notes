@@ -64,7 +64,11 @@ nav:
           - MCP: LLM/Agent/MCP.md
           - A2A: LLM/Agent/A2A.md
           - SmartVoyage: LLM/Agent/SmartVoyage.md
-      - RAG: LLM/Rag/RAG.md
+          - Langgraph: LLM/Agent/Langgraph/README.md
+      - RAG:
+          - RAG 概述: LLM/Rag/RAG.md
+          - 文档处理: LLM/Rag/文档处理.md
+          - 文档向量化: LLM/Rag/文档向量化.md
       - 费曼视频: LLM/费曼视频.md
   - 408:
       - 数据结构概述: 408/数据结构/数据结构概述.md
