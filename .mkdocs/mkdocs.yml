@@ -4,11 +4,14 @@ site_author: cowfat97
 site_dir: ../../site
 site_url: https://cowfat97.github.io/notes/
 docs_dir: ".."
+repo_url: https://github.com/cowfat97/notes
+repo_name: cowfat97/notes
+edit_uri: edit/main/
 
 plugins:
   - search
   - blog:
-      blog_dir: "."
+      blog_dir: "blog"
       post_dir: "posts"
       archive: true
       categories: true
@@ -16,14 +19,63 @@ plugins:
 theme:
   name: material
   language: zh
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/notebook-edit-outline
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: 切换至暗色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: 切换至亮色模式
   features:
+    - navigation.instant
     - navigation.tracking
+    - navigation.top
+    - navigation.path
+    - navigation.indexes
+    - toc.follow
     - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.code.annotate
+
+extra_css:
+  - assets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/cowfat97
+      name: GitHub
+  copyright: Copyright &copy; 2025 cowfat97
 
 markdown_extensions:
+  - md_in_html
+  - admonition
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.details
   - pymdownx.highlight
   - pymdownx.superfences
   - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - attr_list
+  - footnotes
+  - toc
   - tables
 
 nav:

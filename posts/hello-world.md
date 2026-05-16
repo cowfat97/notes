@@ -1,7 +1,5 @@
 ---
 date: 2026-05-08
-authors:
-  - cowfat97
 categories:
   - 随笔
 ---

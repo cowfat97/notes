@@ -121,7 +121,12 @@ def dump_nav_yaml(nav, indent=0) -> list[str]:
     return lines
 
 
+def _noop(loader, tag_suffix, node):
+    return node.value
+
+
 def main():
+    yaml.SafeLoader.add_multi_constructor("tag:yaml.org,2002:python/name", _noop)
     with open(CONFIG_PATH, "r", encoding="utf-8") as f:
         config = yaml.safe_load(f)
 
