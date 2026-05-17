@@ -122,6 +122,8 @@ nav:
           - 文档处理: LLM/Rag/文档处理.md
           - 文档向量化: LLM/Rag/文档向量化.md
       - 费曼视频: LLM/费曼视频.md
+      - 微调: LLM/微调/微调.md
   - 408:
       - 数据结构概述: 408/数据结构/数据结构概述.md
   - LeetCode: leetcode/PROGRESS.md
+
