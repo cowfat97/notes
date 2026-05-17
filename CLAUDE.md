@@ -16,7 +16,10 @@ Java 后端 & 大模型开发学习笔记。mkdocs 构建，部署在 https://co
 
 ## 环境配置
 
-- LLM 模块 Python 环境在 `../envs/conda/LLM_Rag`，通过 `.vscode/run_python.sh` 路由
+- LLM 模块 Python 环境在 `../envs/conda/`：
+  - `LLM_Rag` — RAG / 文档处理 / 向量化
+  - `LLM_Agent` — Agent / LangChain / LangGraph / Coze / Dify
+  - `LLM_DeepLearning` — 深度学习 / 微调
 - `.env` 在项目根目录，`.gitignore` 已忽略
 - 图片资源放在 [Pic/](./Pic/)
 
