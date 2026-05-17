@@ -11,7 +11,7 @@ Java 后端 & 大模型开发学习笔记。
 | Java | [Java/](./Java/) | 基础 / 多线程 / JVM / 框架 / 集合 |
 | 中间件 | [中间件/](./中间件/) | Redis / Nginx / Kafka / ES / Docker / Nacos / PostgreSQL |
 | 数据库 | [数据库/](./数据库/) | MySQL 索引 / 事务 / 特性 |
-| LLM | [LLM/](./LLM/) | Agent / RAG / 深度学习 / 微调 / LangGraph |
+| LLM | [LLM/](./LLM/) | 通识 / Agent / Coze / Dify / RAG / 深度学习 / 微调 / LangGraph |
 | 408 | [408/](./408/) | 数据结构 / 计组 / 操作系统 / 计网 |
 | LeetCode | [leetcode/](./leetcode/) | Python 刷题 |
 | 软考 | [软考/](./软考/) | 软件设计师备考 |
@@ -47,7 +47,10 @@ Java 后端 & 大模型开发学习笔记。
 
 ## LLM
 
-- [Agent](LLM/Agent/) — Hello Agents / LangChain / LangGraph / MCP / A2A
+- [通识](LLM/通识/) — 大模型基础 / BERT / T5 / GPT / 序列标注
+- [Agent](LLM/Agent/) — Agent / LangChain / LangGraph / MCP / A2A / 提示词工程
+- [Coze](LLM/Agent/coze/) — 介绍及应用 / 换脸智能体 / 爆文生成 / 部署
+- [Dify](LLM/Agent/dify/) — 安装介绍 / 知识库 / 微调语料 / ragflow / 问答系统
 - [RAG](LLM/Rag/) — RAG 概述 / 文档处理 / 文档向量化
 - [深度学习](LLM/深度学习/)
 - [微调](LLM/微调/)
