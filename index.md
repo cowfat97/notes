@@ -5,7 +5,7 @@ hide:
 ---
 
 <div class="hero" markdown>
-# 郝鑫磊的技术笔记
+# how 的博客
 
 Java 后端 & 大模型开发 · 学习路上的积累与思考
 
