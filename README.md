@@ -1,16 +1,18 @@
-# 个人学习笔记
+# how 的博客
 
-Java 后端开发学习笔记，涵盖 Java 基础、中间件、数据库、LLM、408 考研等领域。
+Java 后端 & 大模型开发学习笔记。
+
+线上阅读：[cowfat97.github.io/notes](https://cowfat97.github.io/notes/)
 
 ## 模块导航
 
 | 模块 | 位置 | 说明 |
 |------|------|------|
-| Java | [Java/](./Java/) | 基础/多线程/JVM/框架/集合 |
-| 中间件 | [中间件/](./中间件/) | Redis/Nginx/Kafka/ES/Docker/Nacos/PostgreSQL |
-| 数据库 | [数据库/](./数据库/) | MySQL 索引/事务/特性 |
-| LLM | [LLM/](./LLM/) | Agent/LangChain/LangGraph/RAG |
-| 408 | [408/](./408/) | 数据结构/计组/操作系统/计网 |
+| Java | [Java/](./Java/) | 基础 / 多线程 / JVM / 框架 / 集合 |
+| 中间件 | [中间件/](./中间件/) | Redis / Nginx / Kafka / ES / Docker / Nacos / PostgreSQL |
+| 数据库 | [数据库/](./数据库/) | MySQL 索引 / 事务 / 特性 |
+| LLM | [LLM/](./LLM/) | Agent / RAG / 深度学习 / 微调 / LangGraph |
+| 408 | [408/](./408/) | 数据结构 / 计组 / 操作系统 / 计网 |
 | LeetCode | [leetcode/](./leetcode/) | Python 刷题 |
 | 软考 | [软考/](./软考/) | 软件设计师备考 |
 
@@ -29,8 +31,8 @@ Java 后端开发学习笔记，涵盖 Java 基础、中间件、数据库、LLM
 
 ## 中间件
 
-- [Redis — 集群模式](中间件/Redis/Redis集群模式.md)
-- [Nginx — 配置](中间件/Nginx/Nginx%20配置.md)
+- [Redis 集群模式](中间件/Redis/Redis集群模式.md)
+- [Nginx 配置](中间件/Nginx/Nginx%20配置.md)
 - [Elasticsearch](中间件/Elasticsearch/)
 - [Kafka](中间件/Kafka/)
 - [Docker](中间件/Docker/)
@@ -45,9 +47,11 @@ Java 后端开发学习笔记，涵盖 Java 基础、中间件、数据库、LLM
 
 ## LLM
 
-- [Agent](LLM/Agent/) — Hello Agents / LangChain / LangGraph
-- [RAG](LLM/Rag/) — 在线检索 / 离线知识库
+- [Agent](LLM/Agent/) — Hello Agents / LangChain / LangGraph / MCP / A2A
+- [RAG](LLM/Rag/) — RAG 概述 / 文档处理 / 文档向量化
 - [深度学习](LLM/深度学习/)
+- [微调](LLM/微调/)
+- [费曼视频](LLM/费曼视频.md)
 
 ## 408 考研
 
@@ -59,5 +63,4 @@ Java 后端开发学习笔记，涵盖 Java 基础、中间件、数据库、LLM
 ## 笔记规范
 
 - 中文书写，Markdown 格式
-- 目录与文件名保持一致
 - 概念 + 实战示例，结构清晰便于复习
