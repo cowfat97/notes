@@ -155,5 +155,7 @@ nav:
       - 微调: LLM/微调/微调.md
   - 408:
       - 数据结构概述: 408/数据结构/数据结构概述.md
+  - 读书: book/index.md
+  - Personal Log: diary/index.md
   - LeetCode: leetcode/PROGRESS.md
 
