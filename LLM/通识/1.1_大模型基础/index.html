@@ -1,0 +1,4158 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Java 后端 & 大模型开发学习笔记">
+      
+      
+        <meta name="author" content="cowfat97">
+      
+      
+        <link rel="canonical" href="https://cowfat97.github.io/notes/LLM/%E9%80%9A%E8%AF%86/1.1_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80/">
+      
+      
+        <link rel="prev" href="../../../%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/">
+      
+      
+        <link rel="next" href="../1.2a_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84%E5%9F%BA%E7%A1%80/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>大模型基础 - how 的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#11" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="how 的博客" class="md-header__button md-logo" aria-label="how 的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19.07 14.88 2.05 2.05L15.06 23H13v-2.06zm1.97-1.75c.14 0 .27.06.38.17l1.28 1.28c.22.21.22.56 0 .77l-1 1-2.05-2.05 1-1c.11-.11.25-.17.39-.17M17 4v6l-2-2-2 2V4H9v16h2v2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v6l-2 2V4zM5 5v2h2V5zm0 6v2h2v-2zm0 6v2h2v-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            how 的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              大模型基础
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="切换至暗色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至暗色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="切换至亮色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至亮色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/cowfat97/notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    cowfat97/notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="how 的博客" class="md-nav__button md-logo" aria-label="how 的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19.07 14.88 2.05 2.05L15.06 23H13v-2.06zm1.97-1.75c.14 0 .27.06.38.17l1.28 1.28c.22.21.22.56 0 .77l-1 1-2.05-2.05 1-1c.11-.11.25-.17.39-.17M17 4v6l-2-2-2 2V4H9v16h2v2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v6l-2 2V4zM5 5v2h2V5zm0 6v2h2v-2zm0 6v2h2v-2z"/></svg>
+
+    </a>
+    how 的博客
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/cowfat97/notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    cowfat97/notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Java
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Java/Java%20%E5%9F%BA%E7%A1%80/Java%20%E7%9A%84%E7%89%B9%E6%80%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Java/JVM/JVM%20%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JVM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多线程
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    多线程
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E5%88%9B%E5%BB%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    线程创建
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    线程状态
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E9%98%9F%E5%88%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    线程池队列
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    事务
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    事务
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Java/%E4%BA%8B%E5%8A%A1/%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    事务控制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Java/%E4%BA%8B%E5%8A%A1/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BA%8B%E5%8A%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多线程事务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_5" id="__nav_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    集合
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    集合
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Java/%E9%9B%86%E5%90%88/List/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Java/%E9%9B%86%E5%90%88/HashMap%20%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E5%90%97%EF%BC%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HashMap 线程安全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_6" id="__nav_1_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    框架
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    框架
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Java/%E6%A1%86%E6%9E%B6/spring/Ioc%20%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring IoC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_6_2" id="__nav_1_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MyBatis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MyBatis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Java/%E6%A1%86%E6%9E%B6/mybatis/%E6%A8%A1%E5%9D%97/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    类型转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Java/%E6%A1%86%E6%9E%B6/mybatis/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    适配器模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_7" id="__nav_1_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Java/%E5%B7%A5%E5%85%B7/Druid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Druid
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Java/%E5%B7%A5%E5%85%B7/Junit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JUnit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Java/%E5%B7%A5%E5%85%B7/Swagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中间件
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    中间件
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/Redis/Redis%E9%9B%86%E7%BE%A4%E6%A8%A1%E5%BC%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Redis 集群
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%B8%AD%E9%97%B4%E4%BB%B6/Nginx/Nginx%20%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nginx 配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据库
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据库
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%89%B9%E6%80%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    特性
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql/%E7%B4%A2%E5%BC%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    事务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通识
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    通识
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    大模型基础
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    大模型基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        课程目标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        语言模型
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        语言模型的发展历程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="语言模型的发展历程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 统计语言模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 神经语言模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 预训练语言模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 大语言模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        语言模型的评估
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="语言模型的评估">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-bleu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 BLEU
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-rouge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Rouge
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 Rouge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-rogue-n" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.1 Rogue-N
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-rouge-l" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.2 Rouge-L*
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-ppl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 PPL困惑度
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通用大模型的评估任务
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        国内外大模型的差异
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.2a_%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    大模型架构基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.2b_BERT%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BERT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.2c_T5%E6%A8%A1%E5%9E%8B%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.2d_GPT%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.2e_%E5%BA%8F%E5%88%97%E6%A0%87%E6%B3%A8%E4%BB%BB%E5%8A%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    序列标注
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    提示词工程
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    提示词工程
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/2.1_%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    提示词工程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/2.2_%E6%8E%A5%E5%85%A5%E5%95%86%E7%94%A8%E5%A4%A7%E6%A8%A1%E5%9E%8BAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    接入商用模型API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/2.4_%E6%8E%A8%E7%90%86%E5%8F%82%E6%95%B0%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    推理参数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Agent/Langgraph/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Agent
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/Agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/AgentPatterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AgentPatterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/FunctionCall/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FunctionCall
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/MCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/A2A/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2A
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/SmartVoyage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SmartVoyage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/3.1_LangChain%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/3.2_LangChain%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain 项目实战
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/3.3_%E4%BC%81%E4%B8%9A%E5%91%98%E5%B7%A5%E6%89%8B%E5%86%8C%E9%97%AE%E7%AD%94%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain 问答系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/Langgraph/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0_%E5%9F%BA%E4%BA%8ELangGraph%E7%9A%84%E5%9E%82%E7%9B%B4%E9%A2%86%E5%9F%9F%E6%99%BA%E8%83%BD%E4%BD%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Langgraph 课程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/2.3a_%E9%87%91%E8%9E%8D%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NLP 金融文本分类
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/2.3b_%E9%87%91%E8%9E%8D%E6%96%87%E6%9C%AC%E6%8A%BD%E5%8F%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NLP 金融文本抽取
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/2.3c_%E9%87%91%E8%9E%8D%E6%96%87%E6%9C%AC%E5%8C%B9%E9%85%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NLP 金融文本匹配
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coze
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Coze
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/coze/01_Coze%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%BA%94%E7%94%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    介绍及应用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/coze/02_%E6%B2%B9%E7%94%BB%E6%8D%A2%E8%84%B8%E6%99%BA%E8%83%BD%E4%BD%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    油画换脸
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/coze/03_%E5%BE%AE%E4%BF%A1%E7%88%86%E6%96%87%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    微信爆文生成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/coze/04_%E5%BC%80%E6%BA%90%E5%B9%B3%E5%8F%B0%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开源平台部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/coze/05_%E7%AE%80%E5%8E%86%E6%8C%87%E5%AF%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    简历指导
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dify
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dify
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/dify/01_%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安装与介绍
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/dify/02_%E6%8E%A5%E5%85%A5%E7%9F%A5%E8%AF%86%E5%BA%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    接入知识库
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/dify/03_%E5%BE%AE%E8%B0%83%E8%AF%AD%E6%96%99%E6%9E%84%E5%BB%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    微调语料构建
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/dify/04_%E6%8E%A5%E5%85%A5%E5%A4%96%E9%83%A8%E7%9F%A5%E8%AF%86%E5%BA%93ragflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    接入 ragflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Agent/dify/05_%E6%95%B0%E6%8D%AE%E9%97%AE%E7%AD%94%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据问答系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    RAG
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Rag/RAG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG 概述
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Rag/%E6%96%87%E6%A1%A3%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文档处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Rag/%E6%96%87%E6%A1%A3%E5%90%91%E9%87%8F%E5%8C%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文档向量化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%B4%B9%E6%9B%BC%E8%A7%86%E9%A2%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    费曼视频
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BE%AE%E8%B0%83/%E5%BE%AE%E8%B0%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    微调
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    408
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    408
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../408/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据结构概述
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../book/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    读书
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Personal%20Log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Personal Log
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../leetcode/PROGRESS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LeetCode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        课程目标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        语言模型
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        语言模型的发展历程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="语言模型的发展历程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 统计语言模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 神经语言模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 预训练语言模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 大语言模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        语言模型的评估
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="语言模型的评估">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-bleu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 BLEU
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-rouge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Rouge
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 Rouge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-rogue-n" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.1 Rogue-N
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-rouge-l" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.2 Rouge-L*
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-ppl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 PPL困惑度
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通用大模型的评估任务
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        国内外大模型的差异
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+  <nav class="md-path" aria-label="导航栏" >
+    <ol class="md-path__list">
+      
+      
+        
+  
+  
+    
+    
+      
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    LLM
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    通识
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="11">1.1 大模型基础</h1>
+<h2 id="_1">课程目标</h2>
+<ul>
+<li>
+<p>了解大模型发展的几个重要阶段</p>
+</li>
+<li>
+<p>知道什么是语言模型</p>
+</li>
+<li>
+<p>知道语言模型的评估指标</p>
+</li>
+<li>
+<p>知道国内外主流大模型的差异</p>
+</li>
+<li>
+<p>知道通用大语言模型的评估任务</p>
+</li>
+</ul>
+<hr />
+<h2 id="_2">语言模型</h2>
+<p>语言模型（Language Model）旨在<strong>建模词汇序列的生成概率</strong></p>
+<p>通俗理解:  用来<strong>计算一个句子的概率的模型</strong>，也就是判断一句话是否是人话的概率</p>
+<p>标准定义：对于某个句子序列, 如 $S = [W_1, W_2, W_3, \cdots, W_n]$, 语言模型就是计算该序列发生的概率, 即P(S). <strong>如果给定的词序列符合语用习惯, 则给出高概率, 否则给出低概率</strong>. </p>
+<p>$P(S) = P({W_1, W_2, W_3, \cdots, W_n})$</p>
+<p>例如计算$P(中国的首都是北京) &gt; P(中国的首都是深圳)$很明显，中国的首都是北京要比中国的首都是深圳概率大很多，那么<strong>中国的首都是北京</strong>这个句子就更符合人的习惯。</p>
+<hr />
+<p>根据概率的<strong>链式法则</strong></p>
+<p>$P(S) = P(W_1, W_2, ....,W_n) = P(W_1)<em>P(W_2|W_1)</em>....*P(W_n|W_1, W_2, ....,W_{n-1})$</p>
+<p><strong>于是我们把上面的概率公式 </strong>$P({W_1, W_2, W_3, \cdots, W_n})$<strong>或者</strong>$P(W_n|W_1, W_2, ....,W_{n-1})$<strong>称为语言模型，简单来说，语言模型就是计算一个句子的概率大小，概率越大越符合自然语言，“越像人话”</strong>。</p>
+<p>通俗理解，计算一个句子的概率的模型或者预测下一个“词”的模型都是语言模型。</p>
+<hr />
+<h2 id="_3">语言模型的发展历程</h2>
+<p>语言模型发展本质上就是围绕<strong>如何计算上面的语言模型的概率公式</strong>，先后出现了很多重要计算方法，这里总结为四个阶段</p>
+<ol>
+<li>
+<p>统计语言模型：使用统计学方法建模语言模型</p>
+</li>
+<li>
+<p>神经语言模型：使用简单浅层的神经网络来计算语言模型</p>
+</li>
+<li>
+<p>预训练语言模型：使用深层神经网络，加上大量非监督数据训练</p>
+</li>
+<li>
+<p>大语言模型：使用更大更深的网络，加上海量数据，预训练加多种后训练的方式</p>
+</li>
+</ol>
+<hr />
+<h3 id="21">2.1 统计语言模型</h3>
+<p>由人工设计特征并使用统计方法对固定长度的文本窗口序列进行建模分析，这种建模方式也被称为N-gram语言模型。N-gram语言模型的特点就是<strong>依据前面N个词来预测下一个词，</strong>N的不同取值对应了不同的语言模型计算方法。N常见的取值有1、2、3分别对应了1-gram、2-gram、3-gram。</p>
+<blockquote>
+<p>引入马尔科夫假设：随意一个词出现的概率只与它前面出现的有限的一个或者几个词有关。</p>
+</blockquote>
+<ul>
+<li>1-gram （一元语言模型）</li>
+</ul>
+<p>如果一个词的出现与它周围的词是独立的，那么我们就称之为unigram也就是一元语言模型.</p>
+<p>$P(S) = P(W_1)<em>P(W_2)</em>....*P(W_n)$</p>
+<p>计算相对简单，只要统计每个词出现的概率就行。$P(W_s) = \frac{C(W_s)}{N}$.</p>
+<p>很明显这种一元语言模型假设过于简单，词出现的概率往往是跟上下文词有关系的。</p>
+<div class="highlight"><pre><span></span><code><span class="n">例如</span><span class="err">：</span><span class="n">到中午了</span><span class="err">，</span><span class="n">我们去吃</span><span class="p">[</span><span class="n">X</span><span class="p">],</span>
+<span class="p">[</span><span class="n">X</span><span class="p">]</span><span class="n">不可能是随机的</span><span class="err">，</span><span class="n">可能性比较大的是</span><span class="err">“</span><span class="n">饭</span><span class="err">”、“</span><span class="n">面条</span><span class="err">”、“</span><span class="n">汉堡</span><span class="err">”，</span><span class="n">而不是</span><span class="err">“</span><span class="n">篮球</span><span class="err">”、“</span><span class="n">衣服</span><span class="err">”</span><span class="n">这样的词</span>
+</code></pre></div>
+<ul>
+<li>2-gram（ 二元语言模型）</li>
+</ul>
+<p>如果一个词的出现仅依赖于它前面出现的一个词，那么我们就称之为bigram.</p>
+<p>$P(S) = P(W_1)<em>P(W_2|W_1)</em>P(W_3|W_2)<em>...</em>P(W_n|W_{n-1})$</p>
+<p>二元语言模型计算也比较简单$P(W_t|W_{t-1}) = \frac{C(W_{t-1}W_t)}{C(W_{t-1})}$</p>
+<p>这种情况相对于1元语言模型来说，比较符合实际情况，仍然依赖上文内容太少了。</p>
+<ul>
+<li>3-gram（三元语言模型）</li>
+</ul>
+<p>如果一个词的出现仅依赖于它前面出现的两个词，那么我们就称之为trigram.</p>
+<p>$P(S) = P(W_1)<em>P(W_2|W_1)</em>P(W_3|W_2,W_1)<em>...</em>P(W_n|W_{n-1},W_{n-2})$</p>
+<p>一般来说，N元模型就是假设当前词的出现概率只与它前面的N-1个词有关，而这些概率参数都是可以通过大规模语料库来计算，比如三元概率：</p>
+<p>$P(W_i|W_{i-1},W_{i-2}) = C(W_{i-2}W_{i-1}W_i)/C(W_{i-2}W_{i-1})$</p>
+<p>其中$C(W_{i-2}W_{i-1}W_i)$就是统计预料中，这几个词同时出现的次数。</p>
+<p>在实践中用的最多的就是bigram和trigram，接下来以bigram语言模型为例，理解其工作原理：</p>
+<ul>
+<li>
+<p>首先我们准备一个语料库（简单理解让模型学习的数据集），为了计算对应的二元模型的参数，即$P(W_i|W_{i-1})$，我们要先计数即$C(W_{i-1},W_i)$，然后计数 $C(W_{i-1})$, 就能得到条件概率。</p>
+</li>
+<li>
+<p>$C(W_{i-1}, W_i) $计数结果如下：</p>
+</li>
+<li>
+<p>$C(W_{i-1}) $的计数结果如下：</p>
+</li>
+<li>
+<p>那么bigram语言模型针对上述语料的参数计算结果如何实现？假如，我想计算$P(想｜我)\approx0.38$ ,计算过程如下显示：（其他参数计算过程类似）</p>
+</li>
+</ul>
+<p>$P(想｜我) = \frac{C(我,想)}{C(我)} = \frac{800}{2100}\approx0.38$</p>
+<p>有了上面的统计以后，根据二元模型（bigram），就可以计算语言模型了下面分别计算下面的概率</p>
+<ul>
+<li>“我想去打篮球”的概率$P(我想去打篮球)$</li>
+</ul>
+<p>$P(我想去打篮球) = P(想｜我)<em>P(去｜想)</em>P(打｜去)<em>P(篮球｜打)=\frac{800}{2100}</em>\frac{600}{900}<em>\frac{690}{2000}</em>\frac{20}{800} \approx0.0022$</p>
+<ul>
+<li>预测“我想去打[MASK]”预测下一个词的概率$P([MASK]|我想去打)$</li>
+</ul>
+<p>思考：mask = 篮球 或者 mask = 晚饭，原理是依次计算词表中所有的词，选择概率最大的就是下一个词，这里只演示计算两个词。</p>
+<p>$P(我想去打篮球)  \approx 0.0022$</p>
+<p>$P(我想去打晚饭) \approx0.00022$</p>
+<ul>
+<li>可以看出P(我想去打篮球) \&gt; P(我想去打晚饭)，因此mask = 篮球，对比真实语境下，也符合人类习惯。</li>
+</ul>
+<p><strong>总结该方法存在两个缺陷：</strong></p>
+<ul>
+<li>
+<p>参数空间过大：概率$P(S) = P({W_1, W_2, W_3, \cdots, W_n})$的可能性太多，无法估算，也不一定有用</p>
+</li>
+<li>
+<p>数据稀疏严重：许多词对的组合，在语料库中都没有出现，依据最大似然估计得到的概率为0</p>
+</li>
+</ul>
+<hr />
+<h3 id="22">2.2 神经语言模型</h3>
+<p>基于N-gram语言模型以上的问题，以及随着神经网络技术的发展，人们开始尝试使用神经网络来<strong>建模语言模型</strong>。</p>
+<table><tbody><tr>
+<td>
+
+</td>
+<td>
+
+</td>
+</tr></tbody></table>
+
+<ul>
+<li>
+<p>模型的输入：$w_{t-n+1}, …, w_{t-2}, w_{t-1}$就是前n-1个词。现在需要根据这已知的$n-1$个词预测下一个词$w_t$。C(w)表示w所对应的词向量.</p>
+</li>
+<li>
+<p>网络的第一层（输入层）是将$C(w_{t-n+1}),…,C(w_{t-2}), C(w_{t-1})$这n-1个向量首尾拼接起来形成一个$(n-1)*m$大小的向量，记作x.</p>
+</li>
+<li>
+<p>网络的第二层（隐藏层）就如同普通的神经网络，直接使用一个全连接层, 通过全连接层后再使用tanh这个激活函数进行处理。</p>
+</li>
+<li>
+<p>网络的第三层（输出层）一共有V个节点 (V 代表语料的词汇)，本质上这个输出层也是一个全连接层。每个输出节点y_i表示下一个词语为 i 的未归一化log 概率。最后使用 softmax 激活函数将输出值y进行归一化。得到最大概率值，就是我们需要预测的结果。</p>
+</li>
+</ul>
+<p>神经网络特点：</p>
+<ul>
+<li>
+<p>优点：利用神经网络去建模当前词出现的概率与其前$ n-1$ 个词之间的约束关系，很显然这种方式相比 n-gram 具有<strong>更好的泛化能力</strong>，只要词表征足够好, 从而很大程度地降低了数据稀疏带来的问题。</p>
+</li>
+<li>
+<p>缺点：对长序列的建模能力有限，可能会出现长距离遗忘以及训练时的梯度消失等问题，构建的模型难以进行稳定的长文本输出。</p>
+</li>
+</ul>
+<hr />
+<h3 id="23">2.3 预训练语言模型</h3>
+<p>Transformer模型由一些编码器和解码器层组成（见图），学习复杂语义信息的能力强，很多主流预训练模型在提取特征时都会选择Transformer结构，并产生了一系列的基于Transformer的预训练模型，包括GPT、BERT、T5等.这些模型能够从大量的<strong>通用文本数据中学习的词表示</strong>，并将这些知识运用到下游任务中，获得了较好的效果.</p>
+<p>预训练语言模型的使用方式：</p>
+<ol>
+<li>
+<p>预训练：预训练指构建基础模型（初始化参数），先在一些比较基础的数据集、语料库上进行训练，然后按照特定任务训练，学习数据的普遍特征。这个阶段的特点是<strong>无监督数据训练。</strong></p>
+</li>
+<li>
+<p>微调：微调指在具体的下游任务中<strong>使用预训练好的模型进行迁移学习</strong>，以获取更好的泛化效果。</p>
+</li>
+</ol>
+<p>预训练语言模型的特点：</p>
+<ul>
+<li>
+<p>优点：更强大的泛化能力，丰富的语义表示，可以有效防止过拟合。</p>
+</li>
+<li>
+<p>缺点：计算资源需求大，可解释性差等</p>
+</li>
+</ul>
+<hr />
+<h3 id="24">2.4 大语言模型</h3>
+<p>随着对预训练语言模型研究的开展，模型的参数量越来越大，需要的无监督数据量也越多，那么参数量与数据量应该存在某种关联关系，研究人员发现，通过规模扩展（如增加模型参数规模或数据规模）通常会带来下游任务的模型性能提升，这种现象通常被称为<strong>“扩展法则”（Scaling Law）。</strong>即随着预训练模型参数的指数级提升，其语言模型性能也会线性上升。2020年，OpenAI发布了参数量高达1750亿的GPT-3，首次展示了大语言模型的性能。</p>
+<p>相较于此前的参数量较小的预训练语言模型，例如，3.3亿参数的Bert-large和17亿参数的GPT-2，GPT-3展现了在Few-shot语言任务能力上的飞跃，并具备了预训练语言模型不具备的一些能力，例如，GPT-3 可以通过“上下文学习”（In-Context Learning, ICL）的方式来利用少样本数据解决下游任务，而GPT-2 则不具备这一能力。这种大模型具有但小模型不具有的能力通常被称为<strong>“涌现能力”</strong>。为了区别这一能力上的差异，学术界将这些大型预训练语言模型命名为<strong>“大语言模型”。</strong></p>
+<p>大语言模型的特点：</p>
+<ul>
+<li>
+<p>优点：具备了一定的智能，非常好的捕捉到上下的语义信息，并且具备强大的生成能力，包括文字生成以及多模态内容的生成，甚至具备了使用插件进行自动信息检索的能力。</p>
+</li>
+<li>
+<p>缺点：参数量大，算力要求高、生成部分有害的、有偏见的内容等等</p>
+</li>
+</ul>
+<hr />
+<h2 id="_4">语言模型的评估</h2>
+<p>相比于分类的评估方法，语言模型评估就复杂多了。分类问题存在确定的答案，而生成内容通常没有确定的答案，需要结合需求来综合判断生成内容的质量，在开放领域，有通用的评测任务和数据集来评估模型的好坏，但是在垂直领域内，可能连评估标准都要自己制定。下面介绍几种生成类问题的评估指标，<strong>分别是BLEU，rouge，PPL</strong></p>
+<h3 id="31-bleu">3.1 BLEU</h3>
+<p>BLEU：BLEU （双语评估）分数是评估一种语言翻译成另一种语言的文本质量的指标。它将“质量”的好坏定义为与人类翻译结果的一致性程度。</p>
+<p>BLEU算法实际上就是在判断两个句子的相似程度. BLEU 的分数取值范围是 0～1，分数越接近1，说明翻译的质量越高。</p>
+<p>BLEU有许多变种，根据<code>n\-gram</code>可以划分成多种评价指标，常见的评价指标有BLEU-1、BLEU-2、BLEU-3、BLEU-4四种，其中<code>n\-gram</code>指的是连续的单词个数为n，BLEU-1衡量的是单词级别的准确性，更高阶的BLEU可以衡量句子的流畅性.实践中，通常是取N=1\~4，然后对进行加权平均。</p>
+<hr />
+<p>下面举例说计算过程：</p>
+<ul>
+<li>
+<p>分别计算candidate句和reference句的N-grams模型，然后统计其匹配的个数</p>
+</li>
+<li>
+<p>计算匹配度：candidate和reference中匹配的 n−gram 的个数 / candidate中n−gram 的个数</p>
+</li>
+</ul>
+<p>假设机器翻译的译文candidate和一个参考翻译reference如下：</p>
+<p>```Plain Text
+candidate: it is a nice day today
+reference: today is a nice day
+<div class="highlight"><pre><span></span><code>- 使用1\-gram进行匹配
+
+```Plain Text
+candidate: {it, is, a, nice, day, today}
+reference: {today, is, a, nice, day}
+结果:    
+其中{today, is, a, nice, day}匹配，所以匹配度为5/6
+</code></pre></div></p>
+<ul>
+<li>使用2-gram进行匹配</li>
+</ul>
+<p>```Plain Text
+candidate: {it is, is a, a nice, nice day, day today}
+reference: {today is, is a, a nice, nice day}
+结果:  <br />
+其中{is a, a nice, nice day}匹配，所以匹配度为3/5
+<div class="highlight"><pre><span></span><code>- 使用3\-gram进行匹配
+
+```Plain Text
+candidate: {it is a, is a nice, a nice day, nice day today}
+reference: {today is a, is a nice, a nice day}
+结果:    
+其中{is a nice, a nice day}匹配，所以匹配度为2/4
+</code></pre></div></p>
+<ul>
+<li>使用4-gram进行匹配</li>
+</ul>
+<p>```Plain Text
+candidate: {it is a nice, is a nice day, a nice day today}
+reference: {today is a nice, is a nice day}
+结果:  <br />
+其中{is a nice day}匹配，所以匹配度为1/3
+<div class="highlight"><pre><span></span><code>根据计算出的BLEU1、BLEU2、BLEU3、BLEU4对应的概率值为$p_1,p_2,p_3,p_4$计算出最终的BLEU值为
+
+$BLEU = bp \exp (\sum_{i=1}^4 w_i \log p_i)$
+
+其中bp为长度惩罚系数，$w_i$为对应BLEU值的权重，4个BLUE值默认为0\.25
+
+
+
+通过上面的例子分析可以发现，匹配的个数越多，BLEU值越大，则说明候选句子更好\. 但是也会出现下面的极端情况：
+
+- 举例说明：
+
+```Plain Text
+candidate: the the the the
+rference: The cat is standing on the ground
+如果按照1-gram的方法进行匹配，则匹配度为1，显然是不合理的，所以计算某个词的出现次数进行改进
+</code></pre></div></p>
+<ul>
+<li>将计算某个词的出现次数的方法改为计算某个词在译文中出现的最小次数,如下所示的公式：</li>
+</ul>
+<p>$count_k=min(c_k,s_k)$</p>
+<ul>
+<li>其中k表示在机器译文（candidate）中出现的第k个词语, $c_k$则代表在candidate中这个词语出现的次数，而sk则代表在reference中这个词语出现的次数。</li>
+</ul>
+<p>通过上面修正以后，按照1-gram的方法进行匹配，BLUE1结果就是1/4了。</p>
+<p>python代码实现：</p>
+<div class="highlight"><pre><span></span><code><span class="o">*</span><span class="c1">#!/usr/bin/env python*</span>
+<span class="o">*</span><span class="c1"># -*- coding: utf-8 -*-*</span>
+<span class="o">*</span><span class="s2">&quot;&quot;&quot;*</span>
+<span class="s2">*@Author  : Vincent*</span>
+<span class="s2">*@Time    : 2026/1/4 09:39*</span>
+<span class="s2">*@File    : _01_bleu.py*</span>
+<span class="s2">*@Function :*</span>
+<span class="s2">*&quot;&quot;&quot;</span><span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="o">*</span><span class="c1"># 第一步安装nltk的包--&gt;pip install nltk*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nltk.translate.bleu_score</span><span class="w"> </span><span class="kn">import</span> <span class="n">sentence_bleu</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">cumulative_bleu</span><span class="p">(</span><span class="n">reference</span><span class="p">,</span> <span class="n">candidate</span><span class="p">):</span>
+    <span class="n">bleu_1_gram</span> <span class="o">=</span> <span class="n">sentence_bleu</span><span class="p">(</span><span class="n">reference</span><span class="p">,</span> <span class="n">candidate</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">bleu_2_gram</span> <span class="o">=</span> <span class="n">sentence_bleu</span><span class="p">(</span><span class="n">reference</span><span class="p">,</span> <span class="n">candidate</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">bleu_3_gram</span> <span class="o">=</span> <span class="n">sentence_bleu</span><span class="p">(</span><span class="n">reference</span><span class="p">,</span> <span class="n">candidate</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">bleu_4_gram</span> <span class="o">=</span> <span class="n">sentence_bleu</span><span class="p">(</span><span class="n">reference</span><span class="p">,</span> <span class="n">candidate</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="o">*</span><span class="c1"># print(&#39;bleu 1-gram: %f&#39; % bleu_1_gram)*</span>
+<span class="o">*</span>    <span class="c1"># print(&#39;bleu 2-gram: %f&#39; % bleu_2_gram)*</span>
+<span class="o">*</span>    <span class="c1"># print(&#39;bleu 3-gram: %f&#39; % bleu_3_gram)*</span>
+<span class="o">*</span>    <span class="c1"># print(&#39;bleu 4-gram: %f&#39; % bleu_4_gram)*</span>
+
+<span class="o">*</span>    <span class="o">*</span><span class="k">return</span> <span class="n">bleu_1_gram</span><span class="p">,</span> <span class="n">bleu_2_gram</span><span class="p">,</span> <span class="n">bleu_3_gram</span><span class="p">,</span> <span class="n">bleu_4_gram</span>
+
+
+<span class="o">*</span><span class="c1"># 生成文本*</span>
+<span class="n">generated_text</span> <span class="o">=</span> <span class="s2">&quot;it is a nice day today&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+
+<span class="o">*</span><span class="c1"># 参考文本列表*</span>
+<span class="n">reference_texts</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;today is a nice day&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)]</span>
+
+<span class="o">*</span><span class="c1"># 计算 Bleu 指标*</span>
+<span class="n">c_bleu</span> <span class="o">=</span> <span class="n">cumulative_bleu</span><span class="p">(</span><span class="n">reference_texts</span><span class="p">,</span> <span class="n">generated_text</span><span class="p">)</span>
+
+<span class="o">*</span><span class="c1"># 打印结果*</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The Bleu score is:&quot;</span><span class="p">,</span> <span class="n">c_bleu</span><span class="p">)</span>
+<span class="o">*</span><span class="c1"># The Bleu score is: (0.8333333333333334, 0.7071067811865476, 0.63287829698514, 0.537284965911771)*</span>
+<span class="n">bleu</span> <span class="o">=</span> <span class="n">sentence_bleu</span><span class="p">(</span><span class="n">reference_texts</span><span class="p">,</span> <span class="n">generated_text</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;接口返回结果：&quot;</span><span class="p">,</span> <span class="n">bleu</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;手动计算结果：&quot;</span><span class="p">,</span>
+      <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="mf">0.25</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">c_bleu</span><span class="p">]))</span>
+      <span class="p">)</span>
+</code></pre></div>
+<p>输出结果为：</p>
+<div class="highlight"><pre><span></span><code><span class="n">The</span><span class="w"> </span><span class="n">Bleu</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="n">is:</span><span class="w"> </span><span class="p">(</span><span class="mf">0.8333333333333334</span><span class="p">,</span><span class="w"> </span><span class="mf">0.6</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3333333333333333</span><span class="p">)</span>
+<span class="n">接口返回结果</span><span class="err">：</span><span class="w"> </span><span class="mf">0.537284965911771</span>
+<span class="n">手动计算结果</span><span class="err">：</span><span class="w"> </span><span class="mf">0.537284965911771</span>
+</code></pre></div>
+<hr />
+<h3 id="32-rouge">3.2 Rouge</h3>
+<p>ROUGE指标是在机器翻译、自动摘要、问答生成等领域常见的评估指标。ROUGE通过将模型生成的摘要或者回答与参考答案（一般是人工生成的）进行比较计算，得到对应的得分。ROUGE分为四种方法：ROUGE-N, ROUGE-L, ROUGE-W, ROUGE-S.</p>
+<h4 id="321-rogue-n">3.2.1 Rogue-N</h4>
+<p>ROUGE指标与BLEU指标非常类似，均可用来衡量生成结果和标准结果的匹配程度，<strong>不同的是ROUGE基于召回率，BLEU更看重精确率</strong>。</p>
+<p>下面举例说计算过程，这里只介绍ROUGE-N基本步骤：</p>
+<ul>
+<li>
+<p>Rouge-N实际上是将模型生成的结果和标准结果按N-gram拆分后</p>
+</li>
+<li>
+<p>计算匹配度：candidate和reference中匹配的 n−gram 的个数 / reference中n−gram 的个数</p>
+</li>
+</ul>
+<p>假设模型生成的文本candidate和一个参考文本reference如下：</p>
+<div class="highlight"><pre><span></span><code><span class="na">candidate</span><span class="o">:</span><span class="w"> </span><span class="s">it is a nice day today</span>
+<span class="na">reference</span><span class="o">:</span><span class="w"> </span><span class="s">today is a nice day</span>
+</code></pre></div>
+<p>使用ROUGE-1进行匹配</p>
+<div class="highlight"><pre><span></span><code><span class="n">candidate:</span><span class="w"> </span><span class="p">{</span><span class="n">it</span><span class="p">,</span><span class="w"> </span><span class="n">is</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">nice</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">,</span><span class="w"> </span><span class="n">today</span><span class="p">}</span>
+<span class="n">reference:</span><span class="w"> </span><span class="p">{</span><span class="n">today</span><span class="p">,</span><span class="w"> </span><span class="n">is</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">nice</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">}</span>
+<span class="n">结果:</span>
+<span class="n">其中</span><span class="p">{</span><span class="n">today</span><span class="p">,</span><span class="w"> </span><span class="n">is</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">nice</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">}</span><span class="n">匹配</span><span class="err">，</span><span class="n">所以匹配度为5</span><span class="o">/</span><span class="mi">5</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">这说明生成的内容完全覆盖了参考文本中的所有单词</span><span class="err">，</span><span class="n">质量较高</span><span class="err">。</span>
+</code></pre></div>
+<p>同样的方法可以计算出rouge-2的结果。</p>
+<p>python代码实现：</p>
+<div class="highlight"><pre><span></span><code><span class="o">*</span><span class="c1">#!/usr/bin/env python*</span>
+<span class="o">*</span><span class="c1"># -*- coding: utf-8 -*-*</span>
+<span class="o">*</span><span class="s2">&quot;&quot;&quot;*</span>
+<span class="s2">*@Author  : Vincent*</span>
+<span class="s2">*@Time    : 2026/1/4 09:41*</span>
+<span class="s2">*@File    : _02_rouge.py*</span>
+<span class="s2">*@Function :*</span>
+<span class="s2">*&quot;&quot;&quot;</span><span class="o">*</span>
+<span class="o">*</span><span class="c1"># 第一步：安装rouge--&gt;pip install rouge*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rouge</span><span class="w"> </span><span class="kn">import</span> <span class="n">Rouge</span>
+
+<span class="o">*</span><span class="c1"># 生成文本*</span>
+<span class="n">generated_text</span> <span class="o">=</span> <span class="s2">&quot;it is a nice day today&quot;</span>
+
+<span class="o">*</span><span class="c1"># 参考文本列表*</span>
+<span class="n">reference_texts</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;today is a nice day&quot;</span><span class="p">]</span>
+
+<span class="o">*</span><span class="c1"># 计算 ROUGE 指标*</span>
+<span class="n">rouge</span> <span class="o">=</span> <span class="n">Rouge</span><span class="p">()</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">rouge</span><span class="o">.</span><span class="n">get_scores</span><span class="p">(</span><span class="n">generated_text</span><span class="p">,</span> <span class="n">reference_texts</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="o">*</span><span class="c1"># 打印结果*</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ROUGE-1 precision:&quot;</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;rouge-1&quot;</span><span class="p">][</span><span class="s2">&quot;p&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ROUGE-1 recall:&quot;</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;rouge-1&quot;</span><span class="p">][</span><span class="s2">&quot;r&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ROUGE-1 F1 score:&quot;</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;rouge-1&quot;</span><span class="p">][</span><span class="s2">&quot;f&quot;</span><span class="p">])</span>
+<span class="o">*</span><span class="c1"># ROUGE-1 precision: 0.8*</span>
+<span class="o">*</span><span class="c1"># ROUGE-1 recall: 0.6666666666666666*</span>
+<span class="o">*</span><span class="c1"># ROUGE-1 F1 score: 0.7272727223140496*</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;全部结果：&quot;</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span>
+<span class="o">*</span><span class="c1"># rouge-l 计算最终公共子序列*</span>
+</code></pre></div>
+<p>输出为：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">ROUGE-1 precision</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.8333333333333334</span>
+<span class="nt">ROUGE-1 recall</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="nt">ROUGE-1 F1 score</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.9090909041322315</span>
+<span class="l l-Scalar l-Scalar-Plain">全部结果： [{&#39;rouge-1&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="s">&#39;r&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;p&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">0.8333333333333334</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;f&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">0.9090909041322315</span><span class="p p-Indicator">}</span><span class="err">,</span><span class="w"> </span><span class="s">&#39;rouge-2&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="s">&#39;r&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">0.75</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;p&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">0.6</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;f&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">0.6666666617283951</span><span class="p p-Indicator">}</span><span class="err">,</span><span class="w"> </span><span class="s">&#39;rouge-l&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="s">&#39;r&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;p&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">0.6666666666666666</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;f&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">0.7272727223140496</span><span class="p p-Indicator">}</span><span class="err">}]</span>
+</code></pre></div>
+<h4 id="322-rouge-l">3.2.2 Rouge-L*</h4>
+<p><strong>ROUGE-L</strong>（Recall-Oriented Understudy for Gisting Evaluation - Longest Common Subsequence）是自然语言处理（NLP）中用于评估自动摘要、机器翻译等生成任务质量的指标之一。</p>
+<p>与基于 n-gram 重叠的 ROUGE-N（如 ROUGE-1, ROUGE-2）不同，<strong>ROUGE-L 基于最长公共子序列</strong>（Longest Common Subsequence, LCS）。这意味着它不要求匹配的单词必须连续，只要它们在句子中的相对顺序一致即可。这使得 ROUGE-L 能够更好地捕捉句子的结构相似性，对词序变化具有一定的鲁棒性。</p>
+<p><strong>子序列 (Subsequence)</strong></p>
+<p>指从一个字符串中删除零个或多个字符（不改变剩余字符的相对顺序）后得到的新字符串。</p>
+<p>例如：\&#34;ace\&#34; 是 \&#34;abcde\&#34; 的子序列</p>
+<p>ROUGE-L 的计算依赖于三个指标：召回率（Recall）、精确率（Precision）和 F1 值（F-measure）</p>
+<ul>
+<li>
+<p>m = 参考句子  X<em>X</em> 的长度（单词数）</p>
+</li>
+<li>
+<p>n = 生成句子  Y<em>Y</em> 的长度（单词数）</p>
+</li>
+<li>
+<p>LCS(X,Y)=  X 和  Y 的最长公共子序列的长度</p>
+</li>
+</ul>
+<p>精确率：</p>
+<p>$P_{LCS} = \frac{LCS(X, Y)}{n}$</p>
+<p>召回率：</p>
+<p>$ R_{LCS}= \frac{LCS(X,Y)}{m}$</p>
+<p>F1值计算：</p>
+<p>$F_1 = \frac{2P_{LCS} R_{LCS}}{P_{LCS} + R_{LCS}}$</p>
+<hr />
+<h3 id="33-ppl">3.3 PPL困惑度</h3>
+<p>1PPL用来度量一个<strong>概率分布</strong>或概率模型在<strong>预测样本</strong>的好坏程度</p>
+<p>PPL基本思想:</p>
+<ul>
+<li>
+<p>给测试集的句子赋予较高概率值的语言模型较好，当语言模型训练完之后，测试集中的句子都是正常的句子，那么训练好的模型就是在测试集上的概率越高越好.</p>
+</li>
+<li>
+<p>计算方式如下，其中S是一个句子：</p>
+</li>
+</ul>
+<p>$PPL(S) =p(w_1,w_2,\cdots, w_n)^{-\frac 1 N}$</p>
+<p>$PPL(S) = \exp(\log p(w_1,w_2,\cdots, w_n)^{-\frac 1 N}) = \exp\left(-\frac 1 N \log p(w_1,w_2,\cdots,w_n)\right)$</p>
+<p>对于1-gram的语言模型来说，上面的公式简化为：</p>
+<p>$PPL(S) = \exp\left(-\frac 1 N \log p(w_1,w_2,\cdots,w_n)\right) = \exp\left(- \frac 1 N \sum_i^n \log p(w_i)\right)$</p>
+<ul>
+<li>由公式可知，<strong>句子概率越大，语言模型越好，困惑度越小</strong></li>
+</ul>
+<p>python代码实现：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="o">*</span><span class="c1"># 定义测试样本*</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;have&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;pen&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;He&#39;</span><span class="p">,</span> <span class="s1">&#39;has&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;book&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;She&#39;</span><span class="p">,</span> <span class="s1">&#39;has&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="o">*</span><span class="c1"># 定义语言模型,只写了部分词的概率*</span>
+<span class="n">unigram</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s1">&#39;have&#39;</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">3</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s1">&#39;pen&#39;</span><span class="p">:</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s1">&#39;He&#39;</span><span class="p">:</span> <span class="mi">7</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s1">&#39;has&#39;</span><span class="p">:</span> <span class="mi">21</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s1">&#39;book&#39;</span><span class="p">:</span> <span class="mi">12</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s1">&#39;She&#39;</span><span class="p">:</span> <span class="mi">17</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s1">&#39;cat&#39;</span><span class="p">:</span> <span class="mi">2</span> <span class="o">/</span> <span class="mi">100</span>
+<span class="p">}</span>
+
+<span class="o">*</span><span class="c1"># 计算 PPL*</span>
+<span class="n">log_p</span> <span class="o">=</span> <span class="mi">0</span>  <span class="o">*</span><span class="c1"># 计算对数化概率*</span>
+<span class="n">total_words</span> <span class="o">=</span> <span class="mi">0</span>  <span class="o">*</span><span class="c1"># 统计token 数*</span>
+
+<span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">sent</span><span class="p">:</span>
+        <span class="n">log_p</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">unigram</span><span class="p">[</span><span class="n">word</span><span class="p">])</span>
+        <span class="n">total_words</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">ppl</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="n">total_words</span> <span class="o">*</span> <span class="n">log_p</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;最终计算的 PPL 为：&quot;</span><span class="p">,</span> <span class="n">ppl</span><span class="p">)</span>
+</code></pre></div>
+<div class="callout">
+
+**企业使用指标**
+
+
+
+可以评估微调前后，模型在特定的语料上的PPL。
+
+通用领域的模型qwen2\.5\-7B
+
+垂直领域的微调模型qwen2\.5\-7B\-SFT，在对应领域上微调以后，PPL应该越小
+
+</div>
+
+<hr />
+<h2 id="_5">通用大模型的评估任务</h2>
+<h2 id="_6">国内外大模型的差异</h2>
+<p><a href="">https://www.superclueai.com/generalpage</a></p>
+<p>openRouter使用排名</p>
+<p><a href="">https://openrouter.ai/rankings?view=week</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/cowfat97" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.path", "navigation.indexes", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
