@@ -156,6 +156,6 @@ nav:
   - 408:
       - 数据结构概述: 408/数据结构/数据结构概述.md
   - 读书: book/index.md
-  - Personal Log: diary/index.md
+  - Personal Log: Personal Log/index.md
   - LeetCode: leetcode/PROGRESS.md
 
