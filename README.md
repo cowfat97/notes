@@ -14,6 +14,8 @@ Java 后端 & 大模型开发学习笔记。
 | LLM | [LLM/](./LLM/) | 通识 / Agent / Coze / Dify / RAG / 深度学习 / 微调 / LangGraph |
 | 408 | [408/](./408/) | 数据结构 / 计组 / 操作系统 / 计网 |
 | LeetCode | [leetcode/](./leetcode/) | Python 刷题 |
+| 读书 | [book/](./book/) | 书架 / 阅读统计（微信读书集成）|
+| Personal Log | [Personal Log/](./Personal%20Log/) | 日记与日常记录 |
 | 软考 | [软考/](./软考/) | 软件设计师备考 |
 
 ## Java
