@@ -6,7 +6,7 @@ hide:
 # 读书
 
 <div class="stats" markdown>
-:material-book-open-outline: 读过 **2** 本 &emsp; :material-timer-outline: 阅读 **57** 分钟 &emsp; :material-calendar-check-outline: 阅读 **2** 天 &emsp; :material-pencil-outline: 笔记 **0** 条
+:material-book-open-outline: 读过 **5** 本 &emsp; :material-timer-outline: 阅读 **92** 分钟 &emsp; :material-calendar-check-outline: 阅读 **3** 天 &emsp; :material-pencil-outline: 笔记 **0** 条
 </div>
 
 <style>
@@ -193,4 +193,4 @@ hide:
 
 ---
 
-数据来源：微信读书 · 更新于 2026-05-18
+数据来源：微信读书 · 更新于 2026-05-19
