@@ -37,13 +37,3 @@ hide:
 }
 </style>
 
-
-<div class="tl-entry">
-  <p class="tl-date"><a href="2026-05-20/daily-note/">2026-05-20 · 周三 · 北京 →</a></p>
-  <p class="tl-preview">💆‍♂️ 状态：精力：⚡⚡⚡⚡☆ ( /5) · 🏋️ 身体：运动： · 🛌 收尾：[ ] 复习明日任务</p>
-</div>
-
-<div class="tl-entry">
-  <p class="tl-date"><a href="2026-05-18/daily-note/">2026-05-18 · 周一 · 北京 →</a></p>
-  <p class="tl-preview">💆‍♂️ 状态：精力：⚡⚡⚡☆☆ (3/5) · 🏋️ 身体：运动：休息日 · 🧠 学习：整理黑马课程笔记，打通飞书 → 本地 → 博客的自动同步流程 · 📝 想法：微信读书 API 接入后，书架封面、阅读时长、评分全部自动拉取。读书专栏以后不用手动更新了。</p>
-</div>
