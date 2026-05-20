@@ -6,7 +6,7 @@ hide:
 # 读书
 
 <div class="stats" markdown>
-:material-book-open-outline: 读过 **5** 本 &emsp; :material-timer-outline: 阅读 **92** 分钟 &emsp; :material-calendar-check-outline: 阅读 **3** 天 &emsp; :material-pencil-outline: 笔记 **0** 条
+:material-book-open-outline: 读过 **5** 本 &emsp; :material-timer-outline: 阅读 **194** 分钟 &emsp; :material-calendar-check-outline: 阅读 **3** 天 &emsp; :material-pencil-outline: 笔记 **0** 条
 </div>
 
 <style>
@@ -179,7 +179,7 @@ hide:
     <h3>盗墓笔记</h3>
     <div class="author">南派三叔</div>
     <div class="rating">★★★★★ 8.9</div>
-    <div class="readtime">📖 阅读 16 分钟</div>
+    <div class="readtime">📖 阅读 116 分钟</div>
     <div class="intro">50年前出土的战国帛书记载了一个奇特古墓的位置，50年后一场惊心动魄的盗墓之旅展开。</div>
     <div class="category">悬疑灵异 · 男生小说</div>
   </div>
@@ -202,4 +202,4 @@ hide:
 
 ---
 
-数据来源：微信读书 · 更新于 2026-05-19
+数据来源：微信读书 · 更新于 2026-05-20
