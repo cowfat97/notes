@@ -159,6 +159,7 @@ nav:
   - 408:
       - 数据结构概述: 408/数据结构/数据结构概述.md
   - 读书: book/index.md
+  - 电影: movie/index.md
   - 时间线: 时间线/index.md
   - LeetCode: leetcode/PROGRESS.md
 
