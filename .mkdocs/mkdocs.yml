@@ -67,6 +67,9 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.details
   - pymdownx.highlight
+  - pymdownx.snippets:
+      base_path:
+        - .
   - pymdownx.superfences
   - pymdownx.inlinehilite
   - pymdownx.tabbed:
@@ -156,6 +159,6 @@ nav:
   - 408:
       - 数据结构概述: 408/数据结构/数据结构概述.md
   - 读书: book/index.md
-  - Personal Log: Personal Log/index.md
+  - 时间线: 时间线/index.md
   - LeetCode: leetcode/PROGRESS.md
 
