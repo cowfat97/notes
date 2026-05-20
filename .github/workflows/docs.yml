@@ -20,15 +20,18 @@ jobs:
       - name: Auto-sync nav
         run: python scripts/sync_nav.py
 
-      - name: Commit nav changes
+      - name: Generate timeline
+        run: python scripts/gen_timeline.py
+
+      - name: Commit auto changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           if git diff --quiet; then
-            echo "No nav changes."
+            echo "No changes."
           else
-            git add .mkdocs/mkdocs.yml
-            git commit -m "chore: 自动同步 nav 遗漏笔记"
+            git add .mkdocs/mkdocs.yml 时间线/index.md
+            git commit -m "chore: 自动更新导航和时间线"
             git push
           fi
 

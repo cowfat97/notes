@@ -120,21 +120,26 @@ def section_to_html(section_title, content):
     for line in text.split("\n"):
         line = line.strip()
         if not line:
+            if lines and not lines[-1].startswith("<br>"):
+                lines.append("<br>")
             continue
         if line.startswith("- ["):
             line = line.replace("- [x]", "✅").replace("- [ ]", "⬜")
             lines.append(line[2:].strip())
         elif line.startswith("- "):
-            lines.append(line[2:].strip())
+            lines.append("· " + line[2:].strip())
         elif line.startswith(">"):
             lines.append(line[1:].strip())
         elif line.startswith("# "):
             continue
+        else:
+            lines.append(line)
 
     if not lines:
         return ""
 
-    return f'<h2>{section_title}</h2>\n<p>{" · ".join(lines)}</p>\n'
+    content_html = "<br>".join(lines)
+    return f'<h2>{section_title}</h2>\n<p>{content_html}</p>\n'
 
 
 def generate_timeline():
