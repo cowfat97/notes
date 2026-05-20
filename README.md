@@ -15,7 +15,7 @@ Java 后端 & 大模型开发学习笔记。
 | 408 | [408/](./408/) | 数据结构 / 计组 / 操作系统 / 计网 |
 | LeetCode | [leetcode/](./leetcode/) | Python 刷题 |
 | 读书 | [book/](./book/) | 书架 / 阅读统计（微信读书集成）|
-| Personal Log | [Personal Log/](./Personal%20Log/) | 日记与日常记录 |
+| 时间线 | [时间线/](./%E6%97%B6%E9%97%B4%E7%BA%BF/) | 每日日记时间线 |
 | 软考 | [软考/](./软考/) | 软件设计师备考 |
 
 ## Java
@@ -62,9 +62,9 @@ Java 后端 & 大模型开发学习笔记。
 
 - [书架](book/index.md) — 微信读书集成，封面/评分/阅读时长实时同步
 
-## Personal Log
+## 时间线
 
-- [日记](Personal%20Log/index.md) — 每日记录
+- [日记](%E6%97%B6%E9%97%B4%E7%BA%BF/index.md) — 每日记录，按时间倒序
 
 ## 408 考研
 
