@@ -6,7 +6,7 @@ hide:
 # 读书
 
 <div class="stats" markdown>
-:material-book-open-outline: 读过 **5** 本 &emsp; :material-timer-outline: 阅读 **315** 分钟 &emsp; :material-calendar-check-outline: 阅读 **6** 天 &emsp; :material-pencil-outline: 笔记 **0** 条
+:material-book-open-outline: 读过 **15** 本 &emsp; :material-timer-outline: 阅读 **315** 分钟 &emsp; :material-calendar-check-outline: 阅读 **6** 天 &emsp; :material-pencil-outline: 笔记 **0** 条
 </div>
 
 <style>
@@ -208,6 +208,83 @@ hide:
     <div class="readtime">📖 阅读 5 分钟</div>
     <div class="intro">清崎有两个爸爸："穷爸爸"是高学历的教育官员，"富爸爸"是善于投资理财的企业家。</div>
     <div class="category">理财 · 四川人民出版社 · 2017</div>
+  </div>
+</div>
+
+<div class="book-card">
+  <span class="badge badge-toread">待读</span>
+  <img class="book-cover" src="https://cdn.weread.qq.com/weread/cover/75/cpplatform_tpwzkagpzrvbkwwpe2swrf/t6_cpplatform_tpwzkagpzrvbkwwpe2swrf1735290012.jpg" alt="人生财富靠康波" loading="lazy">
+  <div class="book-info">
+    <h3>人生财富靠康波</h3>
+    <div class="author">周金涛</div>
+    <div class="intro">周金涛先生的康波周期理论精华，读懂经济周期与人生财富的关系。</div>
+    <div class="category">经济理财 · 中信出版社</div>
+  </div>
+</div>
+
+<div class="book-card">
+  <span class="badge badge-toread">待读</span>
+  <img class="book-cover" src="https://cdn.weread.qq.com/weread/cover/16/YueWen_860996/t6_YueWen_860996.jpg" alt="银河帝国（全15册）" loading="lazy">
+  <div class="book-info">
+    <h3>银河帝国（全15册）</h3>
+    <div class="author">艾萨克·阿西莫夫</div>
+    <div class="intro">美剧《基地》原著。人类历史上最好看的系列小说，科幻文学的里程碑。</div>
+    <div class="category">科幻小说</div>
+  </div>
+</div>
+
+<div class="book-card">
+  <span class="badge badge-toread">待读</span>
+  <img class="book-cover" src="https://cdn.weread.qq.com/weread/cover/49/yuewen_674073/t6_yuewen_6740731774011595.jpg" alt="沧浪之水" loading="lazy">
+  <div class="book-info">
+    <h3>沧浪之水</h3>
+    <div class="author">阎真</div>
+    <div class="intro">一部描写知识分子在官场与人格间挣扎的现实主义力作。</div>
+    <div class="category">年代小说 · 湖南文艺出版社</div>
+  </div>
+</div>
+
+<div class="book-card">
+  <span class="badge badge-toread">待读</span>
+  <img class="book-cover" src="https://cdn.weread.qq.com/weread/cover/52/YueWen_26408000/t6_YueWen_26408000.jpg" alt="福尔摩斯探案全集" loading="lazy">
+  <div class="book-info">
+    <h3>福尔摩斯探案全集</h3>
+    <div class="author">柯南·道尔</div>
+    <div class="intro">推理小说永恒的经典。柯南·道尔笔下的福尔摩斯，至今无人超越。</div>
+    <div class="category">悬疑推理 · 果麦经典</div>
+  </div>
+</div>
+
+<div class="book-card">
+  <span class="badge badge-toread">待读</span>
+  <img class="book-cover" src="https://cdn.weread.qq.com/weread/cover/48/YueWen_837932/t6_YueWen_837932.jpg" alt="穷查理宝典" loading="lazy">
+  <div class="book-info">
+    <h3>穷查理宝典</h3>
+    <div class="author">彼得·考夫曼</div>
+    <div class="intro">查理·芒格的智慧箴言录，关于投资、决策与人生的终极思考。</div>
+    <div class="category">个人成长 · 中信出版社</div>
+  </div>
+</div>
+
+<div class="book-card">
+  <span class="badge badge-toread">待读</span>
+  <img class="book-cover" src="https://cdn.weread.qq.com/weread/cover/95/yuewen_812778/t6_yuewen_8127781744883578.jpg" alt="金庸作品集（全集36册）" loading="lazy">
+  <div class="book-info">
+    <h3>金庸作品集（全集36册）</h3>
+    <div class="author">金庸</div>
+    <div class="intro">飞雪连天射白鹿，笑书神侠倚碧鸳。华人世界最伟大的武侠全集。</div>
+    <div class="category">武侠小说</div>
+  </div>
+</div>
+
+<div class="book-card">
+  <span class="badge badge-toread">待读</span>
+  <img class="book-cover" src="https://cdn.weread.qq.com/weread/cover/12/cpplatform_axqdwrf5vrx31ktflmcmkz/t6_cpplatform_axqdwrf5vrx31ktflmcmkz1729216757.jpg" alt="卓有成效的管理者" loading="lazy">
+  <div class="book-info">
+    <h3>卓有成效的管理者</h3>
+    <div class="author">[美]彼得·德鲁克</div>
+    <div class="intro">德鲁克经典之作。教你如何管理自己、管理时间、做出有效决策。</div>
+    <div class="category">管理 · 机械工业出版社</div>
   </div>
 </div>
 
