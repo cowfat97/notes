@@ -76,11 +76,7 @@ def get_preview(filepath):
                 in_thought = ("想法" in stripped)
                 continue
             if in_thought and stripped and not stripped.startswith("#"):
-                lines.append(stripped.lstrip("- "))
-                if len(lines) >= 2:
-                    break
-
-        return "<br>".join(lines) if lines else ""
+                return stripped.lstrip("- ")
     except Exception:
         return ""
 
