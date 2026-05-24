@@ -6,7 +6,7 @@ hide:
 # 读书
 
 <div class="stats" markdown>
-:material-book-open-outline: 读过 **5** 本 &emsp; :material-timer-outline: 阅读 **194** 分钟 &emsp; :material-calendar-check-outline: 阅读 **3** 天 &emsp; :material-pencil-outline: 笔记 **0** 条
+:material-book-open-outline: 读过 **5** 本 &emsp; :material-timer-outline: 阅读 **315** 分钟 &emsp; :material-calendar-check-outline: 阅读 **6** 天 &emsp; :material-pencil-outline: 笔记 **0** 条
 </div>
 
 <style>
@@ -117,7 +117,7 @@ hide:
     <h3>置身事内：中国政府与经济发展</h3>
     <div class="author">兰小欢</div>
     <div class="rating">★★★★★ 9.4</div>
-    <div class="readtime">📖 阅读 21 分钟</div>
+    <div class="readtime">📖 阅读 20 分钟</div>
     <div class="intro">本书以地方政府投融资为主线，深入浅出地论述了中国经济的发展，广泛采纳各领域学者全新研究成果。</div>
     <div class="category">经济理财 · 上海人民出版社 · 2021</div>
   </div>
@@ -130,7 +130,7 @@ hide:
     <h3>三体全集（全三册）</h3>
     <div class="author">刘慈欣</div>
     <div class="rating">★★★★★ 9.3</div>
-    <div class="readtime">📖 阅读 35 分钟</div>
+    <div class="readtime">📖 阅读 144 分钟</div>
     <div class="intro">荣获雨果奖。关于宇宙最狂野的想象！征服世界的中国科幻神作！</div>
     <div class="category">科幻小说 · 重庆出版社 · 2022</div>
   </div>
@@ -179,12 +179,25 @@ hide:
     <h3>盗墓笔记</h3>
     <div class="author">南派三叔</div>
     <div class="rating">★★★★★ 8.9</div>
-    <div class="readtime">📖 阅读 116 分钟</div>
+    <div class="readtime">📖 阅读 124 分钟</div>
     <div class="intro">50年前出土的战国帛书记载了一个奇特古墓的位置，50年后一场惊心动魄的盗墓之旅展开。</div>
     <div class="category">悬疑灵异 · 男生小说</div>
   </div>
 </div>
 
+
+<div class="book-card reading">
+  <span class="badge badge-reading">在读</span>
+  <img class="book-cover" src="https://cdn.weread.qq.com/weread/cover/66/YueWen_23303928/t6_YueWen_23303928.jpg" alt="我的团长我的团" loading="lazy">
+  <div class="book-info">
+    <h3>我的团长我的团</h3>
+    <div class="author">兰晓龙</div>
+    <div class="rating">★★★★★ 9.2</div>
+    <div class="readtime">📖 阅读 9 分钟</div>
+    <div class="intro">段奕宏、张译主演同名电视剧原著。一群溃兵在团长龙文章的带领下，以川军团的名义走上抗日战场的故事。</div>
+    <div class="category">军事小说 · 新星出版社 · 2009</div>
+  </div>
+</div>
 <div class="book-card reading">
   <span class="badge badge-reading">在读</span>
   <img class="book-cover" src="../Pic/book/23601930_富爸爸穷爸爸.jpg" alt="富爸爸穷爸爸" loading="lazy">
@@ -192,7 +205,7 @@ hide:
     <h3>富爸爸穷爸爸</h3>
     <div class="author">罗伯特·清崎</div>
     <div class="rating">★★★★☆ 8.3</div>
-    <div class="readtime">📖 阅读 6 分钟</div>
+    <div class="readtime">📖 阅读 5 分钟</div>
     <div class="intro">清崎有两个爸爸："穷爸爸"是高学历的教育官员，"富爸爸"是善于投资理财的企业家。</div>
     <div class="category">理财 · 四川人民出版社 · 2017</div>
   </div>
@@ -202,4 +215,4 @@ hide:
 
 ---
 
-数据来源：微信读书 · 更新于 2026-05-20
+数据来源：微信读书 · 更新于 2026-05-24
