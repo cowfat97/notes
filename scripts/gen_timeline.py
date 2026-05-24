@@ -47,6 +47,19 @@ hide:
 """
 
 
+def get_location(filepath):
+    """Extract location from diary content."""
+    try:
+        with open(filepath, "r") as f:
+            for line in f:
+                m = re.match(r"^- 地点：(.*)", line.strip())
+                if m:
+                    return m.group(1)
+    except Exception:
+        pass
+    return "北京"
+
+
 def get_preview(filepath):
     """Extract section headers + first line of each filled section."""
     try:
@@ -86,14 +99,16 @@ def generate_timeline():
         diary_file = (
             "daily-note.md" if "daily-note.md" in md_files else md_files[0]
         )
-        preview = get_preview(os.path.join(dirpath, diary_file))
+        diary_path = os.path.join(dirpath, diary_file)
+        preview = get_preview(diary_path)
+        location = get_location(diary_path)
 
         try:
             date_obj = datetime.date.fromisoformat(dirname)
             weekday = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"][
                 date_obj.weekday()
             ]
-            date_display = f"{dirname} · {weekday} · 北京"
+            date_display = f"{dirname} · {weekday} · {location}"
         except ValueError:
             date_display = dirname
 
