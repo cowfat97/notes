@@ -74,7 +74,7 @@ def get_preview(filepath):
                 current_section = stripped[3:]  # remove "## "
                 continue
             if current_section and stripped.startswith("- ") and len(stripped) > 3:
-                items.append(f"{current_section}：{stripped[2:]}")
+                items.append(stripped[2:])
                 current_section = None  # one line per section
 
         return " · ".join(items[:4]) if items else ""

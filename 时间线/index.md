@@ -40,5 +40,5 @@ hide:
 
 <div class="tl-entry">
   <p class="tl-date"><a href="2026-05-24/daily-note/">2026-05-24 · 周日 · 包头 →</a></p>
-  <p class="tl-preview">💆‍♂️ 状态：精力：⚡⚡⚡⚡☆ (4/5) · 🏋️ 身体：运动：无</p>
+  <p class="tl-preview">精力：⚡⚡⚡⚡☆ (4/5) · 运动：无</p>
 </div>
