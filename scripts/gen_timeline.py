@@ -61,25 +61,24 @@ def get_location(filepath):
 
 
 def get_preview(filepath):
-    """Extract section headers + first line of each filled section."""
+    """Extract the 想法 section content."""
     try:
         with open(filepath, "r") as f:
             content = f.read()
 
-        items = []
-        current_section = None
+        in_thought = False
+        lines = []
         for line in content.split("\n"):
             stripped = line.strip()
             if stripped.startswith("## "):
-                current_section = stripped[3:]  # remove "## "
+                if in_thought:
+                    break
+                in_thought = ("想法" in stripped)
                 continue
-            if current_section and stripped.startswith("- ") and len(stripped) > 3:
-                val = stripped[2:]
-                if val != "无":
-                    items.append(val)
-                current_section = None  # one line per section
+            if in_thought and stripped and not stripped.startswith("#"):
+                lines.append(stripped.lstrip("- "))
 
-        return " · ".join(items[:4]) if items else ""
+        return " · ".join(lines) if lines else ""
     except Exception:
         return ""
 
