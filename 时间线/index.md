@@ -39,6 +39,11 @@ hide:
 
 
 <div class="tl-entry">
+  <p class="tl-date"><a href="2026-05-24/daily-note/">2026-05-24 · 周日 · 北京 →</a></p>
+  <p class="tl-preview">💆‍♂️ 状态：精力：⚡⚡⚡⚡☆ (4/5) · 🏋️ 身体：运动：无 · 🛌 收尾：[ ] 复习明日任务</p>
+</div>
+
+<div class="tl-entry">
   <p class="tl-date"><a href="2026-05-20/daily-note/">2026-05-20 · 周三 · 北京 →</a></p>
   <p class="tl-preview">💆‍♂️ 状态：精力：⚡⚡⚡☆☆ (3/5) · 🏋️ 身体：运动： · 🧠 学习：博客时间线功能：从 HTML 嵌套 markdown → 纯索引模式，用 gen_timeline.py 自动生成 · 📝 想法：时间线最终版定下来了：日期+标题预览+链接跳转完整日记。简洁可靠，不折腾 markdown 渲染</p>
 </div>
