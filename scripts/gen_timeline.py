@@ -77,8 +77,10 @@ def get_preview(filepath):
                 continue
             if in_thought and stripped and not stripped.startswith("#"):
                 lines.append(stripped.lstrip("- "))
+                if len(lines) >= 2:
+                    break
 
-        return " · ".join(lines) if lines else ""
+        return "<br>".join(lines) if lines else ""
     except Exception:
         return ""
 
