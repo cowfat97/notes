@@ -11,6 +11,7 @@ Java 后端 & 大模型开发 · 学习路上的积累与思考
 
 [GitHub :fontawesome-brands-github:](https://github.com/cowfat97/notes){ .md-button .md-button--primary }
 [博客 :material-post:](blog/){ .md-button }
+[公众号 :material-wechat:](公众号.md){ .md-button }
 </div>
 
 ## 模块导航
@@ -78,5 +79,13 @@ Java 后端 & 大模型开发 · 学习路上的积累与思考
     记录学习过程中的思考、踩坑与总结
 
     [→ 前往博客](blog/)
+
+-   :material-wechat:{ .lg .middle } **关注**
+
+    ---
+
+    [:fontawesome-brands-bilibili: B站](https://space.bilibili.com/) · [:fontawesome-brands-youtube: YouTube](https://youtube.com/) · [:material-wechat: 公众号]()
+
+
 
 </div>
