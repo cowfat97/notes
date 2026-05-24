@@ -80,12 +80,4 @@ Java 后端 & 大模型开发 · 学习路上的积累与思考
 
     [→ 前往博客](blog/)
 
--   :material-wechat:{ .lg .middle } **关注**
-
-    ---
-
-    [:fontawesome-brands-bilibili: B站](https://space.bilibili.com/) · [:fontawesome-brands-youtube: YouTube](https://youtube.com/) · [:material-wechat: 公众号]()
-
-
-
 </div>
