@@ -161,5 +161,6 @@ nav:
   - 读书: book/index.md
   - 电影: movie/index.md
   - 时间线: 时间线/index.md
+  - 专栏: 专栏/index.md
   - LeetCode: leetcode/PROGRESS.md
 
