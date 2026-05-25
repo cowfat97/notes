@@ -39,6 +39,10 @@ hide:
 
 
 <div class="tl-entry">
+  <p class="tl-date"><a href="2026-05-25/daily-note/">2026-05-25 · 周一 · 包头 →</a></p>
+</div>
+
+<div class="tl-entry">
   <p class="tl-date"><a href="2026-05-24/daily-note/">2026-05-24 · 周日 · 包头 →</a></p>
   <p class="tl-preview">我需要一个好故事。但是我还没想好这个关于我的故事。</p>
 </div>
