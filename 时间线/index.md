@@ -39,6 +39,11 @@ hide:
 
 
 <div class="tl-entry">
+  <p class="tl-date"><a href="2026-05-26/daily-note/">2026-05-26 · 周二 · 包头 →</a></p>
+  <p class="tl-preview">人真的有意思，屁股和脸长在一起</p>
+</div>
+
+<div class="tl-entry">
   <p class="tl-date"><a href="2026-05-25/daily-note/">2026-05-25 · 周一 · 包头 →</a></p>
 </div>
 
