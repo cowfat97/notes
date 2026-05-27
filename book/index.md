@@ -6,7 +6,7 @@ hide:
 # 读书
 
 <div class="stats" markdown>
-:material-book-open-outline: 读过 **15** 本 &emsp; :material-timer-outline: 阅读 **315** 分钟 &emsp; :material-calendar-check-outline: 阅读 **6** 天 &emsp; :material-pencil-outline: 笔记 **0** 条
+:material-book-open-outline: 读过 **5** 本 &emsp; :material-timer-outline: 阅读 **454** 分钟 &emsp; :material-calendar-check-outline: 阅读 **8** 天 &emsp; :material-pencil-outline: 笔记 **0** 条
 </div>
 
 <style>
@@ -130,7 +130,7 @@ hide:
     <h3>三体全集（全三册）</h3>
     <div class="author">刘慈欣</div>
     <div class="rating">★★★★★ 9.3</div>
-    <div class="readtime">📖 阅读 144 分钟</div>
+    <div class="readtime">📖 阅读 283 分钟</div>
     <div class="intro">荣获雨果奖。关于宇宙最狂野的想象！征服世界的中国科幻神作！</div>
     <div class="category">科幻小说 · 重庆出版社 · 2022</div>
   </div>
@@ -292,4 +292,4 @@ hide:
 
 ---
 
-数据来源：微信读书 · 更新于 2026-05-24
+数据来源：微信读书 · 更新于 2026-05-27
