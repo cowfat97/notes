@@ -1,0 +1,11 @@
+.detail-page { min-height: 100vh; background: var(--navy); }
+.detail-container { max-width: 720px; margin: 0 auto; padding: 4rem 2rem; }
+.back-link { color: var(--green); font-family: var(--font-mono); font-size: 0.85rem; display: inline-block; margin-bottom: 2rem; }
+.back-link:hover { text-decoration: underline; }
+.detail-tags { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+.detail-tags span { color: var(--green); font-family: var(--font-mono); font-size: 0.75rem; }
+.detail-title { font-size: 2rem; font-weight: 700; color: var(--lightest-slate); line-height: 1.3; margin-bottom: 0.8rem; }
+.detail-date { color: var(--slate); font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 2.5rem; }
+.detail-body { font-size: 1.02rem; line-height: 1.9; color: var(--slate); }
+.detail-body h3 { color: var(--lightest-slate); font-size: 1.1rem; margin: 2rem 0 0.5rem; }
+.detail-body p { margin-bottom: 0.8rem; }
