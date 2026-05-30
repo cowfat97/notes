@@ -95,9 +95,8 @@ def generate_timeline():
         if not md_files:
             continue
 
-        diary_file = (
-            "daily-note.md" if "daily-note.md" in md_files else md_files[0]
-        )
+        diary_file = md_files[0]
+        diary_slug = os.path.splitext(diary_file)[0]
         diary_path = os.path.join(dirpath, diary_file)
         preview = get_preview(diary_path)
         location = get_location(diary_path)
@@ -111,15 +110,15 @@ def generate_timeline():
         except ValueError:
             date_display = dirname
 
-        entries.append((dirname, date_display, preview))
+        entries.append((dirname, date_display, preview, diary_slug))
 
     output = [CSS]
 
-    for dirname, date_display, preview in entries:
+    for dirname, date_display, preview, diary_slug in entries:
         output.append("")
         output.append('<div class="tl-entry">')
         output.append(
-            f'  <p class="tl-date"><a href="{dirname}/daily-note/">{date_display} →</a></p>'
+            f'  <p class="tl-date"><a href="{dirname}/{diary_slug}/">{date_display} →</a></p>'
         )
         if preview:
             output.append(f'  <p class="tl-preview">{preview}</p>')

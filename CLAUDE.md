@@ -30,7 +30,7 @@ Java 后端 & 大模型开发学习笔记。mkdocs 构建，部署在 https://co
 
 ## 日记规范
 
-- 目录：`时间线/YYYY-MM-DD/daily-note.md`
+- 文件：`时间线/YYYY-MM-DD/☕-YYYY-MM-DD.md`
 - 模板：`时间线/.templates/default.md`
 - 天气用勾选格式：`- 天气：[ ] ☀️晴 [x] ⛅多云 ...`
 - 身体模块含睡眠追踪：`- 睡眠：7h25m`

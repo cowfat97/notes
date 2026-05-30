@@ -6,7 +6,7 @@ hide:
 # 读书
 
 <div class="stats" markdown>
-:material-book-open-outline: 读过 **5** 本 &emsp; :material-timer-outline: 阅读 **454** 分钟 &emsp; :material-calendar-check-outline: 阅读 **8** 天 &emsp; :material-pencil-outline: 笔记 **0** 条
+:material-book-open-outline: 藏书 **19** 本 &emsp; :material-timer-outline: 阅读 **27,332** 分钟 &emsp; :material-calendar-check-outline: 阅读 **8** 天 &emsp; :material-pencil-outline: 笔记 **0** 条
 </div>
 
 <style>
@@ -288,8 +288,52 @@ hide:
   </div>
 </div>
 
+<div class="book-card">
+  <span class="badge badge-toread">待读</span>
+  <img class="book-cover" src="https://cdn.weread.qq.com/weread/cover/74/cpplatform_2aubq5zqsjqb6xzw2fnjct/t6_cpplatform_2aubq5zqsjqb6xzw2fnjct1773820912.jpg" alt="金瓶梅" loading="lazy">
+  <div class="book-info">
+    <h3>金瓶梅（文白对照绣像图文版）</h3>
+    <div class="author">[明]兰陵笑笑生</div>
+    <div class="intro">中国古典文学世情小说巅峰之作，文白对照图文版。</div>
+    <div class="category">古典文学</div>
+  </div>
+</div>
+
+<div class="book-card">
+  <span class="badge badge-toread">待读</span>
+  <img class="book-cover" src="https://cdn.weread.qq.com/weread/cover/60/cpplatform_nk3ucrgdfwc8nkrububyjl/t6_cpplatform_nk3ucrgdfwc8nkrububyjl1715840200.jpg" alt="沙丘" loading="lazy">
+  <div class="book-info">
+    <h3>沙丘（2024全新增补修订版）</h3>
+    <div class="author">[美]弗兰克·赫伯特</div>
+    <div class="intro">科幻文学史上最伟大的作品之一。2024年新版增补修订。</div>
+    <div class="category">科幻小说</div>
+  </div>
+</div>
+
+<div class="book-card">
+  <span class="badge badge-toread">待读</span>
+  <img class="book-cover" src="https://cdn.weread.qq.com/weread/cover/1/cpplatform_klxpobheykckmgck4m4xbb/t6_cpplatform_klxpobheykckmgck4m4xbb1763545864.jpg" alt="货币的本质" loading="lazy">
+  <div class="book-info">
+    <h3>货币的本质</h3>
+    <div class="author">[英]罗布·迪克斯</div>
+    <div class="intro">从货币视角重新理解经济运行的底层逻辑。</div>
+    <div class="category">经济理财</div>
+  </div>
+</div>
+
+<div class="book-card">
+  <span class="badge badge-toread">待读</span>
+  <img class="book-cover" src="https://cdn.weread.qq.com/weread/cover/58/cpplatform_oajs4qv47ddpse5eih6hkd/t6_cpplatform_oajs4qv47ddpse5eih6hkd1741075617.jpg" alt="一种货币，两个市场" loading="lazy">
+  <div class="book-info">
+    <h3>一种货币，两个市场：人民币国际化的离岸探索</h3>
+    <div class="author">田园 金涛</div>
+    <div class="intro">人民币国际化的离岸市场探索与实践。</div>
+    <div class="category">经济理财</div>
+  </div>
+</div>
+
 </div>
 
 ---
 
-数据来源：微信读书 · 更新于 2026-05-27
+数据来源：微信读书 API · 更新于 2026-05-30
