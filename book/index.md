@@ -6,7 +6,7 @@ hide:
 # 读书
 
 <div class="stats" markdown>
-:material-book-open-outline: 藏书 **19** 本 &emsp; :material-timer-outline: 阅读 **27,332** 分钟 &emsp; :material-calendar-check-outline: 阅读 **8** 天 &emsp; :material-pencil-outline: 笔记 **0** 条
+:material-book-open-outline: 藏书 **19** 本 &emsp; :material-timer-outline: 阅读 **455** 分钟 &emsp; :material-calendar-check-outline: 阅读 **8** 天 &emsp; :material-pencil-outline: 笔记 **0** 条
 </div>
 
 <style>
@@ -336,4 +336,4 @@ hide:
 
 ---
 
-数据来源：微信读书 API · 更新于 2026-05-30
+数据来源：微信读书 API · 更新于 2026-05-31
