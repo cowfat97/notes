@@ -40,6 +40,7 @@ hide:
 
 <div class="tl-entry">
   <p class="tl-date"><a href="2026-05-31/☕-2026-05-31/">2026-05-31 · 周日 · 包头 →</a></p>
+  <p class="tl-preview">求职：本周投了面试效果不好，决定明天（6.1）从零开始，重新梳理方向+项目话术+精准投递</p>
 </div>
 
 <div class="tl-entry">
