@@ -39,6 +39,11 @@ hide:
 
 
 <div class="tl-entry">
+  <p class="tl-date"><a href="2026-06-01/☕-2026-06-01/">2026-06-01 · 周一 · 包头 →</a></p>
+  <p class="tl-preview">开启找工作的一个月</p>
+</div>
+
+<div class="tl-entry">
   <p class="tl-date"><a href="2026-05-31/☕-2026-05-31/">2026-05-31 · 周日 · 包头 →</a></p>
   <p class="tl-preview">只有爱自己，才会爱别人</p>
 </div>
