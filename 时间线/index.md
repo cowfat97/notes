@@ -39,6 +39,11 @@ hide:
 
 
 <div class="tl-entry">
+  <p class="tl-date"><a href="2026-06-02/☕-2026-06-02/">2026-06-02 · 周二 · 包头 →</a></p>
+  <p class="tl-preview">放不下过去，永远不能进步</p>
+</div>
+
+<div class="tl-entry">
   <p class="tl-date"><a href="2026-06-01/☕-2026-06-01/">2026-06-01 · 周一 · 包头 →</a></p>
   <p class="tl-preview">开启找工作的一个月</p>
 </div>
