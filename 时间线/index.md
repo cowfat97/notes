@@ -39,6 +39,11 @@ hide:
 
 
 <div class="tl-entry">
+  <p class="tl-date"><a href="2026-06-03/☕-2026-06-03/">2026-06-03 · 周三 · 包头 →</a></p>
+  <p class="tl-preview">播放量上不去不是内容问题，是账号转型阵痛。坚持一个月再看</p>
+</div>
+
+<div class="tl-entry">
   <p class="tl-date"><a href="2026-06-02/☕-2026-06-02/">2026-06-02 · 周二 · 包头 →</a></p>
   <p class="tl-preview">放不下过去，永远不能进步</p>
 </div>
