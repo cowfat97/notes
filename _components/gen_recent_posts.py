@@ -78,9 +78,9 @@ def update_index_recent(articles):
     recent = articles[:TOP_N]
     items = []
     for date_obj, title, rel_path in recent:
-        items.append(f"-   [{title}]({rel_path}) `<small>{date_obj}</small>`")
+        items.append(f"[{title}]({rel_path}) · {date_obj}")
 
-    block = "\n".join(items)
+    block = "\n\n".join(items)
 
     with open(INDEX_FILE, "r") as f:
         content = f.read()

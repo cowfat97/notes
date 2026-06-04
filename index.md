@@ -69,7 +69,7 @@ Java 后端 & 大模型开发 · 学习路上的积累与思考
 
     <!-- recent-posts-start -->
 
--   [LLM 费曼视频清单](文章/LLM/费曼视频.md) `<small>2026-06-04</small>`
+[LLM 费曼视频清单](文章/LLM/费曼视频.md) · 2026-06-04
 
 <!-- recent-posts-end -->
 
