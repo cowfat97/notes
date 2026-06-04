@@ -5,28 +5,27 @@ import datetime
 NOTES_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ARTICLES_DIR = os.path.join(NOTES_DIR, "文章")
 OUTPUT_FILE = os.path.join(ARTICLES_DIR, "最新文章.md")
+INDEX_FILE = os.path.join(NOTES_DIR, "index.md")
+TOP_N = 5
 
 
 def extract_date_and_title(filepath):
-    """从文件 frontmatter 提取 date 和第一个 # 标题。"""
     try:
         with open(filepath, "r") as f:
             content = f.read()
     except Exception:
         return None, None
 
-    # 提取 date
     date_match = re.search(r"^date:\s*(\d{4}-\d{2}-\d{2})", content, re.MULTILINE)
     date_str = date_match.group(1) if date_match else None
 
-    # 提取标题（第一个 # 开头的行）
     title_match = re.search(r"^#\s+(.+)", content, re.MULTILINE)
     title = title_match.group(1).strip() if title_match else os.path.splitext(os.path.basename(filepath))[0]
 
     return date_str, title
 
 
-def generate():
+def collect_articles():
     articles = []
     for root, dirs, files in os.walk(ARTICLES_DIR):
         for f in files:
@@ -46,9 +45,11 @@ def generate():
 
             articles.append((date_obj, title, rel_path))
 
-    # 按日期倒序
     articles.sort(key=lambda x: x[0], reverse=True)
+    return articles
 
+
+def generate_full_list(articles):
     lines = [
         "---",
         "hide:",
@@ -60,9 +61,7 @@ def generate():
         "| 日期 | 标题 |",
         "|------|------|",
     ]
-
     for date_obj, title, rel_path in articles:
-        # 去掉 文章/ 前缀使链接相对
         link_path = rel_path.replace("文章/", "", 1)
         lines.append(f"| {date_obj} | [{title}]({link_path}) |")
 
@@ -75,5 +74,33 @@ def generate():
     print(f"Generated {OUTPUT_FILE} with {len(articles)} articles")
 
 
-if "__main__" == __name__:
+def update_index_recent(articles):
+    recent = articles[:TOP_N]
+    items = []
+    for date_obj, title, rel_path in recent:
+        link_path = rel_path.replace("文章/", "", 1)
+        items.append(f"-   [{title}]({link_path}) `<small>{date_obj}</small>`")
+
+    block = "\n".join(items)
+
+    with open(INDEX_FILE, "r") as f:
+        content = f.read()
+
+    pattern = r"(<!-- recent-posts-start -->).*?(<!-- recent-posts-end -->)"
+    replacement = f"\\1\n\n{block}\n\n\\2"
+    content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+
+    with open(INDEX_FILE, "w") as f:
+        f.write(content)
+
+    print(f"Updated {INDEX_FILE} with {len(recent)} recent posts")
+
+
+def generate():
+    articles = collect_articles()
+    generate_full_list(articles)
+    update_index_recent(articles)
+
+
+if __name__ == "__main__":
     generate()

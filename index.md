@@ -63,11 +63,19 @@ Java 后端 & 大模型开发 · 学习路上的积累与思考
 
 <div class="grid cards" markdown>
 
--   :material-post:{ .lg .middle } **全部文章**
+-   :material-post:{ .lg .middle } **最新文章**
 
     ---
 
-    按日期倒序，持续更新中
+    <!-- recent-posts-start -->
+
+-   [LLM 费曼视频清单](LLM/费曼视频.md) `<small>2026-06-04</small>`
+-   [1\.1 大模型基础](LLM/通识/1.1_大模型基础.md) `<small>2026-06-04</small>`
+-   [T5模型的详细介绍](LLM/通识/1.2c_T5模型详细介绍.md) `<small>2026-06-04</small>`
+-   [大模型架构基础](LLM/通识/1.2a_大模型架构基础.md) `<small>2026-06-04</small>`
+-   [序列标注任务](LLM/通识/1.2e_序列标注任务.md) `<small>2026-06-04</small>`
+
+<!-- recent-posts-end -->
 
     [→ 查看全部](文章/最新文章.md)
 
