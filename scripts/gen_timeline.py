@@ -9,7 +9,6 @@ OUTPUT_FILE = os.path.join(TIMELINE_DIR, "index.md")
 CSS = """---
 hide:
   - toc
-  - navigation
 ---
 
 # 时间线
