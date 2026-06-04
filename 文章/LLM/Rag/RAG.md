@@ -1,3 +1,6 @@
+---
+date: 2026-06-04
+---
 <!--
  * @Author: haoxinlei howxl97@163.com
  * @Date: 2026-05-05 15:05:25
@@ -6,10 +9,6 @@
  * @FilePath: /notes/LLM/Rag/RAG.md
  * @Description: RAG 检索增强生成 — 从概念到实现的完整笔记
 -->
-
----
-date: 2026-06-04
----
 # 为什么会有RAG？
 
 ## LLM 的三大局限
