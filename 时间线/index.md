@@ -11,6 +11,11 @@ hide:
 <div class="tl-scroll">
 
 <div class="tl-entry">
+  <p class="tl-date"><a href="2026-06-04/☕-2026-06-04/">2026-06-04 · 周四 · 包头 →</a></p>
+  <p class="tl-preview">目录重构后仓库结构清晰很多，后续加新内容不容易散乱。CSS 集中管理后改样式只需改一个文件。</p>
+</div>
+
+<div class="tl-entry">
   <p class="tl-date"><a href="2026-06-03/☕-2026-06-03/">2026-06-03 · 周三 · 包头 →</a></p>
   <p class="tl-preview">播放量上不去不是内容问题，是账号转型阵痛。坚持一个月再看</p>
 </div>
