@@ -4,21 +4,11 @@ Java 后端 & 大模型开发学习笔记。
 
 线上阅读：[cowfat97.github.io/notes](https://cowfat97.github.io/notes/)
 
-## 模块导航
+## 文章
 
-| 模块 | 位置 | 说明 |
-|------|------|------|
-| Java | [Java/](./Java/) | 基础 / 多线程 / JVM / 框架 / 集合 |
-| 中间件 | [中间件/](./中间件/) | Redis / Nginx / Kafka / ES / Docker / Nacos / PostgreSQL |
-| 数据库 | [数据库/](./数据库/) | MySQL 索引 / 事务 / 特性 |
-| LLM | [LLM/](./LLM/) | 通识 / Agent / Coze / Dify / RAG / 深度学习 / 微调 / LangGraph |
-| 408 | [408/](./408/) | 数据结构 / 计组 / 操作系统 / 计网 |
-| LeetCode | [leetcode/](./leetcode/) | Python 刷题 |
-| 读书 | [book/](./book/) | 书架 / 阅读统计（微信读书集成）|
-| 时间线 | [时间线/](./%E6%97%B6%E9%97%B4%E7%BA%BF/) | 每日日记时间线 |
-| 软考 | [软考/](./软考/) | 软件设计师备考 |
+学习笔记，涵盖 Java 后端、中间件、数据库、大模型、考研 408。
 
-## Java
+### Java
 
 - [Java 的特性](Java/Java%20基础/Java%20的特性.md)
 - [HashMap 线程安全吗？](Java/集合/HashMap%20线程安全吗？.md)
@@ -31,7 +21,7 @@ Java 后端 & 大模型开发学习笔记。
 - [Druid](Java/工具/Druid.md)
 - [Swagger](Java/工具/Swagger.md)
 
-## 中间件
+### 中间件
 
 - [Redis 集群模式](中间件/Redis/Redis集群模式.md)
 - [Nginx 配置](中间件/Nginx/Nginx%20配置.md)
@@ -41,13 +31,13 @@ Java 后端 & 大模型开发学习笔记。
 - [Nacos](中间件/Nacos/)
 - [PostgreSQL](中间件/PostgreSQL/)
 
-## 数据库
+### 数据库
 
 - [索引](数据库/Mysql/索引.md)
 - [数据库事务](数据库/Mysql/数据库事务.md)
 - [数据库特性](数据库/Mysql/数据库特性.md)
 
-## LLM
+### LLM
 
 - [通识](LLM/通识/) — 大模型基础 / BERT / T5 / GPT / 序列标注
 - [Agent](LLM/Agent/) — Agent / LangChain / LangGraph / MCP / A2A / 提示词工程
@@ -58,6 +48,17 @@ Java 后端 & 大模型开发学习笔记。
 - [微调](LLM/微调/)
 - [费曼视频](LLM/费曼视频.md)
 
+### 408 考研
+
+- [数据结构](408/数据结构/)
+- [计算机组成原理](408/计算机组成原理/)
+- [操作系统](408/操作系统/)
+- [计算机网络](408/计算机网络/)
+
+## LeetCode
+
+- [刷题进度](leetcode/PROGRESS.md)
+
 ## 读书
 
 - [书架](book/index.md) — 微信读书集成，封面/评分/阅读时长实时同步
@@ -65,8 +66,6 @@ Java 后端 & 大模型开发学习笔记。
 ## 时间线
 
 - [日记](%E6%97%B6%E9%97%B4%E7%BA%BF/index.md) — 每日记录，按时间倒序
-
-## 408 考研
 
 - [数据结构](408/数据结构/)
 - [计算机组成原理](408/计算机组成原理/)
