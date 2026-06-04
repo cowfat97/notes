@@ -14,6 +14,18 @@ hide:
 # 时间线
 
 <style>
+.tl-scroll {
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+.tl-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.tl-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0,137,123,0.3);
+  border-radius: 2px;
+}
 .tl-entry {
   border-left: 2px solid #00897b;
   margin: 1.5rem 0;
@@ -112,6 +124,8 @@ def generate_timeline():
         entries.append((dirname, date_display, preview, diary_slug))
 
     output = [CSS]
+    output.append("")
+    output.append('<div class="tl-scroll">')
 
     for dirname, date_display, preview, diary_slug in entries:
         output.append("")
@@ -122,6 +136,8 @@ def generate_timeline():
         if preview:
             output.append(f'  <p class="tl-preview">{preview}</p>')
         output.append("</div>")
+
+    output.append("</div>")
 
     output.append("")
 

@@ -6,6 +6,18 @@ hide:
 # 时间线
 
 <style>
+.tl-scroll {
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+.tl-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.tl-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0,137,123,0.3);
+  border-radius: 2px;
+}
 .tl-entry {
   border-left: 2px solid #00897b;
   margin: 1.5rem 0;
@@ -36,6 +48,8 @@ hide:
 }
 </style>
 
+
+<div class="tl-scroll">
 
 <div class="tl-entry">
   <p class="tl-date"><a href="2026-06-03/☕-2026-06-03/">2026-06-03 · 周三 · 包头 →</a></p>
@@ -74,4 +88,5 @@ hide:
 <div class="tl-entry">
   <p class="tl-date"><a href="2026-05-24/☕-2026-05-24/">2026-05-24 · 周日 · 包头 →</a></p>
   <p class="tl-preview">我需要一个好故事。但是我还没想好这个关于我的故事。</p>
+</div>
 </div>
