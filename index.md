@@ -58,3 +58,17 @@ Java 后端 & 大模型开发 · 学习路上的积累与思考
     [→ 开始阅读](时间线/index.md)
 
 </div>
+
+## 最新文章
+
+<div class="grid cards" markdown>
+
+-   :material-post:{ .lg .middle } **全部文章**
+
+    ---
+
+    60 篇学习笔记，持续更新中
+
+    [→ 查看全部](文章/)
+
+</div>
