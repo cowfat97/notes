@@ -1,5 +1,5 @@
 ---
-date: 2026-06-04
+date: 2026-05-06
 ---
 # A2A（Agent-to-Agent Protocol）
 
