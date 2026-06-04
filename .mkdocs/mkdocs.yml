@@ -11,8 +11,7 @@ edit_uri: edit/main/
 plugins:
   - search
   - blog:
-      blog_dir: "blog"
-      post_dir: "posts"
+      blog_dir: "blog-notes"
       archive: true
       categories: true
 
@@ -50,7 +49,10 @@ theme:
     - content.code.annotate
 
 extra_css:
-  - assets/extra.css
+  - _components/book.css
+  - _components/movie.css
+  - _components/timeline.css
+  - _components/wechat.css
 
 extra:
   social:

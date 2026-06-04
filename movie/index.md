@@ -3,28 +3,11 @@ hide:
   - toc
 ---
 
+<link rel="stylesheet" href="../_components/movie.css">
+
 # 电影
 
 共 **959** 部 · 按年份浏览
-
-<style>
-.year-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-.year-list a {
-  padding: 0.4rem 1.1rem;
-  border-radius: 20px;
-  font-size: 0.88rem;
-  text-decoration: none;
-  color: var(--md-primary-fg-color);
-  border: 1.5px solid var(--md-primary-fg-color);
-  transition: all 0.15s;
-}
-.year-list a:hover { background: var(--md-primary-fg-color); color: #fff; }
-</style>
 
 <div class="year-list">
 <a href="2026/">2026 · 3</a>

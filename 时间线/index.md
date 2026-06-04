@@ -5,48 +5,7 @@ hide:
 
 # 时间线
 
-<style>
-.tl-scroll {
-  max-height: 420px;
-  overflow-y: auto;
-  padding-right: 0.5rem;
-}
-.tl-scroll::-webkit-scrollbar {
-  width: 4px;
-}
-.tl-scroll::-webkit-scrollbar-thumb {
-  background: rgba(0,137,123,0.3);
-  border-radius: 2px;
-}
-.tl-entry {
-  border-left: 2px solid #00897b;
-  margin: 1.5rem 0;
-  padding-left: 1.5rem;
-  position: relative;
-}
-.tl-entry::before {
-  content: "";
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #00897b;
-  position: absolute;
-  left: -6px;
-  top: 0.35rem;
-}
-.tl-date {
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-.tl-date a {
-  color: #00897b;
-}
-.tl-preview {
-  font-size: 0.82rem;
-  color: var(--md-default-fg-color--light);
-  margin: 0.3rem 0 0 0;
-}
-</style>
+<link rel="stylesheet" href="../_components/timeline.css">
 
 
 <div class="tl-scroll">

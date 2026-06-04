@@ -18,10 +18,10 @@ jobs:
       - run: pip install pyyaml "mkdocs-material>=9.5,<10" "mkdocs>=1.6,<2"
 
       - name: Auto-sync nav
-        run: python scripts/sync_nav.py
+        run: python _components/sync_nav.py
 
       - name: Generate timeline
-        run: python scripts/gen_timeline.py
+        run: python _components/gen_timeline.py
 
       - name: Commit auto changes
         run: |
