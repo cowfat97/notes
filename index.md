@@ -10,6 +10,7 @@ hide:
 Java 后端 & 大模型开发 · 学习路上的积累与思考
 
 [GitHub :fontawesome-brands-github:](https://github.com/cowfat97/notes){ .md-button .md-button--primary }
+[公众号 :material-wechat:](公众号.md){ .md-button }
 </div>
 
 ## 模块导航
@@ -66,24 +67,8 @@ Java 后端 & 大模型开发 · 学习路上的积累与思考
 
     ---
 
-    60 篇学习笔记，持续更新中
+    按日期倒序，持续更新中
 
-    [→ 查看全部](文章/)
+    [→ 查看全部](文章/最新文章.md)
 
-</div>
-
-<link rel="stylesheet" href="_components/wechat.css">
-
-<div class="qr-page">
-<div class="qr-card">
-
-# 关注公众号
-
-<p class="sub">AI 行业分析，用数据说话</p>
-
-<img src="/notes/Pic/qrcode.jpg" alt="公众号二维码" width="240">
-
-<p class="hint">微信扫码关注，获取最新文章</p>
-
-</div>
 </div>
