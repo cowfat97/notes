@@ -6,7 +6,7 @@ NOTES_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ARTICLES_DIR = os.path.join(NOTES_DIR, "文章")
 OUTPUT_FILE = os.path.join(ARTICLES_DIR, "最新文章.md")
 INDEX_FILE = os.path.join(NOTES_DIR, "index.md")
-TOP_N = 5
+TOP_N = 1
 
 
 def extract_date_and_title(filepath):
@@ -78,8 +78,7 @@ def update_index_recent(articles):
     recent = articles[:TOP_N]
     items = []
     for date_obj, title, rel_path in recent:
-        link_path = rel_path.replace("文章/", "", 1)
-        items.append(f"-   [{title}]({link_path}) `<small>{date_obj}</small>`")
+        items.append(f"-   [{title}]({rel_path}) `<small>{date_obj}</small>`")
 
     block = "\n".join(items)
 
