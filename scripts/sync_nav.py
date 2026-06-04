@@ -19,6 +19,7 @@ TOP_MAPPING = {
     "Java": "Java", "中间件": "中间件", "数据库": "数据库",
     "LLM": "LLM", "408": "408", "leetcode": "LeetCode", "软考": "软考",
 }
+ARTICLES_DIR = "文章"
 
 SUB_MATCH = {
     ("LLM", "Agent"): "Agent",
@@ -57,18 +58,37 @@ def extract_nav_paths(nav_items) -> set[str]:
 
 def find_target_list(nav: list, filepath: str):
     """在 nav 中查找文件应该插入的位置，返回目标 list。"""
-    parts = Path(filepath).parts
+    parts = list(Path(filepath).parts)
+    # 文件在 文章/ 子目录下时，跳过文章前缀，用实际模块名匹配
+    if parts[0] == ARTICLES_DIR and len(parts) > 1:
+        parts = parts[1:]  # 去掉 文章/ 前缀
+
     top_dir = parts[0]
     section_key = TOP_MAPPING.get(top_dir)
     if not section_key:
         return None
 
-    # 定位顶层 section
-    top_item = None
+    # 定位 文章 nav section 下的子 section，或顶层 section
+    articles_item = None
     for item in nav:
+        if isinstance(item, dict) and ARTICLES_DIR in item:
+            articles_item = item[ARTICLES_DIR]
+            break
+
+    # 先尝试在 文章 子 section 中查找
+    search_list = articles_item if isinstance(articles_item, list) else nav
+    top_item = None
+    for item in search_list:
         if isinstance(item, dict) and section_key in item:
             top_item = item
             break
+
+    # 文章下的子项未找到，回退到顶层 nav
+    if top_item is None:
+        for item in nav:
+            if isinstance(item, dict) and section_key in item:
+                top_item = item
+                break
     if top_item is None:
         return None
 
@@ -82,7 +102,6 @@ def find_target_list(nav: list, filepath: str):
     # 有子目录，尝试匹配子 section
     for depth in range(1, len(parts)):
         sub_key = parts[depth].lower()
-        # 优先精确匹配
         for item in current_list:
             if isinstance(item, dict):
                 for k, v in item.items():
