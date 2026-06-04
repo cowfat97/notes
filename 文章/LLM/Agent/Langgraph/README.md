@@ -1,6 +1,3 @@
----
-date: 2026-05-11
----
 # LangGraph
 
 LangChain 出品的 Agent 编排框架，核心思路：**把 Agent 的决策流程建模为有向图（DAG）**，节点是操作，边是流转规则。

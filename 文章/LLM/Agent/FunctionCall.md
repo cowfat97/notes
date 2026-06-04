@@ -1,6 +1,3 @@
----
-date: 2026-05-06
----
 # Function Call
 
 ## 为什么需要 Function Call？

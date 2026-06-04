@@ -1,6 +1,3 @@
----
-date: 2026-05-06
----
 # A2A（Agent-to-Agent Protocol）
 
 ## 什么是 A2A

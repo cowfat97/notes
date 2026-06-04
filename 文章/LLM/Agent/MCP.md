@@ -1,6 +1,3 @@
----
-date: 2026-05-06
----
 # MCP（Model Context Protocol）
 
 ## 背景
