@@ -64,12 +64,12 @@ Java 后端 & 大模型开发 · 学习路上的积累与思考
 
 <div class="grid cards" markdown>
 
--   :material-post:{ .lg .middle } **开始写作**
+-   :material-post:{ .lg .middle } **全部文章**
 
     ---
 
-    记录学习过程中的思考、踩坑与总结
+    60 篇学习笔记，持续更新中
 
-    [→ 前往博客](blog-notes/index.md)
+    [→ 查看全部](blog-notes/)
 
 </div>

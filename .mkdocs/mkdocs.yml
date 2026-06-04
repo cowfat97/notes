@@ -12,6 +12,7 @@ plugins:
   - search
   - blog:
       blog_dir: "blog-notes"
+      post_dir: "文章"
       archive: true
       categories: true
 
