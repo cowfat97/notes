@@ -10,8 +10,7 @@ hide:
 Java 后端 & 大模型开发 · 学习路上的积累与思考
 
 [GitHub :fontawesome-brands-github:](https://github.com/cowfat97/notes){ .md-button .md-button--primary }
-[博客 :material-post:](blog-notes/index.md){ .md-button }
-[公众号 :material-wechat:](blog-notes/公众号.md){ .md-button }
+[公众号 :material-wechat:](公众号.md){ .md-button }
 </div>
 
 ## 模块导航
@@ -57,19 +56,5 @@ Java 后端 & 大模型开发 · 学习路上的积累与思考
     每日日记
 
     [→ 开始阅读](时间线/index.md)
-
-</div>
-
-## 最新博客
-
-<div class="grid cards" markdown>
-
--   :material-post:{ .lg .middle } **全部文章**
-
-    ---
-
-    60 篇学习笔记，持续更新中
-
-    [→ 查看全部](blog-notes/)
 
 </div>

@@ -10,11 +10,6 @@ edit_uri: edit/main/
 
 plugins:
   - search
-  - blog:
-      blog_dir: "blog-notes"
-      post_dir: "blog-notes/posts"
-      archive: true
-      categories: true
 
 theme:
   name: material
