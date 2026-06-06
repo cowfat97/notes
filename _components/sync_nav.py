@@ -17,7 +17,7 @@ EXCLUDE_DIRS = {"posts", ".github", ".mkdocs", "site", ".claude", ".git",
 
 TOP_MAPPING = {
     "Java": "Java", "中间件": "中间件", "数据库": "数据库",
-    "LLM": "LLM", "408": "408", "leetcode": "LeetCode", "软考": "软考",
+    "LLM": "LLM", "408": "408", "leetcode": "LeetCode", "软考": "软考", "Ideas": "Ideas",
 }
 ARTICLES_DIR = "文章"
 
