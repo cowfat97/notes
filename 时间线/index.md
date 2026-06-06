@@ -11,6 +11,11 @@ hide:
 <div class="tl-scroll">
 
 <div class="tl-entry">
+  <p class="tl-date"><a href="2026-06-06/☕-2026-06-06/">2026-06-06 · 周六 · 包头 →</a></p>
+  <p class="tl-preview">封面对比太明显了——同样的视频，老号 300 播放，新号封面好看直接不一样</p>
+</div>
+
+<div class="tl-entry">
   <p class="tl-date"><a href="2026-06-04/☕-2026-06-04/">2026-06-04 · 周四 · 包头 →</a></p>
   <p class="tl-preview">目录重构后仓库结构清晰很多，后续加新内容不容易散乱。CSS 集中管理后改样式只需改一个文件。</p>
 </div>
