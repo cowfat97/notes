@@ -112,48 +112,33 @@ nav:
           - 索引: 文章/数据库/Mysql/索引.md
           - 事务: 文章/数据库/Mysql/数据库事务.md
       - LLM:
-          - 通识:
-              - 大模型基础: 文章/LLM/通识/1.1_大模型基础.md
-              - 大模型架构基础: 文章/LLM/通识/1.2a_大模型架构基础.md
-              - BERT: 文章/LLM/通识/1.2b_BERT详细介绍.md
-              - T5: 文章/LLM/通识/1.2c_T5模型详细介绍.md
-              - GPT: 文章/LLM/通识/1.2d_GPT详细介绍.md
-              - 序列标注: 文章/LLM/通识/1.2e_序列标注任务.md
-          - 提示词工程:
-              - 提示词工程: 文章/LLM/Agent/2.1_提示词工程.md
-              - 接入商用模型API: 文章/LLM/Agent/2.2_接入商用大模型API.md
-              - 推理参数: 文章/LLM/Agent/2.4_推理参数介绍.md
-          - Agent:
-              - Agent: 文章/LLM/Agent/Agent.md
-              - AgentPatterns: 文章/LLM/Agent/AgentPatterns.md
-              - FunctionCall: 文章/LLM/Agent/FunctionCall.md
-              - MCP: 文章/LLM/Agent/MCP.md
-              - A2A: 文章/LLM/Agent/A2A.md
-              - SmartVoyage: 文章/LLM/Agent/SmartVoyage.md
-              - LangChain: 文章/LLM/Agent/3.1_LangChain框架介绍.md
-              - LangChain 项目实战: 文章/LLM/Agent/3.2_LangChain项目实战.md
-              - LangChain 问答系统: 文章/LLM/Agent/3.3_企业员工手册问答系统.md
-              - Langgraph: 文章/LLM/Agent/Langgraph/README.md
-              - Langgraph 课程: 文章/LLM/Agent/Langgraph/课程笔记_基于LangGraph的垂直领域智能体.md
-              - NLP 金融文本分类: 文章/LLM/Agent/2.3a_金融文本分类.md
-              - NLP 金融文本抽取: 文章/LLM/Agent/2.3b_金融文本抽取.md
-              - NLP 金融文本匹配: 文章/LLM/Agent/2.3c_金融文本匹配.md
-          - Coze:
-              - 介绍及应用: 文章/LLM/Agent/coze/01_Coze介绍及应用.md
-              - 油画换脸: 文章/LLM/Agent/coze/02_油画换脸智能体.md
-              - 微信爆文生成: 文章/LLM/Agent/coze/03_微信爆文生成项目.md
-              - 开源平台部署: 文章/LLM/Agent/coze/04_开源平台部署.md
-              - 简历指导: 文章/LLM/Agent/coze/05_简历指导.md
-          - Dify:
-              - 安装与介绍: 文章/LLM/Agent/dify/01_安装与介绍.md
-              - 接入知识库: 文章/LLM/Agent/dify/02_接入知识库.md
-              - 微调语料构建: 文章/LLM/Agent/dify/03_微调语料构建.md
-              - 接入 ragflow: 文章/LLM/Agent/dify/04_接入外部知识库ragflow.md
-              - 数据问答系统: 文章/LLM/Agent/dify/05_数据问答系统.md
+          - 深度学习:
+              - 大模型基础: 文章/LLM/深度学习/1.1_大模型基础.md
+              - 大模型架构基础: 文章/LLM/深度学习/1.2a_大模型架构基础.md
+              - BERT: 文章/LLM/深度学习/1.2b_BERT详细介绍.md
+              - T5: 文章/LLM/深度学习/1.2c_T5模型详细介绍.md
+              - GPT: 文章/LLM/深度学习/1.2d_GPT详细介绍.md
+              - 序列标注: 文章/LLM/深度学习/1.2e_序列标注任务.md
           - RAG:
               - RAG 概述: 文章/LLM/Rag/RAG.md
               - 文档处理: 文章/LLM/Rag/文档处理.md
               - 文档向量化: 文章/LLM/Rag/文档向量化.md
+          - Agent:
+              - Agent 概述: 文章/LLM/Agent/Agent.md
+              - AgentPatterns: 文章/LLM/Agent/AgentPatterns.md
+              - FunctionCall: 文章/LLM/Agent/FunctionCall.md
+              - MCP: 文章/LLM/Agent/MCP.md
+              - A2A: 文章/LLM/Agent/A2A.md
+              - LangChain: 文章/LLM/Agent/3.1_LangChain框架介绍.md
+              - LangChain 项目实战: 文章/LLM/Agent/3.2_LangChain项目实战.md
+              - LangChain 问答系统: 文章/LLM/Agent/3.3_企业员工手册问答系统.md
+              - 提示词工程: 文章/LLM/Agent/2.1_提示词工程.md
+              - 接入商用模型API: 文章/LLM/Agent/2.2_接入商用大模型API.md
+              - 推理参数: 文章/LLM/Agent/2.4_推理参数介绍.md
+              - NLP 金融文本分类: 文章/LLM/Agent/2.3a_金融文本分类.md
+              - NLP 金融文本抽取: 文章/LLM/Agent/2.3b_金融文本抽取.md
+              - NLP 金融文本匹配: 文章/LLM/Agent/2.3c_金融文本匹配.md
+          - 知识图谱: []
           - 微调: 文章/LLM/微调/微调.md
       - 408:
           - 数据结构概述: 文章/408/数据结构/数据结构概述.md

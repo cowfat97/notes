@@ -38,12 +38,10 @@ Java 后端 & 大模型开发学习笔记。
 
 ### LLM
 
-- [通识](文章/LLM/通识/) — 大模型基础 / BERT / T5 / GPT / 序列标注
-- [Agent](文章/LLM/Agent/) — Agent / LangChain / LangGraph / MCP / A2A / 提示词工程
-- [Coze](文章/LLM/Agent/coze/) — 介绍及应用 / 换脸智能体 / 爆文生成 / 部署
-- [Dify](文章/LLM/Agent/dify/) — 安装介绍 / 知识库 / 微调语料 / ragflow / 问答系统
+- [深度学习](文章/LLM/深度学习/) — 大模型基础 / BERT / T5 / GPT / 序列标注
 - [RAG](文章/LLM/Rag/) — RAG 概述 / 文档处理 / 文档向量化
-- [深度学习](文章/LLM/深度学习/)
+- [Agent](文章/LLM/Agent/) — Agent / LangChain / MCP / A2A / 提示词工程
+- [知识图谱](文章/LLM/知识图谱/)
 - [微调](文章/LLM/微调/)
 
 ### 408 考研
