@@ -25,10 +25,9 @@ Java 后端 & 大模型开发学习笔记。
 
 - [Redis 集群模式](文章/中间件/Redis/Redis集群模式.md)
 - [Nginx 配置](文章/中间件/Nginx/Nginx%20配置.md)
+- [Docker](文章/中间件/Docker/)
 - [Elasticsearch](文章/中间件/Elasticsearch/)
 - [Kafka](文章/中间件/Kafka/)
-- [Docker](文章/中间件/Docker/)
-- [Nacos](文章/中间件/Nacos/)
 - [PostgreSQL](文章/中间件/PostgreSQL/)
 
 ### 数据库
