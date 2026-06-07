@@ -161,7 +161,7 @@ nav:
       - Ideas:
           - 文章/Ideas/index.md
           - 个人方法论: 文章/Ideas/个人方法论.md
-  - LeetCode: leetcode/PROGRESS.md
+  - LeetCode: leetcode/index.md
   - 读书: book/index.md
   - 电影: movie/index.md
   - 时间线: 时间线/index.md

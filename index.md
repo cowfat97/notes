@@ -31,7 +31,7 @@ Java 后端 & 大模型开发 · 学习路上的积累与思考
 
     Python 刷题记录与题解
 
-    [→ 刷题进度](leetcode/PROGRESS.md)
+    [→ 刷题进度](leetcode/index.md)
 
 -   :material-book-open-page-variant:{ .lg .middle } **读书**
 
