@@ -140,7 +140,7 @@ nav:
               - NLP 金融文本匹配: 文章/LLM/Agent/2.3c_金融文本匹配.md
               - 课程笔记_基于LangGraph的垂直领域智能体: 文章/LLM/Agent/Langgraph/课程笔记_基于LangGraph的垂直领域智能体.md
               - SmartVoyage: 文章/LLM/Agent/SmartVoyage.md
-          - 知识图谱:
+          - 知识图谱: 文章/LLM/知识图谱/index.md
           - 微调: 文章/LLM/微调/微调.md
       - 408:
           - 数据结构概述: 文章/408/数据结构/数据结构概述.md
