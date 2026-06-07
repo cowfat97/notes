@@ -12,7 +12,7 @@ hide:
 
 <div class="tl-entry">
   <p class="tl-date"><a href="2026-06-07/☕-2026-06-07/">2026-06-07 · 周日 · 包头 →</a></p>
-  <p class="tl-preview">计划整理干净了，感觉方向清晰了很多。之前什么都想抓，现在只抓两件事：投简历 + 面试准备。学习是长线，不赶进度。</p>
+  <p class="tl-preview">计划整理干净了，明天开干。</p>
 </div>
 
 <div class="tl-entry">
