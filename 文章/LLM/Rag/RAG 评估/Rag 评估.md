@@ -8,25 +8,15 @@ RAG 系统，搞清楚三件事就够了：
 
 ## 评估指标
 
+量化评估，需要指标：
+
 ### 检索评估 — 检索的准不准？
 
-1. Recall@K
-
-Top-K 的结果里，正确答案有没有出现？
-
-2. MRR
-
-第一个正确答案排在第几位？越靠前越好。
-
-3. NDCG
-
-考虑排序位置和相关程度的整体得分，排名越对分数越高。
-
-4. 上下文相关性 (context relevance)
+1. 上下文相关性 (context relevance)
 
 检索出来的文档碎片里，有多少是真正相关的？
 
-5. 上下文召回率 (context recall)
+2. 上下文召回率 (context recall)
 
 标准答案里的信息，检索有没有遗漏？
 
@@ -42,17 +32,31 @@ Top-K 的结果里，正确答案有没有出现？
 
 ### 性能评估 — 跑得快不快/稳不稳？
 
-1. 延迟（Latency）：检索 + 生成全流程响应时间
-2. 吞吐（Throughput）：高并发下性能稳定性
-3. 缓存命中率（Cache Hit Rate）：是否重复计算
-4. 可复现性（Reproducibility）：同样问题是否输出一致
-5. 时效性（Recency）：知识库更新后，是否能实时反映到答案中
+1. 延迟（Latency）
+
+检索+生成全流程响应时间
+
+2. 吞吐（Throughput）
+
+高并发下性能稳定性
+
+3. 缓存命中率（Cache Hit Rate）
+
+是否重复计算
+
+4. 可复现性（Reproducibility）
+
+同样问题是否输出一致
+
+5. 时效性（Recency）
+
+知识库更新后，是否能实时反映到答案中
 
 ## 评估维度
 
-光看指标没用。你得知道是哪个环节烂了。
+光指标不够，得知道出问题的环节。
 
-把检索、重排、生成、引用拆开评，出了问题直接定位模块，别瞎猜。
+评估分静态和动态：静态查数据质量，动态查运行结果。
 
 RAG 有 8 个环节：
 
@@ -69,48 +73,35 @@ RAG 有 8 个环节：
 7. 答案生成 — 幻觉（编造 context 里没有的内容）、过度拒绝（能答的偏说不懂）
 8. 引用溯源 — 引用的 chunk 不支持这个声明、chunk 换过了引用链接没更新
 
-## 发展演进
-
-评估手段跟着 RAG 系统一起升级的，三个阶段：
-
-### 传统 RAG — 只看检索
-
-系统就是三条线：索引→检索→生成。没有查询改写，没有重排序，没有意图分类。
-
-能出的问题就一种——检索没召回。生成端没人管，默认 LLM 拿到正确的 context 就能答对。
-
-评估等于检索评估：Recall@K、MRR、NDCG。生成质量靠人抽检，抽几十条看两眼说"还行"就过了。
-
-问题：检索好不等于答案好。Top-5 全召回但 LLM 没用 context 自己编，你根本不知道。
-
-### 高级 RAG — RAGAS 自动化
-
-加了预检索优化（HyDE 查询改写、意图分类）和后检索优化（BGE-Reranker 重排序、父子块策略）。优化点多了，出问题的地方也多了——查询改写可能偏了，意图分错路由到错的 collection，重排可能把对的排出去，LLM 看了 context 还是编。
-
-RAGAS 出来解决两个问题：生成质量可量化（faithfulness 拆 claims 逐条验证有没有编、answer relevancy 反向生成问题看对不对得上），检索侧细化（context precision 看噪音、context recall 看遗漏）。核心理念是用 LLM 评估 LLM，零标注成本，能规模化跑。
-
-进步：第一次能分环节定位问题。检索差还是生成差，不用猜了。
-
-局限：还是离线评估，测试集覆盖不到的 case 照样盲区。judge 自己有 bias。平均值掩盖长尾风险。
-
-### RAG 智能体 — 工业化体系
-
-不再是固定 pipeline，Agent 自主决策。评估变成一套工程体系：
-
-- 组件级逐模块测，8 个环节每个独立打分
-- CI 集成：PR gate（50 条快测）+ Nightly（全量+对抗）
-- 漂移检测：换 embedding、知识库更新后检索分布悄悄变了，靠固定 probe 集抓
-- auto-curation：线上 bad case 打标签→入库 golden set→CI 加断言，同一个坑不踩第二次
-- judge 校准：LLM judge 定期和人工标注对齐，防止系统性偏差
-
-从"跑个分交差"变成"持续监控+自我进化"。
-
-## 工具
+## 评估方法
 
 ### RAGAS
 
-RAG 评估框架。LLM 自动打分，四个指标（context_precision / context_recall / faithfulness / answer_relevancy），Python 库几行代码的事。
+RAGAS 解决两个问题：
 
-### LangSmith
+1. 生成质量可量化
 
-LangChain 的 trace 平台。链路追踪 + 人工标注 + 评估，付费。线上出 bad case 了，能一路回溯看到底是检索翻车还是 LLM 瞎编。
+faithfulness 拆 claims 逐条验证有没有编、answer relevancy 反向生成问题看对不对得上
+
+2. 检索侧细化
+
+context precision 看噪音、context recall 看遗漏
+
+核心理念：用 LLM 评估 LLM，零标注成本。
+
+使用流程：
+
+1. 准备测试集
+
+
+
+人工写问答对，或从文档反向生成。每条包含 question + ground_truth。
+
+2. 跑 RAG pipeline
+
+每个 question 过一遍系统，收集 contexts（检索结果）+ answer（LLM 生成）。
+
+3. RAGAS 打分
+
+输入 (question, answer, contexts, ground_truth)，四个指标自动出分，Python 几行代码的事。
+

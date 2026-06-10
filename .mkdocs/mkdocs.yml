@@ -139,7 +139,7 @@ nav:
               - NLP 金融文本分类: 文章/LLM/Agent/2.3a_金融文本分类.md
               - NLP 金融文本抽取: 文章/LLM/Agent/2.3b_金融文本抽取.md
               - NLP 金融文本匹配: 文章/LLM/Agent/2.3c_金融文本匹配.md
-              - 课程笔记_基于LangGraph的垂直领域智能体: 文章/LLM/Agent/Langgraph/课程笔记_基于LangGraph的垂直领域智能体.md
+              - LangGraph: 文章/LLM/Agent/Langgraph/LangGraph.md
               - SmartVoyage: 文章/LLM/Agent/SmartVoyage.md
               - Agent 评估: 文章/LLM/Agent/Agent 评估.md
           - 知识图谱: 文章/LLM/知识图谱/index.md
