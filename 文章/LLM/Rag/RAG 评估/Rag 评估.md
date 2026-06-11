@@ -89,13 +89,18 @@ context precision 看噪音、context recall 看遗漏
 
 核心理念：用 LLM 评估 LLM，零标注成本。
 
-使用流程：
+构建评估流程：
 
 1. 准备测试集
 
+你的评估结果，上限取决于你的测试数据集。
 
+数据集的”四元组”标准结构：
 
-人工写问答对，或从文档反向生成。每条包含 question + ground_truth。
+- question：用户提问
+- ground_truth：标准正确答案
+- reference_contexts：参考源文档片段
+- metadata：元数据标签
 
 2. 跑 RAG pipeline
 
