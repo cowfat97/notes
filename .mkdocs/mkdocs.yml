@@ -142,6 +142,7 @@ nav:
               - LangGraph: 文章/LLM/Agent/Langgraph/LangGraph.md
               - SmartVoyage: 文章/LLM/Agent/SmartVoyage.md
               - Agent 评估: 文章/LLM/Agent/Agent 评估.md
+              - 意图识别: 文章/LLM/Agent/意图识别.md
           - 知识图谱: 文章/LLM/知识图谱/index.md
           - 微调: 文章/LLM/微调/微调.md
       - 408:
