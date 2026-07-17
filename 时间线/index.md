@@ -12,6 +12,7 @@ hide:
 
 <div class="tl-entry">
   <p class="tl-date"><a href="2026-07-17/☕-2026-07-17/">2026-07-17 · 周五 · 深圳 →</a></p>
+  <p class="tl-preview">> 光荣在于平淡，艰巨在于漫长</p>
 </div>
 
 <div class="tl-entry">
