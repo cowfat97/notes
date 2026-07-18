@@ -12,7 +12,7 @@ hide:
 
 <div class="tl-entry">
   <p class="tl-date"><a href="2026-07-18/☕-2026-07-18/">2026-07-18 · 周六 · 深圳 →</a></p>
-  <p class="tl-preview">> 钩子</p>
+  <p class="tl-preview">> 越压抑欲望越放纵</p>
 </div>
 
 <div class="tl-entry">
