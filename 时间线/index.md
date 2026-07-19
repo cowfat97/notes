@@ -11,6 +11,11 @@ hide:
 <div class="tl-scroll">
 
 <div class="tl-entry">
+  <p class="tl-date"><a href="2026-07-19/☕-2026-07-19/">2026-07-19 · 周日 · 深圳 →</a></p>
+  <p class="tl-preview">> AI 短剧的壁垒不是工具，是"会做"。先跑通第一条片子，一克理论不如一克实践。</p>
+</div>
+
+<div class="tl-entry">
   <p class="tl-date"><a href="2026-07-18/☕-2026-07-18/">2026-07-18 · 周六 · 深圳 →</a></p>
   <p class="tl-preview">> 越压抑欲望越放纵</p>
 </div>
