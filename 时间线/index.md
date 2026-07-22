@@ -11,6 +11,11 @@ hide:
 <div class="tl-scroll">
 
 <div class="tl-entry">
+  <p class="tl-date"><a href="2026-07-21/☕-2026-07-21/">2026-07-21 · 周二 · 深圳 →</a></p>
+  <p class="tl-preview">> Google Drive MCP 卡了一下午，根因就两个：gaxios 只读小写 https_proxy、旧进程没杀干净。排查踩坑值得记。</p>
+</div>
+
+<div class="tl-entry">
   <p class="tl-date"><a href="2026-07-19/☕-2026-07-19/">2026-07-19 · 周日 · 深圳 →</a></p>
   <p class="tl-preview">> 该断则断</p>
 </div>
