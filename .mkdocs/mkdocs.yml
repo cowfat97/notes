@@ -124,6 +124,8 @@ nav:
               - 文档处理: 文章/LLM/Rag/文档处理.md
               - 文档向量化: 文章/LLM/Rag/文档向量化.md
               - Rag 评估: 文章/LLM/Rag/RAG 评估/Rag 评估.md
+              - 文档分块: 文章/LLM/Rag/文档分块.md
+              - 文档读取: 文章/LLM/Rag/文档读取.md
           - Agent:
               - Agent 概述: 文章/LLM/Agent/Agent.md
               - AgentPatterns: 文章/LLM/Agent/AgentPatterns.md
