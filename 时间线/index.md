@@ -11,6 +11,11 @@ hide:
 <div class="tl-scroll">
 
 <div class="tl-entry">
+  <p class="tl-date"><a href="2026-07-23/☕-2026-07-23/">2026-07-23 · 周四 · 深圳 →</a></p>
+  <p class="tl-preview">> 云端跑了一周发现 batch_size bug 根本修不了，果断买机器本地跑。18,000 coins 花了 1,300 学到一课：云平台工作流对精确控制不友好，做数据集还是得本地 ComfyUI。</p>
+</div>
+
+<div class="tl-entry">
   <p class="tl-date"><a href="2026-07-21/☕-2026-07-21/">2026-07-21 · 周二 · 深圳 →</a></p>
   <p class="tl-preview">> Google Drive MCP 卡了一下午，根因就两个：gaxios 只读小写 https_proxy、旧进程没杀干净。排查踩坑值得记。</p>
 </div>
