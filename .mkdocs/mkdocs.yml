@@ -107,6 +107,11 @@ nav:
       - 中间件:
           - Redis 集群: 文章/中间件/Redis/Redis集群模式.md
           - Nginx 配置: 文章/中间件/Nginx/Nginx 配置.md
+          - Docker: 文章/中间件/Docker/Docker.md
+          - Elasticsearch: 文章/中间件/Elasticsearch/Elasticsearch.md
+          - Kafka: 文章/中间件/Kafka/Kafka.md
+          - Nacos: 文章/中间件/Nacos/Nacos.md
+          - PostgreSQL: 文章/中间件/PostgreSQL/PostgreSQL.md
       - 数据库:
           - 特性: 文章/数据库/Mysql/数据库特性.md
           - 索引: 文章/数据库/Mysql/索引.md
