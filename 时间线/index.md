@@ -11,6 +11,16 @@ hide:
 <div class="tl-scroll">
 
 <div class="tl-entry">
+  <p class="tl-date"><a href="2026-07-26/☕-2026-07-26/">2026-07-26 · 周日 · 深圳 →</a></p>
+  <p class="tl-preview">> 睡眠又烂了——31 段碎片，01:50 才睡，质量评分 37/100。跟昨天一样的问题，入睡太晚、碎片太多。需要把入睡时间提前到 23:30 之前，但执行起来总是做不到。今天搞 Windows 11 启动盘，用 dd 写到移动硬盘，等 ISO 下载。</p>
+</div>
+
+<div class="tl-entry">
+  <p class="tl-date"><a href="2026-07-25/☕-2026-07-25/">2026-07-25 · 周六 · 深圳 →</a></p>
+  <p class="tl-preview">> 第一次装机，CPU→内存→SSD→散热→主板进机箱→电源接线→前面板跳线，全程自己对着文档一步步来。最紧张的是 CPU 放下去那一刻，最累的是理线。显卡也到了，装完通电那一刻风扇转起来的感觉很爽。搞了 2-3 小时，累但值得。明天装 Windows 11。</p>
+</div>
+
+<div class="tl-entry">
   <p class="tl-date"><a href="2026-07-24/☕-2026-07-24/">2026-07-24 · 周五 · 深圳 →</a></p>
   <p class="tl-preview">> 待补</p>
 </div>
