@@ -11,6 +11,16 @@ hide:
 <div class="tl-scroll">
 
 <div class="tl-entry">
+  <p class="tl-date"><a href="2026-07-28/☕-2026-07-28/">2026-07-28 · 周二 · 深圳 →</a></p>
+  <p class="tl-preview">> 台风走了，晴天。昨晚 48 段碎片、7h19m 有效睡眠，28 分，下午才缓过来。战地 5 开玩，加速器没开画面卡。Node.js 装好，ComfyUI 路径找到了——v0.28.3 便携版，Manager 已内置但需 `--enable-manager` 启动参数。Codex 配置文件之前被 DeepSeek 自定义后端污染（model_provider=custom），修了 config.toml 恢复走 OpenAI 官方。ChatGPT Plus 走 55ai.net 代充 ¥135/月，到账。文明 7 Steam 史低 ¥149 没买。耳机没试。LLM 课程再推一天到 07/29，明天不能再推了。</p>
+</div>
+
+<div class="tl-entry">
+  <p class="tl-date"><a href="2026-07-27/☕-2026-07-27/">2026-07-27 · 周一 · 深圳 →</a></p>
+  <p class="tl-preview">> 台风第三天，熬夜难受但下午缓过来了。内存换 A2 槽解决重启问题，NVIDIA 驱动、Chrome、VSCode、Steam 全装好了。MX Master 3s 蓝牙折腾了 3 小时——能发现但握手失败，Intel 蓝牙模块兼容性问题，最后买了个有线鼠标应急。PS5 手柄蓝牙倒是秒连。Mac Clash LAN 共享给台式机当代理，配好了 ComfyUI MCP。学习计划推后一天，明天正式开始。战地 5 下好了，今晚打游戏。</p>
+</div>
+
+<div class="tl-entry">
   <p class="tl-date"><a href="2026-07-26/☕-2026-07-26/">2026-07-26 · 周日 · 深圳 →</a></p>
   <p class="tl-preview">> 睡眠又烂了——31 段碎片，01:50 才睡，质量评分 37/100。跟昨天一样的问题，入睡太晚、碎片太多。需要把入睡时间提前到 23:30 之前，但执行起来总是做不到。今天搞 Windows 11 启动盘，用 dd 写到移动硬盘，等 ISO 下载。</p>
 </div>
