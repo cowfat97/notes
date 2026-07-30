@@ -11,6 +11,11 @@ hide:
 <div class="tl-scroll">
 
 <div class="tl-entry">
+  <p class="tl-date"><a href="2026-07-29/☕-2026-07-29/">2026-07-29 · 周三 · 深圳 →</a></p>
+  <p class="tl-preview">> 全栈 infra 日。Codex 模型被 DeepSeek 污染——config.toml 里 model_provider=custom 指向本地 DeepSeek，cc-switch-model-catalog.json 只有 DeepSeek V4 Flash/Pro 两个条目。修了 config 删了目录缓存恢复 OpenAI。ChatGPT Plus 55ai.net ¥135 代充到账。树莓派 SD 卡时好时坏——黑屏+绿灯灭，判断文件系统损坏，重刷 Raspberry Pi OS。装好 mihomo（clash）+ flowercloud 订阅，卡在 MMDB 下载（Pi 没代理下不了），Mac 下了传过去解决。frpc 配好双隧道：6002→SSH、7893→代理。allow-lan 开了，iPhone 在家直连 192.168.0.113:7893。出门走 47.93.86.20:7893 需要阿里云安全组开 7893 端口。OpenClaw 停掉。台式机 Google 扫码登录搞定。LLM 课程又推到明天——但今天搞的 infra 比上课值。</p>
+</div>
+
+<div class="tl-entry">
   <p class="tl-date"><a href="2026-07-28/☕-2026-07-28/">2026-07-28 · 周二 · 深圳 →</a></p>
   <p class="tl-preview">> 台风走了，晴天。昨晚 48 段碎片、7h19m 有效睡眠，28 分，下午才缓过来。战地 5 开玩，加速器没开画面卡。Node.js 装好，ComfyUI 路径找到了——v0.28.3 便携版，Manager 已内置但需 `--enable-manager` 启动参数。Codex 配置文件之前被 DeepSeek 自定义后端污染（model_provider=custom），修了 config.toml 恢复走 OpenAI 官方。ChatGPT Plus 走 55ai.net 代充 ¥135/月，到账。文明 7 Steam 史低 ¥149 没买。耳机没试。LLM 课程再推一天到 07/29，明天不能再推了。</p>
 </div>
