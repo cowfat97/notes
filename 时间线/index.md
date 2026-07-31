@@ -11,6 +11,11 @@ hide:
 <div class="tl-scroll">
 
 <div class="tl-entry">
+  <p class="tl-date"><a href="2026-07-31/☕-2026-07-31/">2026-07-31 · 周五 · 深圳 →</a></p>
+  <p class="tl-preview">> 补觉日。昨晚又是碎片地狱但白天补回来了，总共睡了 12h21m。阿里云安全组 7893 加好了，手机出门代理就绪。写了睡眠分析脚本 `_components/sleep_analyzer.py`——解析 Apple Watch 碎片→自动输出评分+精力建议，以后日记的状态模块不再手动填。首要任务：早睡。不是"明天开始"，是今天就做。</p>
+</div>
+
+<div class="tl-entry">
   <p class="tl-date"><a href="2026-07-30/☕-2026-07-30/">2026-07-30 · 周四 · 深圳 →</a></p>
   <p class="tl-preview">> 连续四天熬夜，腰疼。探讨了台式机 ComfyUI 远程操控方案：frp 隧道 + MCP 可行，也有 Tailscale/ZeroTier 等更轻量的替代。台式机 Codex 一直重连——Clash 代理下 WebSocket 长连接可能不稳定，但 `codex` 命令找不到，npm 全局路径没加到 PATH。LLM 课程继续推。今天早点睡。</p>
 </div>
