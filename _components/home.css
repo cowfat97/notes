@@ -1,0 +1,8 @@
+@media screen and (min-width: 960px) {
+  .grid.cards.four-cols > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .grid.cards.four-cols > ul > li {
+    min-width: 0;
+  }
+}

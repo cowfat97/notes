@@ -15,7 +15,7 @@ Java 后端 & 大模型开发 · 学习路上的积累与思考
 
 ## 模块导航
 
-<div class="grid cards" markdown>
+<div class="grid cards four-cols" markdown>
 
 -   :material-notebook-edit-outline:{ .lg .middle } **文章**
 
