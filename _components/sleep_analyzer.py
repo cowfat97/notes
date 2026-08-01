@@ -150,11 +150,54 @@ def parse_sleep_file(filepath: Path) -> SleepReport | None:
     )
 
 
+TIMELINE_DIRS = [
+    Path.home() / "Desktop/开发/学习/notes/时间线",
+    Path.home() / "Library/Mobile Documents/iCloud~md~obsidian/Documents/郝鑫磊/时间线",
+]
+
+
+def update_diary(report: SleepReport, dry_run: bool = False) -> list[str]:
+    """将睡眠分析结果写入日记的「状态」模块。返回已更新的文件列表。"""
+    energy_bar = "⚡" * report.energy + "☆" * (5 - report.energy)
+    sleep_line = (
+        f"- 精力：{energy_bar} ({report.energy}/5)"
+        f" | 睡眠 {report.total_sleep_min // 60}h{report.total_sleep_min % 60}m"
+        f" · {report.fragment_count} 段"
+        f" · {report.score} 分"
+    )
+
+    updated = []
+    for base in TIMELINE_DIRS:
+        diary = base / report.date / f"☕-{report.date}.md"
+        if not diary.exists():
+            continue
+
+        lines = diary.read_text(encoding="utf-8").split("\n")
+        new_lines = []
+        for line in lines:
+            if line.startswith("- 精力："):
+                new_lines.append(sleep_line)
+            else:
+                new_lines.append(line)
+
+        if dry_run:
+            print(f"[dry-run] 将更新: {diary}")
+        else:
+            diary.write_text("\n".join(new_lines), encoding="utf-8")
+        updated.append(str(diary))
+
+    return updated
+
+
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        target = date.fromisoformat(sys.argv[1])
-    else:
-        target = date.today() - timedelta(days=1)
+    target = date.today() - timedelta(days=1)
+    dry = False
+
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    if len(args) > 0:
+        target = date.fromisoformat(args[0])
+    if "--update" in sys.argv or "-u" in sys.argv:
+        dry = "--dry" in sys.argv
 
     filepath = find_sleep_file(target)
     if not filepath:
@@ -166,4 +209,12 @@ if __name__ == "__main__":
         print(json.dumps({"error": f"解析失败: {filepath}"}, ensure_ascii=False))
         sys.exit(1)
 
-    print(json.dumps(asdict(report), ensure_ascii=False, indent=2))
+    if "--update" in sys.argv or "-u" in sys.argv:
+        updated = update_diary(report, dry_run=dry)
+        print(f"已更新 {len(updated)} 个日记:")
+        for u in updated:
+            print(f"  {u}")
+        print()
+        print(json.dumps(asdict(report), ensure_ascii=False, indent=2))
+    else:
+        print(json.dumps(asdict(report), ensure_ascii=False, indent=2))
