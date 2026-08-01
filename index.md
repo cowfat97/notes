@@ -15,7 +15,7 @@ Java 后端 & 大模型开发 · 学习路上的积累与思考
 
 ## 模块导航
 
-<style>.grid.cards.home-grid > ul{grid-template-columns:repeat(4,1fr)!important;}</style>
+<style>.grid.cards.home-grid > ul{display:flex!important;flex-wrap:nowrap!important}.grid.cards.home-grid > ul > li{flex:1!important;min-width:0!important}</style>
 <div class="grid cards home-grid" markdown>
 
 -   :material-notebook-edit-outline:{ .lg .middle } **文章**
