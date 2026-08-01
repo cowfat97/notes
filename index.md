@@ -15,7 +15,8 @@ Java 后端 & 大模型开发 · 学习路上的积累与思考
 
 ## 模块导航
 
-<div class="grid cards four-cols" markdown>
+<style>.grid.cards.home-grid > ul{grid-template-columns:repeat(4,1fr)!important;}</style>
+<div class="grid cards home-grid" markdown>
 
 -   :material-notebook-edit-outline:{ .lg .middle } **文章**
 
