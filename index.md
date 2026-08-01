@@ -49,13 +49,5 @@ Java 后端 & 大模型开发 · 学习路上的积累与思考
 
     [→ 开始阅读](movie/index.md)
 
--   :material-calendar-text:{ .lg .middle } **时间线**
-
-    ---
-
-    每日日记
-
-    [→ 开始阅读](时间线/index.md)
-
 </div>
 
