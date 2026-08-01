@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install pyyaml
-      - run: python _components/sync_nav.py
+      - run: python scripts/sync_nav.py
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"

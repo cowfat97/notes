@@ -18,10 +18,7 @@ jobs:
       - run: pip install pyyaml "mkdocs-material>=9.5,<10" "mkdocs>=1.6,<2"
 
       - name: Auto-sync nav
-        run: python _components/sync_nav.py
-
-      - name: Generate timeline
-        run: python _components/gen_timeline.py
+        run: python scripts/sync_nav.py
 
       - name: Commit auto changes
         run: |
@@ -30,8 +27,8 @@ jobs:
           if git diff --quiet; then
             echo "No changes."
           else
-            git add .mkdocs/mkdocs.yml 时间线/index.md
-            git commit -m "chore: 自动更新导航和时间线"
+            git add .mkdocs/mkdocs.yml
+            git commit -m "chore: 自动更新导航"
             git push
           fi
 

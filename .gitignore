@@ -12,4 +12,5 @@ blog/
 CLAUDE.md
 AGENTS.md
 scripts/
+!scripts/sync_nav.py
 .obsidian/
