@@ -47,7 +47,6 @@ theme:
 extra_css:
   - _components/book.css
   - _components/movie.css
-  - _components/timeline.css
   - _components/wechat.css
 
 extra:
