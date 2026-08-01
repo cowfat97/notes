@@ -1,5 +1,0 @@
-@media screen and (min-width: 960px) {
-  .md-typeset .grid.four-cols > ul {
-    grid-template-columns: repeat(4, 1fr) !important;
-  }
-}
