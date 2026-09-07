@@ -4,6 +4,7 @@
 ## 学习笔记
 
 - **Java** — 基础 / 多线程 / JVM / 框架 / 集合
+- **Python** — 语法 / 数据处理 / 工程化
 - **中间件** — Redis / Nginx
 - **数据库** — MySQL 索引 / 事务 / 特性
 - **LLM** — 通识 / Agent / Coze / Dify / RAG / 微调

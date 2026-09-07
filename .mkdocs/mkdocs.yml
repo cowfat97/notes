@@ -103,6 +103,8 @@ nav:
               - Druid: 文章/Java/工具/Druid.md
               - JUnit: 文章/Java/工具/Junit.md
               - Swagger: 文章/Java/工具/Swagger.md
+      - Python:
+          - Python 大纲: 文章/Python/Python 大纲.md
       - 中间件:
           - Redis 集群: 文章/中间件/Redis/Redis集群模式.md
           - Nginx 配置: 文章/中间件/Nginx/Nginx 配置.md
@@ -151,7 +153,14 @@ nav:
               - 意图识别: 文章/LLM/Agent/意图识别.md
           - 知识图谱: 文章/LLM/知识图谱/index.md
           - 微调: 文章/LLM/微调/微调.md
-          - Qwen 系列模型: 文章/LLM/Qwen/Qwen 系列模型.md
+          - Qwen 系列模型: 文章/LLM/Qwen/1.1_Qwen 系列模型.md
+          - Qwen3 快速上手: 文章/LLM/Qwen/1.2_Qwen3 快速上手.md
+          - Qwen3 参数汇总: 文章/LLM/Qwen/1.3_Qwen3 参数汇总.md
+          - Qwen3 学习路线: 文章/LLM/Qwen/1.4_Qwen3 学习路线.md
+          - 输出格式控制: 文章/LLM/Qwen/1.5_输出格式控制.md
+          - 采样温度实验: 文章/LLM/Qwen/实验/1.1_采样温度实验.md
+          - 对话控制实验: 文章/LLM/Qwen/实验/1.2_对话控制实验.md
+          - 格式控制实验: 文章/LLM/Qwen/实验/1.3_格式控制实验.md
           - 知识图谱: 文章/LLM/知识图谱/知识图谱.md
       - 408:
           - 数据结构概述: 文章/408/数据结构/数据结构概述.md
