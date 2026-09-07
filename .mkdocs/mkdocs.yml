@@ -101,8 +101,6 @@ nav:
               - Druid: 文章/Java/工具/Druid.md
               - JUnit: 文章/Java/工具/Junit.md
               - Swagger: 文章/Java/工具/Swagger.md
-      - Python:
-          - Python 大纲: 文章/Python/Python 大纲.md
       - 中间件:
           - Redis 集群: 文章/中间件/Redis/Redis集群模式.md
           - Nginx 配置: 文章/中间件/Nginx/Nginx 配置.md
@@ -125,7 +123,6 @@ nav:
               - 序列标注: 文章/LLM/深度学习/1.2e_序列标注任务.md
           - RAG:
               - RAG 概述: 文章/LLM/Rag/RAG.md
-              - 文档处理: 文章/LLM/Rag/文档处理.md
               - 文档向量化: 文章/LLM/Rag/文档向量化.md
               - Rag 评估: 文章/LLM/Rag/RAG 评估/Rag 评估.md
               - 文档分块: 文章/LLM/Rag/文档分块.md
@@ -165,5 +162,12 @@ nav:
       - Ideas:
           - 文章/Ideas/index.md
           - 个人方法论: 文章/Ideas/个人方法论.md
-  - LeetCode: leetcode/index.md
+      - LeetCode:
+          - 刷题计划: 文章/leetcode/index.md
+          - 1. 两数之和: 文章/leetcode/题解/1.两数之和.md
+          - 3. 无重复字符的最长子串: 文章/leetcode/题解/3.无重复字符的最长子串.md
+          - 12. 整数转罗马数字: 文章/leetcode/题解/12.整数转罗马数字.md
+          - 13. 罗马数字转整数: 文章/leetcode/题解/13.罗马数字转整数.md
+          - 14. 最长公共前缀: 文章/leetcode/题解/14.最长公共前缀.md
+          - 70. 爬楼梯: 文章/leetcode/题解/70.爬楼梯.md
 

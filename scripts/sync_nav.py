@@ -13,7 +13,7 @@ EXCLUDE = {
     "README.md", "CLAUDE.md", "plan.md", "index.md",
 }
 EXCLUDE_DIRS = {"posts", ".github", ".mkdocs", "site", ".claude", ".git",
-                "scripts", "__pycache__", "Pic", "envs", "微调"}
+                "scripts", "__pycache__", "Pic", "envs", "微调", "movie"}
 
 TOP_MAPPING = {
     "Java": "Java", "中间件": "中间件", "数据库": "数据库",
