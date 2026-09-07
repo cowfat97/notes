@@ -53,7 +53,7 @@ Java 后端 & 大模型开发学习笔记。
 
 ## LeetCode
 
-- [刷题进度](leetcode/index.md)
+- [刷题进度](文章/leetcode/index.md)
 
 ## 软考
 

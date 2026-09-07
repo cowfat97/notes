@@ -22,17 +22,9 @@ Java 后端 & 大模型开发 · 学习路上的积累与思考
 
     ---
 
-    Java · 中间件 · 数据库 · LLM · 408 考研
+    Java · 中间件 · 数据库 · LLM · 408 考研 · LeetCode
 
     [→ 开始阅读](文章/index.md)
-
--   :material-code-braces:{ .lg .middle } **LeetCode**
-
-    ---
-
-    Python 刷题记录与题解
-
-    [→ 刷题进度](leetcode/index.md)
 
 </div>
 
