@@ -153,10 +153,10 @@ nav:
               - 意图识别: 文章/LLM/Agent/意图识别.md
           - 知识图谱: 文章/LLM/知识图谱/index.md
           - 微调: 文章/LLM/微调/微调.md
-          - Qwen 系列模型: 文章/LLM/Qwen/1.1_Qwen 系列模型.md
-          - Qwen3 快速上手: 文章/LLM/Qwen/1.2_Qwen3 快速上手.md
-          - Qwen3 参数汇总: 文章/LLM/Qwen/1.3_Qwen3 参数汇总.md
-          - Qwen3 学习路线: 文章/LLM/Qwen/1.4_Qwen3 学习路线.md
+          - Qwen3 学习路线: 文章/LLM/Qwen/1.1_Qwen3 学习路线.md
+          - Qwen 系列模型: 文章/LLM/Qwen/1.2_Qwen 系列模型.md
+          - Qwen3 快速上手: 文章/LLM/Qwen/1.3_Qwen3 快速上手.md
+          - Qwen3 参数汇总: 文章/LLM/Qwen/1.4_Qwen3 参数汇总.md
           - 输出格式控制: 文章/LLM/Qwen/1.5_输出格式控制.md
           - 采样温度实验: 文章/LLM/Qwen/实验/1.1_采样温度实验.md
           - 对话控制实验: 文章/LLM/Qwen/实验/1.2_对话控制实验.md
