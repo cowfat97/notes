@@ -34,21 +34,5 @@ Java 后端 & 大模型开发 · 学习路上的积累与思考
 
     [→ 刷题进度](leetcode/index.md)
 
--   :material-book-open-page-variant:{ .lg .middle } **读书**
-
-    ---
-
-    书架 · 阅读统计（微信读书集成）
-
-    [→ 开始阅读](book/index.md)
-
--   :material-movie-open:{ .lg .middle } **电影**
-
-    ---
-
-    观影记录
-
-    [→ 开始阅读](movie/index.md)
-
 </div>
 
