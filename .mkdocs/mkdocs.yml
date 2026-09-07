@@ -45,8 +45,6 @@ theme:
     - content.code.annotate
 
 extra_css:
-  - _components/book.css
-  - _components/movie.css
   - _components/wechat.css
 
 extra:
@@ -168,6 +166,4 @@ nav:
           - 文章/Ideas/index.md
           - 个人方法论: 文章/Ideas/个人方法论.md
   - LeetCode: leetcode/index.md
-  - 读书: book/index.md
-  - 电影: movie/index.md
 
