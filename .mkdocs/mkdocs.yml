@@ -162,6 +162,13 @@ nav:
               - 2.3_vLLM长上下文实验: 文章/LLM/Qwen/实验/2.3_vLLM长上下文实验.md
               - 2.4_vLLM结构化输出稳定性实验: 文章/LLM/Qwen/实验/2.4_vLLM结构化输出稳定性实验.md
               - 1.6_上下文管理实验: 文章/LLM/Qwen/实验/1.6_上下文管理实验.md
+              - 2.10_vLLM任务模式路由与长链路升级实验: 文章/LLM/Qwen/实验/2.10_vLLM任务模式路由与长链路升级实验.md
+              - 2.3_vLLM长上下文性能实验: 文章/LLM/Qwen/实验/2.3_vLLM长上下文性能实验.md
+              - 2.5_vLLM上下文构建与语言实验: 文章/LLM/Qwen/实验/2.5_vLLM上下文构建与语言实验.md
+              - 2.6_vLLM工具沙箱实验: 文章/LLM/Qwen/实验/2.6_vLLM工具沙箱实验.md
+              - 2.7_vLLM_Checkpoint任务恢复实验: 文章/LLM/Qwen/实验/2.7_vLLM_Checkpoint任务恢复实验.md
+              - 2.8_vLLM统一工具输出与上下文预算实验: 文章/LLM/Qwen/实验/2.8_vLLM统一工具输出与上下文预算实验.md
+              - 2.9_vLLM记忆注入与上下文预算实验: 文章/LLM/Qwen/实验/2.9_vLLM记忆注入与上下文预算实验.md
           - 2.1_vLLM安装与运行: 文章/LLM/Qwen/2.1_vLLM安装与运行.md
       - 知识图谱: 文章/LLM/知识图谱/知识图谱.md
   - 408:
