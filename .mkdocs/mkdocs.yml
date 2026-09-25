@@ -169,6 +169,12 @@ nav:
               - 2.7_vLLM_Checkpoint任务恢复实验: 文章/LLM/Qwen/实验/2.7_vLLM_Checkpoint任务恢复实验.md
               - 2.8_vLLM统一工具输出与上下文预算实验: 文章/LLM/Qwen/实验/2.8_vLLM统一工具输出与上下文预算实验.md
               - 2.9_vLLM记忆注入与上下文预算实验: 文章/LLM/Qwen/实验/2.9_vLLM记忆注入与上下文预算实验.md
+              - 3.1_上下文构建与语言实验: 文章/LLM/Qwen/实验/Agent/3.1_上下文构建与语言实验.md
+              - 3.2_工具沙箱实验: 文章/LLM/Qwen/实验/Agent/3.2_工具沙箱实验.md
+              - 3.3_Checkpoint任务恢复实验: 文章/LLM/Qwen/实验/Agent/3.3_Checkpoint任务恢复实验.md
+              - 3.4_统一工具输出与上下文预算实验: 文章/LLM/Qwen/实验/Agent/3.4_统一工具输出与上下文预算实验.md
+              - 3.5_记忆注入与上下文预算实验: 文章/LLM/Qwen/实验/Agent/3.5_记忆注入与上下文预算实验.md
+              - 3.6_任务模式路由与长链路升级实验: 文章/LLM/Qwen/实验/Agent/3.6_任务模式路由与长链路升级实验.md
           - 2.1_vLLM安装与运行: 文章/LLM/Qwen/2.1_vLLM安装与运行.md
       - 知识图谱: 文章/LLM/知识图谱/知识图谱.md
   - 408:
