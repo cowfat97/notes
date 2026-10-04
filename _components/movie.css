@@ -1,0 +1,90 @@
+.year-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.year-list a {
+  padding: 0.4rem 1.1rem;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  text-decoration: none;
+  color: var(--md-primary-fg-color);
+  border: 1.5px solid var(--md-primary-fg-color);
+  transition: all 0.15s;
+}
+.year-list a:hover { background: var(--md-primary-fg-color); color: #fff; }
+
+.year-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 1.5rem;
+}
+.year-nav .sep { color: var(--md-default-fg-color--lightest); margin: 0 0.2rem; }
+.year-nav a {
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  text-decoration: none;
+  color: var(--md-default-fg-color--light);
+}
+.year-nav a:hover { color: var(--md-primary-fg-color); background: rgba(0,137,123,0.06); }
+.year-nav a.cur {
+  color: var(--md-primary-fg-color);
+  font-weight: 600;
+}
+
+.poster-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+}
+.poster-wall .item {
+  position: relative;
+  aspect-ratio: 2/3;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.poster-wall .item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+.poster-wall .item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.poster-wall .item .hover {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 0.25s;
+  pointer-events: none;
+}
+.poster-wall .item:hover .hover { opacity: 1; }
+.poster-wall .item .hover .t {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.35;
+}
+.poster-wall .item .hover .s {
+  font-size: 0.8rem;
+  color: #f5c518;
+  margin-top: 0.25rem;
+}
+.poster-wall .item .hover .d {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.55);
+  margin-top: 0.15rem;
+}
